@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- TAB 1: PIPELINE KANBAN BOARD -->
+  {% include "partials/tab_kanban.html" %}
+
+  <!-- TAB 2: QUICK INGEST & APPLY -->
+  {% include "partials/tab_quick_apply.html" %}
+
+  <!-- TAB 3: GRAPHRAG STORY EXPLORER -->
+  {% include "partials/tab_graphrag.html" %}
+
+  <!-- TAB 4: LIVE AGENT MISSION CONTROL & TELEMETRY -->
+  {% include "partials/tab_telemetry.html" %}
+
+  <!-- TAB 5: AUTONOMY & WATCHLIST SETTINGS -->
+  {% include "partials/tab_settings.html" %}
+
+  <!-- TAB 6: AI SUBAGENT OFFICE HQ -->
+  {% include "partials/tab_subagents.html" %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "seed": 42,
+  "counts": {
+    "tailor": 160,
+    "qa": 55
+  },
+  "files": {
+    "tailor_frozen.jsonl": "fa7c590438c611048df6336dffcc7cca2593b8f52afa977208f5069e74785a93",
+    "qa_frozen.jsonl": "b38182ea64c5c56281f152660f93c5dc3c5d88724ef784a6bd1416a77ae03275"
+  }
+}

@@ -1,0 +1,9 @@
+You are a training data generator. Given a skill category, produce {{ num_variants }} question-answer pairs about the candidate's experience.
+
+SKILL CATEGORY: {{ chunk.content }}
+ITEMS: {{ chunk.metadata.get('items', []) | join(', ') }}
+
+Generate questions like "What's your experience with X?" and answer in first person
+with concrete examples. Only reference skills listed above.
+
+Respond in JSON: {"pairs": [{"question": "...", "answer": "..."}]}

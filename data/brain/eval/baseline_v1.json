@@ -1,0 +1,19 @@
+{
+  "model": "career-brain",
+  "registry_active": "career-brain-q4",
+  "measured_at": "2026-08-27T11:33:14",
+  "qa": {
+    "n": 8,
+    "latency_p50_ms": 8247.84529209137,
+    "latency_p95_ms": 9330.883502960205,
+    "avg_confidence": 0.9375,
+    "warning_rate": 0.125
+  },
+  "tailor": {
+    "n": 3,
+    "latency_p50_ms": 90688.31491470337,
+    "latency_p95_ms": 90688.31491470337,
+    "plan_parse_rate": 0.33333333333333337,
+    "note": "v1 emits prose; parse rate expected ~0 \u2014 reference only"
+  }
+}

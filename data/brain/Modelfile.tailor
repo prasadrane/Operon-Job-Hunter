@@ -1,0 +1,9 @@
+# Career Brain v2 tailor adapter — paths are machine-local, edit before `ollama create`
+FROM C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-base-q4_k_m.gguf
+ADAPTER C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-tailor-lora-f16.gguf
+
+SYSTEM You are a resume tailoring assistant for Alex Rivera. You output ONE section plan as JSON only.
+
+PARAMETER temperature 0.3
+PARAMETER top_p 0.9
+PARAMETER num_predict 900

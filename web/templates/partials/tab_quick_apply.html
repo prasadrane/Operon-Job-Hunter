@@ -1,0 +1,94 @@
+<!-- Tab 2: Quick Ingest & Apply Partial -->
+<section id="tab-quick-apply" class="tab-pane hidden space-y-6">
+  <div>
+    <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+      <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i>
+      Quick Ingestion & Real-Time Rubric Scoring
+    </h2>
+    <p class="text-xs text-slate-400 mt-0.5">Ingest any Greenhouse, Lever, Ashby, or Workday URL or raw description for instant 7-block scoring and 1-click tailoring.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Input Form -->
+    <div class="lg:col-span-6 bg-[#0d121f] border border-white/[0.08] rounded-xl p-5 space-y-4 shadow-xl">
+      <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2 border-b border-white/[0.06] pb-3">
+        <i data-lucide="link" class="w-4 h-4 text-cyan-400"></i> Job Ingestion Form
+      </h3>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Job Board URL</label>
+        <input type="url" id="input-job-url" placeholder="https://boards.greenhouse.io/stripe/jobs/123456" class="form-input" />
+        <p class="text-[11px] text-slate-500 mt-1">Supports Greenhouse, Lever, Ashby, Workday, or direct careers pages.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Company (Optional Override)</label>
+          <input type="text" id="input-job-company" placeholder="e.g. Stripe" class="form-input" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Role Title (Optional Override)</label>
+          <input type="text" id="input-job-title" placeholder="e.g. Senior Software Engineer" class="form-input" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Job Description Text (Optional if URL provided)</label>
+        <textarea id="input-job-desc" rows="6" placeholder="Paste full JD text if evaluating offline..." class="form-input font-mono text-xs"></textarea>
+      </div>
+
+      <div class="pt-2">
+        <button id="btn-quick-ingest-eval" class="btn-primary w-full py-2.5 text-sm font-semibold flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Ingest & Run 7-Block Evaluation</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Real-Time Evaluation & Actions Preview -->
+    <div class="lg:col-span-6 bg-[#0d121f] border border-white/[0.08] rounded-xl p-5 space-y-4 shadow-xl flex flex-col justify-between">
+      <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between border-b border-white/[0.06] pb-3">
+          <span class="flex items-center gap-2">
+            <i data-lucide="target" class="w-4 h-4 text-emerald-400"></i> Instant Evaluation Verdict
+          </span>
+          <span id="quick-score-pill" class="hidden px-2.5 py-0.5 rounded-full text-xs font-bold font-mono">--/100</span>
+        </h3>
+
+        <div id="quick-eval-placeholder" class="p-10 text-center border border-dashed border-slate-800 rounded-lg text-slate-500 text-xs flex flex-col items-center gap-2">
+          <i data-lucide="clipboard-list" class="w-8 h-8 text-slate-600 stroke-[1.5]"></i>
+          <p>Enter a Job URL or Description on the left and click "Ingest & Run 7-Block Evaluation" to review fit matrix.</p>
+        </div>
+
+        <div id="quick-eval-results" class="hidden space-y-3.5">
+          <div class="p-3.5 rounded-lg bg-[#07090e] border border-white/[0.08] text-xs space-y-2">
+            <div class="flex justify-between items-center font-semibold text-slate-200">
+              <span id="quick-eval-company-title" class="text-sm">Company - Title</span>
+              <span id="quick-eval-portal" class="font-mono text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">greenhouse</span>
+            </div>
+            <p id="quick-eval-reason" class="text-slate-300 leading-relaxed bg-[#0d121f] p-2.5 rounded border border-white/[0.04] text-[11px]"></p>
+          </div>
+
+          <!-- 7-Block Grid -->
+          <div class="space-y-1.5">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Evaluation Breakdown</span>
+            <div id="quick-eval-blocks" class="grid grid-cols-2 gap-2 text-xs">
+              <!-- Block Badges -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="quick-actions-bar" class="hidden pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row gap-3">
+        <button id="btn-quick-tailor" class="btn-secondary flex-1 py-2 text-xs font-semibold flex items-center justify-center gap-2">
+          <i data-lucide="file-text" class="w-4 h-4 text-indigo-400"></i>
+          <span>Tailor ATS Resume PDF</span>
+        </button>
+        <button id="btn-quick-submit" class="btn-emerald flex-1 py-2 text-xs font-semibold flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Auto-Submit via Playwright</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

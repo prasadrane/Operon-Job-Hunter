@@ -1,0 +1,64 @@
+<!-- Tab 3: GraphRAG Story Explorer Partial -->
+<section id="tab-graphrag" class="tab-pane hidden space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0d121f] p-4 rounded-xl border border-white/[0.08]">
+    <div>
+      <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+        <i data-lucide="network" class="w-5 h-5 text-purple-400"></i>
+        GraphRAG Knowledge Engine & Verified Career Ledger
+      </h2>
+      <p class="text-xs text-slate-400 mt-0.5">Indexed STAR behavioral stories, quantitative impact metrics, and verified technology claims used to ground anti-hallucination resume tailoring.</p>
+    </div>
+    <div class="relative w-full md:w-64">
+      <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+      <form role="search" autocomplete="off" onsubmit="return false;" class="contents">
+        <input
+          type="text"
+          id="graphrag-search-input"
+          name="graphrag_search_prevent_autofill"
+          role="searchbox"
+          autocomplete="new-password"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          data-lpignore="true"
+          data-1p-ignore="true"
+          data-dashlane-ignore="true"
+          data-bwignore="true"
+          data-form-type="other"
+          placeholder="Search STAR stories & skills..."
+          class="form-input pl-8 py-1.5 text-xs"
+        />
+      </form>
+    </div>
+  </div>
+
+  <!-- Top Quantitative Metrics Grid -->
+  <div class="space-y-3 bg-[#0d121f] p-5 rounded-xl border border-white/[0.08]">
+    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+      <i data-lucide="trending-up" class="w-4 h-4 text-cyan-400"></i> Verified Quantitative Impact Metrics
+    </h3>
+    <div id="metrics-container" class="flex flex-wrap gap-2">
+      <!-- Metric chips injected by JS -->
+    </div>
+  </div>
+
+  <!-- Verified Skills List -->
+  <div class="space-y-3 bg-[#0d121f] p-5 rounded-xl border border-white/[0.08]">
+    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+      <i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i> Verified Technical Entity Graph
+    </h3>
+    <div id="skills-container" class="flex flex-wrap gap-1.5">
+      <!-- Skill badges injected by JS -->
+    </div>
+  </div>
+
+  <!-- STAR Stories Accordion / Grid -->
+  <div class="space-y-3">
+    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+      <i data-lucide="book-open" class="w-4 h-4 text-purple-400"></i> Indexed STAR Behavioral Stories
+    </h3>
+    <div id="stories-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Stories injected by JS -->
+    </div>
+  </div>
+</section>

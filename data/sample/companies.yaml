@@ -1,0 +1,37 @@
+companies:
+- name: Vertexa
+  domain: vertexa.example.com
+  portal_type: greenhouse
+  board_token: vertexa
+  enabled: true
+  careers_url: https://vertexa.example.com/careers
+- name: Cloudhaven
+  domain: cloudhaven.example.com
+  portal_type: lever
+  board_token: cloudhaven
+  enabled: true
+  careers_url: https://cloudhaven.example.com/careers
+- name: Datawheel
+  domain: datawheel.example.com
+  portal_type: workday
+  board_token: datawheel
+  enabled: true
+  careers_url: https://datawheel.example.com/careers
+- name: Orbital Systems
+  domain: orbital.example.com
+  portal_type: greenhouse
+  board_token: orbital
+  enabled: true
+  careers_url: https://orbital.example.com/careers
+- name: Pinehurst Robotics
+  domain: pinehurst.example.com
+  portal_type: ashby
+  board_token: pinehurst
+  enabled: true
+  careers_url: https://pinehurst.example.com/careers
+- name: Bluepeak Health
+  domain: bluepeak.example.com
+  portal_type: lever
+  board_token: bluepeak
+  enabled: true
+  careers_url: https://bluepeak.example.com/careers

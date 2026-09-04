@@ -1,0 +1,153 @@
+# job gh_anthropic_5245851008 | Staff + Senior Software Engineer, Inference @ Anthropic
+# mode=tailoring conf=1.00 warnings=[]
+
+{
+ "section": "skills",
+ "title": "TailorPlan",
+ "properties": {
+  "section": "skills",
+  "skills_to_emphasize": [
+   "distributed systems",
+   "cloud-native microservices",
+   "AI inference optimization",
+   "Kubernetes",
+   "observability",
+   "load balancing",
+   "high-performance networking",
+   "system architecture",
+   "legacy modernization",
+   "technical governance"
+  ],
+  "stories": [
+   {
+    "id": "Story_12",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "OAuth2/JWT",
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_2",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_4",
+    "why": "VB.NET Modernization to AWS ECS Fargate",
+    "emphasize": [
+     "cloud modernization",
+     "99.95% uptime",
+     "40% infrastructure cost reduction"
+    ]
+   },
+   {
+    "id": "Story_4_2",
+    "why": "VB.NET Modernization to AWS ECS Fargate",
+    "emphasize": [
+     "99.95% uptime",
+     "40% infrastructure cost reduction"
+    ]
+   },
+   {
+    "id": "Story_12_3",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_4",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_5",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_6",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_7",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_8",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_9",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_10",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_11",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_12",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_13",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_12_14",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "security audit",
+     "authentication failures"
+    ]
+   },
+   {
+    "id": "Story_

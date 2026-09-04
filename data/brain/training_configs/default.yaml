@@ -1,0 +1,22 @@
+base_model: "Qwen/Qwen3-1.7B"
+training_type: "qlora"
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_compute_dtype: "bfloat16"
+lora:
+  r: 8
+  lora_alpha: 16
+  target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+  lora_dropout: 0.05
+  task_type: "CAUSAL_LM"
+training:
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.03
+  max_seq_length: 2048
+  fp16: true
+  logging_steps: 10
+  save_strategy: "epoch"

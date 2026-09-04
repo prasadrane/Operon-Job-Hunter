@@ -1,0 +1,50 @@
+# VCS
+.git
+.gitignore
+
+# Python artifacts
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+htmlcov/
+.coverage
+.coverage.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Data & secrets
+data/
+.env
+.env.*
+!.env.example
+
+# Test & docs not needed in image
+tests/
+.superpowers/
+graphify-out/
+output/
+
+# Docker files (no need inside image)
+docker-compose*.yml
+Dockerfile
+.dockerignore
+
+# Misc
+*.md
+!README.md
+node_modules/
+.kaggle/
+kaggle.json

@@ -1,0 +1,12 @@
+You are simulating a technical job interview. Generate a multi-turn interview conversation
+for the role: {{ role }} at {{ company }}.
+
+The candidate is Alex Rivera. Here is relevant career data:
+{% for chunk in context_chunks %}
+[{{ chunk.type }}] {{ chunk.content[:200] }}
+{% endfor %}
+
+Generate {{ num_turns }} turns of interview dialogue. The interviewer asks questions,
+the candidate answers in first person using ONLY facts from the career data above.
+
+Respond in JSON: {"turns": [{"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]}

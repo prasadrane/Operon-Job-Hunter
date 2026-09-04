@@ -1,0 +1,209 @@
+/* CareerGraph AI — AI Subagent Office HQ Styles & Animations */
+
+.office-floor {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #0d1424 0%, #060912 100%);
+  min-height: 650px;
+}
+
+.office-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Workstation Desks */
+.agent-desk {
+  background-color: #0b101c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.agent-desk:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(14, 165, 233, 0.15);
+}
+
+.agent-desk-header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.desk-avatar {
+  font-size: 1.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.agent-desk:hover .desk-avatar {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.agent-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.agent-role {
+  font-size: 0.6875rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.desk-state-badge {
+  font-size: 0.625rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.desk-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.desk-screen {
+  background-color: #060910;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Radar Sweep Animation */
+.radar-sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(6, 182, 212, 0.15) 60deg, transparent 60.1deg);
+  animation: radarRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radarRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cartoon Speech Bubbles */
+.agent-bubble {
+  background-color: #121929;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.625rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #cbd5e1;
+  font-family: system-ui, -apple-system, sans-serif;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.agent-bubble::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  background-color: #121929;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  transform: rotate(45deg);
+}
+
+.agent-desk:hover .agent-bubble {
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #f8fafc;
+  background-color: #151e33;
+}
+
+/* Avatar Chips */
+.avatar-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.avatar-chip:hover {
+  transform: translateY(-3px) scale(1.2);
+  z-index: 20;
+}
+
+/* Dynamic Sleeping vs Active Workstation States */
+.agent-desk.sleeping {
+  opacity: 0.65;
+  filter: grayscale(0.25);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+.agent-desk.sleeping:hover {
+  opacity: 0.95;
+  filter: grayscale(0);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.agent-desk.active {
+  opacity: 1;
+  filter: none;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25), 0 8px 24px rgba(0, 0, 0, 0.6);
+  animation: pulseActive 2s infinite ease-in-out;
+}
+
+@keyframes pulseActive {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.45), 0 8px 32px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.desk-state-badge.state-sleeping {
+  background-color: #0f172a;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+
+.desk-state-badge.state-active {
+  background-color: #064e3b;
+  color: #34d399;
+  border: 1px solid #059669;
+}

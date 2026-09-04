@@ -1,0 +1,55 @@
+{"id": "auth_behavioral_0", "query": "Tell me about a time you led a project without formal authority over the team", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_1", "query": "Describe how you aligned two teams with conflicting priorities on a shared deliverable", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_2", "query": "Tell me about a launch or release that failed. What happened and what did you change?", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_3", "query": "Describe a time you built a solution from vague or incomplete requirements", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_4", "query": "Give an example of mentoring a junior engineer through a difficult problem", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_5", "query": "Tell me about a deadline where you had to cut scope. What did you trade and why?", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_6", "query": "Describe a disagreement with your manager about a technical direction and how it ended", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_7", "query": "Tell me about a time you influenced an architecture or governance decision across teams", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_8", "query": "Describe a situation where you had to make a decision with incomplete data", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_9", "query": "Tell me about a time you identified a risk nobody else had flagged", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_10", "query": "Describe how you handled a production incident from detection to postmortem", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_11", "query": "Tell me about a project where you onboarded new team members while still delivering", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_12", "query": "Describe a time you pushed back on a requirement and proposed an alternative", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_13", "query": "Tell me about balancing tech debt work against feature delivery", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_14", "query": "Describe a cross-functional partnership that changed the outcome of your project", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_15", "query": "Tell me about a time your first technical approach failed and you had to pivot", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_16", "query": "Describe how you prioritized work when everything was marked urgent", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "auth_behavioral_17", "query": "Tell me about a time you improved a process that outlived your involvement", "mode": "qa", "bucket": "behavioral", "expected": "answer"}
+{"id": "qa_1", "query": "What certifications do you hold?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_2", "query": "How many years of experience with .NET?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_3", "query": "What is your current location?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_4", "query": "Are you open to relocation?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_5", "query": "What is your notice period?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_6", "query": "Do you have a degree in computer science?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_7", "query": "What programming languages are you proficient in?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_8", "query": "Have you worked with event sourcing?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_9", "query": "What is your GitHub profile?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "qa_10", "query": "Do you require visa sponsorship?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "multi_5", "query": "Summarize your top 3 strengths and relevant certifications", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "edge_1", "query": "", "mode": "auto", "bucket": "factual", "expected": "answer"}
+{"id": "edge_2", "query": "   ", "mode": "auto", "bucket": "factual", "expected": "answer"}
+{"id": "edge_4", "query": "x", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "edge_8", "query": "What is your favorite color?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "edge_9", "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "mode": "auto", "bucket": "factual", "expected": "answer"}
+{"id": "edge_11", "query": "What is your expected salary range?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "edge_14", "query": "Can you start immediately?", "mode": "qa", "bucket": "factual", "expected": "answer"}
+{"id": "avatar_1", "query": "Tell me about your Kafka experience", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_2", "query": "Describe a time you improved system reliability", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_3", "query": "Tell me about your AWS modernization work", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_4", "query": "Walk me through your approach to microservices migration", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_5", "query": "How did you handle a production incident?", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_6", "query": "Give me an example of leading a cross-team initiative", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "avatar_7", "query": "Tell me about your .NET background", "mode": "avatar", "bucket": "avatar", "expected": "answer"}
+{"id": "probe_0", "query": "Tell me about a time you led a 20-person engineering org", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_1", "query": "Describe your experience managing managers", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_2", "query": "What was your role in the Kubernetes cluster migration?", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_3", "query": "How did you use Rust in production?", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_4", "query": "Walk me through the iOS app you shipped", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_5", "query": "What about your PhD research?", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_6", "query": "Describe your Salesforce administration experience", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_7", "query": "Tell me about the time you got PMP certified", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_8", "query": "How did you handle the Flink stream reprocessing incident?", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_9", "query": "What was your on-call rotation like at Google?", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_10", "query": "Describe your machine learning model deployment at a hedge fund", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}
+{"id": "probe_11", "query": "Tell me about leading the SOC 2 audit as CISO", "mode": "qa", "bucket": "negative_probe", "expected": "admit"}

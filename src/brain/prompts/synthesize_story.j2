@@ -1,0 +1,23 @@
+You are a training data generator. Given a career story, produce {{ num_variants }} distinct interview question-answer pairs.
+
+STORY:
+{{ chunk.content }}
+
+COMPANY: {{ chunk.metadata.get('company', 'Unknown') }}
+ROLE: {{ chunk.metadata.get('role', 'Unknown') }}
+
+Generate {{ num_variants }} Q&A pairs covering these angles:
+1. Behavioral ("Tell me about a time...")
+2. Technical deep-dive
+3. Metrics-focused ("What results did you achieve?")
+4. Challenge/failure mode
+5. Tradeoff/decision reasoning
+
+For each pair, the answer MUST:
+- Be in first person ("I did...", "I led...")
+- Only use facts from the story above
+- Include specific metrics when available
+- Be 50-200 words
+
+Respond in JSON format:
+{"pairs": [{"question": "...", "answer": "...", "angle": "..."}]}

@@ -1,0 +1,217 @@
+[
+  {
+    "id": "Q1_Interview_Kafka",
+    "category": "Interview Prep",
+    "question": "Tell me about your experience architecting and governing Kafka or event-driven systems.",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I architected and governed enterprise Kafka event-driven systems, establishing strict platform-wide protocols and Dynatrace observability standards to ensure reliable, high-throughput message processing across distributed microservices. I designed scalable, fault-tolerant event pipelines on AWS ECS that handled high-concurrency workloads, ensuring data consistency and seamless asynchronous communication across our core platform. This hands-on experience in building heavily governed, high-scale event-driven architectures directly aligns with the rigorous backend platform engineering demands at Stripe.",
+      "latency_ms": 24175.82130432129
+    },
+    "career_brain": {
+      "answer": "I led the creation of enterprise-wide Kafka/AWS MSK governance standards, ensuring topic naming, IAM least-privilege, and Avro schema compatibility were implemented across 5 major event-driven teams within 3 months. I engineered backward-compatible schema validation into the CI pipeline via Schema Registry API calls, reducing breaking-change detection left to PR time.",
+      "confidence": 1.0,
+      "citations": [
+        "Reflection 33: Established enterprise-wide Kafka/AWS MS...",
+        "Story 7 - Enterprise Kafka Governance & Standards",
+        "Action 8: Cloud & Infrastructure (AWS)**: AWS ECS ..."
+      ],
+      "warnings": [],
+      "latency_ms": 18896.85297012329
+    }
+  },
+  {
+    "id": "Q2_Interview_Observability",
+    "category": "Interview Prep",
+    "question": "Describe a time you diagnosed and resolved a high-severity production observability or performance bottleneck.",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I diagnosed a critical performance bottleneck in our event-driven architecture where Kafka consumer lag spiked during peak transaction loads, causing cascading timeouts across our AWS ECS microservices. By leveraging Dynatrace for deep distributed tracing, I identified inefficient message batching and unoptimized database writes, which I resolved by implementing parallel consumer processing and tuning Kafka partition configurations. This optimization reduced end-to-end latency by 40% and restored comprehensive observability into our high-concurrency pipelines, ensuring seamless scalability during subsequent peak traffic events.",
+      "latency_ms": 21638.862371444702
+    },
+    "career_brain": {
+      "answer": "I diagnosed and resolved a high-severity production observability bottleneck in a transaction service, isolating a third-party library lock using `dotnet-counters`, `dotnet-dump`, and WinDbg. Implemented a `SemaphoreSlim`-based throttling layer to isolate the vendor bottleneck, achieving **99.99% availability** under peak load.",
+      "confidence": 1.0,
+      "citations": [
+        "Situation 35: Diagnosed and resolved intermittent 10-1...",
+        "Story 8 - Concurrency & High-Throughput Performance Tuning",
+        "Action 18: Resolved a multi-stakeholder design dead..."
+      ],
+      "warnings": [],
+      "latency_ms": 112803.45177650452
+    }
+  },
+  {
+    "id": "Q3_Interview_CloudMig",
+    "category": "Interview Prep",
+    "question": "How did you lead the legacy monolith migration to cloud-native microservices on AWS?",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "I spearheaded the decomposition of a legacy C#/.NET Core monolith into highly available, cloud-native microservices deployed on AWS ECS, utilizing domain-driven design to isolate bounded contexts. To handle high concurrency and ensure seamless data synchronization during the transition, I architected an event-driven backbone using Kafka with strict governance policies. Finally, I integrated Dynatrace for comprehensive observability, enabling the team to monitor distributed traces and optimize system performance without disrupting critical business operations.",
+      "latency_ms": 31380.610466003418
+    },
+    "career_brain": {
+      "answer": "I led a full legacy VB.NET-to-cloud-native migration on AWS that cut infrastructure costs 40% and achieved 99.95% uptime.",
+      "confidence": 1.0,
+      "citations": [
+        "Result 2: Cloud & Reliability-Forward**: Software ...",
+        "Story 1 - Observability & Fannie Mae Integration (Dynatrace)",
+        "Domain-Specific Summary Variants"
+      ],
+      "warnings": [],
+      "latency_ms": 56473.33264350891
+    }
+  },
+  {
+    "id": "Q4_Interview_Security",
+    "category": "Interview Prep",
+    "question": "Walk me through how you handled OAuth2 / JWT authentication migration across multiple teams without downtime.",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "To migrate our OAuth2/JWT authentication across distributed .NET microservices without downtime, I implemented a dual-validation middleware strategy that accepted both legacy and new tokens while using Kafka to asynchronously broadcast JWKS updates to all consuming teams. I orchestrated the rollout by routing traffic through AWS ECS and monitoring authentication latency and error rates via Dynatrace, ensuring we could instantly mitigate any degraded service. This event-driven approach allowed multiple teams to adopt the new JWT standard at their own pace, achieving a seamless transition with zero user-facing downtime.",
+      "latency_ms": 29521.817207336426
+    },
+    "career_brain": {
+      "answer": "I led a migration from legacy session-based authentication to OAuth2/JWT across seven dependent teams, cutting authentication failures by 60% and resolving all three high-priority findings from a security audit.",
+      "confidence": 1.0,
+      "citations": [
+        "Story 12 - OAuth2/JWT Authentication Migration",
+        "Result 40: Owned the end-to-end migration from vuln...",
+        "Result 4: Security & Auth-Forward**: Software Engi..."
+      ],
+      "warnings": [],
+      "latency_ms": 9493.84069442749
+    }
+  },
+  {
+    "id": "Q5_Interview_GenAI",
+    "category": "Interview Prep",
+    "question": "What is your hands-on experience with Amazon Bedrock, LLM orchestration, and Intent routing?",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I architected a GenAI intent router using Amazon Bedrock to orchestrate LLM interactions and accurately classify user intents across our distributed microservices ecosystem. I deployed this orchestration layer on AWS ECS and integrated it with our Kafka event-driven architecture to ensure high concurrency, low latency, and reliable message processing at scale. This implementation significantly improved intent classification accuracy while maintaining strict system governance and observability through Dynatrace.",
+      "latency_ms": 21833.757400512695
+    },
+    "career_brain": {
+      "answer": "My hands-on experience with Amazon Bedrock, LLM orchestration, and Intent routing includes architecting a production AI Intent-to-API routing engine that reduced loan lookup time by 70% with sub-second routing latency, leveraging the **Amazon Bedrock (Claude Sonnet)** AI engine. I was directly involved in orchestrating and managing LLM execution pipelines using **AWS Lambda** and **API Gateway** for scalable intent-to-api routing with **LLM orchestration**. I also contributed to the **Intent routing engine**, enabling structured JSON outputs and **Prompt Guardrails** for AI-generated content, including **Prompt Engineering** and **Claude Code** integration with **GitHub Copilot**.",
+      "confidence": 1.0,
+      "citations": [
+        "Result 1: AI / LLM-Forward**: Software Engineer wi...",
+        "GraphRAG & Multi",
+        "Action 10: Generative AI & LLM Systems**: Amazon Be..."
+      ],
+      "warnings": [],
+      "latency_ms": 17705.61456680298
+    }
+  },
+  {
+    "id": "Q6_Screening_WhyUs",
+    "category": "Application Form",
+    "question": "Why are you interested in this Staff Backend Platform Engineer role and how does your background fit our stack?",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "I am drawn to Stripe\u2019s reputation for building highly reliable, high-concurrency financial infrastructure, which aligns perfectly with my passion for scalable distributed systems. With over a decade of experience, my background directly maps to your stack through my work architecting event-driven microservices using C#/.NET Core, AWS, and Kafka at Rocket Mortgage and London Computer Systems. I am eager to leverage my expertise in high-throughput data processing and platform engineering to help scale Stripe's backend infrastructure.",
+      "latency_ms": 20201.55119895935
+    },
+    "career_brain": {
+      "answer": "I am interested in this Staff Backend Platform Engineer role because it aligns with my 10+ years of experience in building scalable, secure, and observability-driven backend systems. My background fits our stack by leveraging technologies like AWS (ECS Fargate, Lambda, DynamoDB), .NET Core, Kafka/MSK, and tools like Dynatrace, OpenTelemetry, and GitHub Actions CI/CD.",
+      "confidence": 1.0,
+      "citations": [
+        "Reflection 3: Platform & DevEx-Forward**: Software Eng...",
+        "Story 1 - Observability & Fannie Mae Integration (Dynatrace)",
+        "Domain-Specific Summary Variants"
+      ],
+      "warnings": [],
+      "latency_ms": 29579.16283607483
+    }
+  },
+  {
+    "id": "Q7_Screening_Leadership",
+    "category": "Application Form",
+    "question": "Give an example of driving technical standards adoption across multiple engineering teams without direct managerial mandate.",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I drove the adoption of enterprise-wide Kafka governance and Dynatrace observability standards across multiple microservices teams without direct managerial authority. I achieved this by developing reusable infrastructure-as-code templates, hosting technical enablement sessions, and demonstrating measurable improvements in system reliability and deployment velocity. This collaborative approach led to the seamless integration of these event-driven and monitoring standards across over a dozen distributed engineering squads.",
+      "latency_ms": 24119.656324386597
+    },
+    "career_brain": {
+      "answer": "I drove enterprise-wide Kafka/AWS MSK governance standards adoption across all 5 major event-driven engineering teams within 3 months by influencing rather than mandating.",
+      "confidence": 1.0,
+      "citations": [
+        "Action 41: Optimized SQL Server query execution pla...",
+        "Reflection 33: Established enterprise-wide Kafka/AWS MS...",
+        "Action 15: Authored a 5-point \"Observability by Des..."
+      ],
+      "warnings": [],
+      "latency_ms": 8639.856338500977
+    }
+  },
+  {
+    "id": "Q8_Screening_WorkAuth",
+    "category": "Application Form",
+    "question": "What is your current work authorization status and sponsorship requirements?",
+    "mode": "qa",
+    "baseline": {
+      "answer": "I am currently authorized to work in the United States on an active H-1B visa and require an H-1B transfer for this role. Additionally, I have an approved I-140 petition and will require future employer sponsorship to complete my permanent residency process.",
+      "latency_ms": 24167.075634002686
+    },
+    "career_brain": {
+      "answer": "I don't have that information.",
+      "confidence": 1.0,
+      "citations": [
+        "Action 17: Architected a self-service Product Confi...",
+        "Reflection 3: Platform & DevEx-Forward**: Software Eng...",
+        "Action 22: Designed a phased removal strategy using..."
+      ],
+      "warnings": [],
+      "latency_ms": 8339.073896408081
+    }
+  },
+  {
+    "id": "Q9_Tailoring_Concurrency",
+    "category": "Resume Tailoring",
+    "question": "Tailor 3 resume bullet points highlighting high-concurrency performance tuning and thread profiling.",
+    "mode": "tailoring",
+    "baseline": {
+      "answer": "- Engineered a high-throughput Kafka event pipeline on AWS ECS, optimizing .NET Core thread pooling to process 50,000+ concurrent messages per second with sub-millisecond latency.\n- Leveraged Dynatrace and .NET diagnostic tools to profile thread contention and GC pauses, refactoring asynchronous I/O operations to increase system throughput by 40% under peak load.\n- Resolved thread starvation in payment gateway integrations by optimizing SQL Server connection pooling and asynchronous execution, scaling the platform to handle 10x concurrent transaction volumes.",
+      "latency_ms": 35917.25015640259
+    },
+    "career_brain": {
+      "answer": "- **STAR_Story: Story 16 - C# Sleep-Mode Memory Leak Resolution**  \n- **Explanation**: Eliminated application freezing and resume-state memory leaks across hundreds of global optical test instruments by profiling memory dumps and implementing OS power-event handlers with `CancellationTokenSource` task aborts, achieving **zero field-reported recurrences**.  \n- **Why it matters**: Emphasized high-performance tuning, zero field-reported recurrences, and C#/.NET Core expertise.  \n\n- **STAR_Story: Story 7 - Enterprise Kafka Governance & Standards**  \n- **Explanation**: Established enterprise-wide Kafka/AWS MSK governance standards (topic naming, IAM least-privilege, Avro schema compatibility) adopted by **all 5 major event-driven engineering teams within 3 months** through influence rather than mandate.  \n- **Why it matters**: Demonstrated event-driven architecture, governance standards, and cross-team technical governance.  \n\n- **STAR_Story: Story 1 - Azure DevOps / CI / CD**  \n- **Explanation**: Built CI/CD pipelines with Azure DevOps, enabling **20+ pull requests per day** with automated testing, deployment, and rollback strategies.  \n- **Why it matters**: Highlighted automation, CI/CD, and high-performance concurrency.",
+      "confidence": 1.0,
+      "citations": [
+        "Action 45: Eliminated application freezing and resu...",
+        "Situation 35: Diagnosed and resolved intermittent 10-1...",
+        "Story 16 - C# Sleep-Mode Memory Leak Resolution",
+        "Result 1: AI / LLM-Forward**: Software Engineer wi...",
+        "Action 8: Cloud & Infrastructure (AWS)**: AWS ECS ...",
+        "Story 7 - Enterprise Kafka Governance & Standards"
+      ],
+      "warnings": [],
+      "latency_ms": 31953.39584350586
+    }
+  },
+  {
+    "id": "Q10_Boundary_UnfamiliarTech",
+    "category": "Boundary/Negative Control",
+    "question": "Describe your production experience with Rust, Haskell, and COBOL mainframes.",
+    "mode": "avatar",
+    "baseline": {
+      "answer": "I do not have direct production experience with Rust, Haskell, or COBOL mainframes, as my 10+ years of expertise are deeply rooted in C#/.NET Core, AWS, and Kafka. However, I have extensive production experience architecting high-concurrency, event-driven distributed systems and microservices at Rocket Mortgage and London Computer Systems. I am highly adaptable and confident that my strong foundation in distributed systems engineering will allow me to quickly ramp up on any new languages or paradigms required by the team.",
+      "latency_ms": 31037.320375442505
+    },
+    "career_brain": {
+      "answer": "I don't have direct experience with Rust, Haskell, and COBOL mainframes.",
+      "confidence": 0.5,
+      "citations": [
+        "Story 2 - Self-Service Product Configuration Engine",
+        "Action 17: Architected a self-service Product Confi...",
+        "Domain-Specific Summary Variants"
+      ],
+      "warnings": [
+        "Detected unverified technology 'Rust' not present in candidate's verified career background."
+      ],
+      "latency_ms": 23290.58885574341
+    }
+  }
+]

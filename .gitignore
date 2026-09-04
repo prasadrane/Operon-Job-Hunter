@@ -1,0 +1,115 @@
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+ENV/
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+.pytest_cache/
+.coverage
+htmlcov/
+playwright-report/
+test-results/
+
+# ==========================================
+# JavaScript / Web Tooling
+# ==========================================
+node_modules/
+.npm/
+.vite/
+
+# ==========================================
+# Environment, Secrets & Credentials
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+data/token.json
+data/credentials.json
+
+# ==========================================
+# Local Data, Databases & Screenshots
+# ==========================================
+data/*.db
+data/*.sqlite3
+data/demo/
+data/browser_profile/
+data/artifacts/
+data/screenshots/
+output/
+scripts/*.png
+
+# ==========================================
+# IDEs & Operating Systems
+# ==========================================
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Codebase Analysis & Tooling Caches
+# ==========================================
+.codebase-memory/
+.graphify/
+.graphify*
+graphify-out/
+.superpowers/
+.playwright-mcp/
+data/self_healing_log.json
+
+# ==========================================
+# Scratch, Session Logs & Temporary Files
+# ==========================================
+scratch/
+NOTES.md
+*.log
+
+# ==========================================
+# Generated Data Derivatives
+# ==========================================
+data/MASTER_RESUME.jsonl
+data/embedded_graph.json
+data/validation_report.txt
+
+# ==========================================
+# Career Brain Generated Artifacts (Large / Regenerable)
+# ==========================================
+*.gguf
+data/brain/career-brain-lora-adapter/
+data/brain/training_pairs.jsonl
+data/brain/synthesis_report.json
+data/brain/Error-Kaggle*
+data/brain/synth*/
+data/brain/telemetry/

@@ -1,0 +1,36 @@
+/* Focus ring — WCAG 2.2 AA visible focus indicator */
+#factory-container button.a11y-focus,
+#factory-container [tabindex="0"]:focus-visible,
+#a11y-overlay button:focus-visible,
+#a11y-overlay button.a11y-focus {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+#factory-container button[data-kind="error"].a11y-focus,
+#factory-container button[data-kind="error"]:focus-visible,
+#a11y-overlay button[data-kind="error"].a11y-focus,
+#a11y-overlay button[data-kind="error"]:focus-visible {
+  outline-color: #ef4444;
+}
+
+/* Reduced motion — CSS-level animation disable */
+@media (prefers-reduced-motion: reduce) {
+  #factory-container *,
+  #a11y-overlay * {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* Tooltip styling — decorative role; aria-live set via JS attribute */
+[data-tooltip] {
+  font-family: system-ui, -apple-system, sans-serif;
+  white-space: normal;
+  word-wrap: break-word;
+}
+[data-tooltip][data-variant="agent"]   { border-left: 3px solid #06b6d4; }
+[data-tooltip][data-variant="job"]     { border-left: 3px solid #10b981; }
+[data-tooltip][data-variant="zone"]    { border-left: 3px solid #8b5cf6; }
+[data-tooltip][data-variant="station"] { border-left: 3px solid #f59e0b; }
+[data-tooltip][data-variant="error"]   { border-left: 3px solid #ef4444; }

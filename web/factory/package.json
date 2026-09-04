@@ -1,0 +1,15 @@
+{
+  "name": "careergraph-factory",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CareerGraph AI factory visualization (2D isometric, PixiJS)",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9",
+    "jsdom": "^25.0.1"
+  }
+}

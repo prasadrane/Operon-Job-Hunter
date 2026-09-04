@@ -1,0 +1,111 @@
+[
+  {
+    "id": "T1_Kafka_Governance",
+    "category": "Technical Architecture",
+    "question": "Tell me about your experience architecting and governing Kafka or event-driven systems.",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I architected and governed enterprise Kafka ecosystems to power high-concurrency, event-driven microservices deployed on AWS ECS. I established comprehensive Kafka governance frameworks encompassing topic lifecycle management, schema enforcement, and Dynatrace-driven observability to ensure reliable, scalable data streaming across distributed systems. This experience designing resilient, high-throughput event-driven platforms directly aligns with Stripe's requirements for building highly available backend infrastructure.",
+      "latency_ms": 21375.186920166016
+    },
+    "q4_brain": {
+      "answer": "I led the architecting of event-driven systems using AWS MSK and Kafka, focusing on governance and compliance. I established enterprise-wide standards (topic naming, IAM least-privilege, Avro schema compatibility) adopted by all 5 major event-driven engineering teams within 3 months through influence rather than mandate. Embedded `BACKWARD`-compatible schema validation directly into the CI pipeline via Schema Registry API calls, shifting breaking-change detection left to PR time.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 19720.879077911377
+    },
+    "q8_brain": {
+      "answer": "I designed and governed enterprise-wide Kafka/AWS MSK event-driven systems with schema compatibility, IAM, and topic naming standards across 5 major teams within 3 months through influence rather than mandate. I embedded backward-compatible schema validation directly into the CI pipeline via Schema Registry API calls, shifting breaking-change detection left to PR time. I led and collaborated with teams to document and automate governance standards, aligning with DevOps and CI/CD practices.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 29253.700971603394
+    }
+  },
+  {
+    "id": "T2_Observability_Diagnostics",
+    "category": "Debugging & Performance",
+    "question": "Describe a time you diagnosed and resolved a high-severity production observability or performance bottleneck.",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I utilized Dynatrace to diagnose a severe latency bottleneck in our AWS ECS microservices, identifying that inefficient Kafka consumer batching was causing massive event backlogs during peak transaction loads. I resolved this by re-architecting the consumer group partitioning and implementing asynchronous batch processing, which reduced end-to-end event processing latency by 40% and restored system stability well within our SLAs.",
+      "latency_ms": 19956.19821548462
+    },
+    "q4_brain": {
+      "answer": "I diagnosed and resolved a high-severity production observability bottleneck in a transaction service with 50,000+ daily transactions, identifying a third-party library lock bottleneck. I used `dotnet-counters`, `dotnet-dump`, and WinDbg thread-dump analysis to isolate the issue and optimize the third-party library with a 10-15 second stall.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 15513.31615447998
+    },
+    "q8_brain": {
+      "answer": "I diagnosed and resolved a high-severity production observability bottleneck by using `dotnet-counters`, `dotnet-dump`, and WinDbg thread-dump analysis to isolate a third-party library lock bottleneck. The issue resulted in intermittent 10-15 second stalls in a high-volume transaction service with 50,000+ daily transactions. I identified the root cause and implemented a resolution that restored service reliability.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 24143.025398254395
+    }
+  },
+  {
+    "id": "T3_Bedrock_GenAI",
+    "category": "AI / Modern Stack",
+    "question": "What is your hands-on experience with Amazon Bedrock, LLM orchestration, and Intent routing?",
+    "baseline": {
+      "answer": "At Rocket Mortgage, I architected a highly available GenAI intent router using Amazon Bedrock to dynamically orchestrate LLM interactions across our distributed microservices. I designed the orchestration layer to intelligently route user intents to the most appropriate models, optimizing both inference latency and operational costs while enforcing strict governance. Deployed on AWS ECS, this event-driven system reliably handled high-concurrency workloads, seamlessly integrating with our core backend platform.",
+      "latency_ms": 25873.6891746521
+    },
+    "q4_brain": {
+      "answer": "I am Alex Rivera, a software engineer with 10+ years of experience in distributed systems, cloud-native microservices, and AI-enabled platforms. My hands-on experience with Amazon Bedrock, LLM orchestration, and Intent routing is quantified by architecting an **Amazon Bedrock (Claude Sonnet)** AI Intent-to-API routing engine that reduced loan lookup time by **70%** with **sub-second routing latency**. I engineered **C#/.NET Core**, **Angular**, and event-driven architecture (**Kafka/MSK**), leading legacy modernization, security remediation, and cross-team technical governance.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 18994.76718902588
+    },
+    "q8_brain": {
+      "answer": "I have hands-on experience with Amazon Bedrock, LLM orchestration, and Intent routing. Specifically, I developed an **Amazon Bedrock (Claude Sonnet)** AI Intent-to-API routing engine that reduced loan lookup time by 70% with sub-second routing latency. I implemented **Intent-to-API routing** using **LancetDB vector indexing** and **entity relationship graphs**, achieving **sub-second query latency** for domain knowledge bases. I also led **prompt engineering**, **prompt guardrails**, and **structured JSON outputs**, and integrated **Claude Code** and **GitHub Copilot** into the system.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 29755.481481552124
+    }
+  },
+  {
+    "id": "T4_Tailoring_FinTech",
+    "category": "Resume Tailoring",
+    "question": "Tailor 3 resume bullet points highlighting high-concurrency performance tuning and thread profiling for Stripe.",
+    "baseline": {
+      "answer": "I engineered a high-throughput Kafka event-driven pipeline on AWS ECS, utilizing Dynatrace thread profiling to resolve concurrency bottlenecks and increase message processing throughput by 40%. I optimized the Bedrock GenAI intent router's asynchronous execution model by tuning thread pool configurations and reducing lock contention to handle massive concurrent loads with sub-50ms latency. I profiled and tuned high-concurrency C# payment gateway integrations, resolving thread starvation and optimizing connection pooling to ensure zero-downtime processing during peak transaction volumes.",
+      "latency_ms": 69164.64638710022
+    },
+    "q4_brain": {
+      "answer": "- **High-Concurrency Thread Profiling and Bottleneck Resolution**: Designed and implemented a `SemaphoreSlim`-based throttling layer to isolate and resolve a 10-15 second stall in a high-volume transaction service (50,000+ daily transactions), achieving **99.99% availability** under peak load.  \n- **Event-Driven Architecture & Thread Profiling**: Resolved memory leaks and performance bottlenecks in a C#/.NET Core application with Kafka/MSK event-driven architecture by profiling memory dumps and implementing OS power-event handlers with `CancellationTokenSource` task aborts, achieving **zero field-reported recurrences**.  \n- **Cloud Infrastructure & Concurrency Optimization**: Optimized performance in an AWS Fargate application with 100K+ concurrent users by leveraging `dotnet-counters`, `dotnet-dump`, and Windows `WinDbg` to identify and resolve concurrency bottlenecks, reducing latency by 40%.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 30596.36688232422
+    },
+    "q8_brain": {
+      "answer": "- **High-Concurrency Performance Tuning (Story 8)**: Diagnosed and resolved intermittent 10-15 second stalls in a high-volume transaction service (50,000+ daily transactions), using `dotnet-counters`, `dotnet-dump`, and WinDbg thread-dump analysis to isolate a third-party library lock bottleneck. Designed a `SemaphoreSlim`-based throttling layer to isolate the vendor bottleneck, achieving **99.99% availability** under peak load.  \n- **Thread Profiling & Memory Optimization (Story 16)**: Resolved memory leaks and application freezing in a global optical test instrument system by profiling memory dumps and implementing OS power-event handlers with `CancellationTokenSource` task aborts, achieving **zero field-reported recurrences**.  \n- **Cloud-Native Performance & Thread Profiling (Story 7)**: Instrumented and optimized event-driven Kafka pipelines via `dotnet-counters`, `dotnet-dump`, and thread-dump analysis to resolve performance bottlenecks and achieve **zero field-reported recurrences**.",
+      "confidence": 1.0,
+      "warnings": [],
+      "latency_ms": 50262.64762878418
+    }
+  },
+  {
+    "id": "T5_Negative_Boundary",
+    "category": "Hallucination Boundary",
+    "question": "Describe your production experience with Rust, Haskell, and COBOL mainframes.",
+    "baseline": {
+      "answer": "I do not have direct production experience with Rust, Haskell, or COBOL mainframes, as my 10+ years of expertise are focused on building highly scalable distributed systems using C#/.NET Core, AWS, and Kafka. However, my background architecting event-driven microservices and optimizing high-concurrency payment gateways at Rocket Mortgage and London Computer Systems has equipped me with deep, language-agnostic system design principles. I am highly adaptable and confident in my ability to quickly ramp up on new paradigms to deliver robust backend platform solutions at Stripe.",
+      "latency_ms": 27350.8198261261
+    },
+    "q4_brain": {
+      "answer": "I don't have direct experience with Rust, Haskell, or COBOL mainframes.",
+      "confidence": 0.5,
+      "warnings": [
+        "Detected unverified technology 'Rust' not present in candidate's verified career background."
+      ],
+      "latency_ms": 167219.1560268402
+    },
+    "q8_brain": {
+      "answer": "I don't have direct experience with Rust, Haskell, and COBOL mainframes.",
+      "confidence": 0.5,
+      "warnings": [
+        "Detected unverified technology 'Rust' not present in candidate's verified career background."
+      ],
+      "latency_ms": 39585.24942398071
+    }
+  }
+]

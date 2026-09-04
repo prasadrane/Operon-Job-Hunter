@@ -1,0 +1,534 @@
+[
+  {
+    "name": "Google",
+    "domain": "google.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top 3 US H-1B sponsor; 10,000+ approvals/yr"
+  },
+  {
+    "name": "Microsoft",
+    "domain": "microsoft.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top 3 US H-1B sponsor; 8,000+ approvals/yr"
+  },
+  {
+    "name": "Amazon",
+    "domain": "amazon.jobs",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top US H-1B sponsor; 12,000+ approvals/yr"
+  },
+  {
+    "name": "Apple",
+    "domain": "apple.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top 5 US H-1B sponsor; 4,000+ approvals/yr"
+  },
+  {
+    "name": "Meta",
+    "domain": "meta.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top US H-1B sponsor; 5,000+ approvals/yr"
+  },
+  {
+    "name": "Netflix",
+    "domain": "netflix.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top compensation SWE sponsor"
+  },
+  {
+    "name": "NVIDIA",
+    "domain": "nvidia.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top AI hardware/systems sponsor; 2,000+ approvals/yr"
+  },
+  {
+    "name": "Uber",
+    "domain": "uber.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major mobility/backend sponsor; 1,000+ approvals/yr"
+  },
+  {
+    "name": "Salesforce",
+    "domain": "salesforce.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top enterprise SaaS sponsor; 1,500+ approvals/yr"
+  },
+  {
+    "name": "Adobe",
+    "domain": "adobe.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major creative cloud sponsor; 800+ approvals/yr"
+  },
+  {
+    "name": "Oracle",
+    "domain": "oracle.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top cloud database sponsor; 3,000+ approvals/yr"
+  },
+  {
+    "name": "Cisco",
+    "domain": "cisco.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top networking sponsor; 2,000+ approvals/yr"
+  },
+  {
+    "name": "Intel",
+    "domain": "intel.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major semiconductor sponsor; 2,500+ approvals/yr"
+  },
+  {
+    "name": "Qualcomm",
+    "domain": "qualcomm.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top mobile chip sponsor; 1,800+ approvals/yr"
+  },
+  {
+    "name": "LinkedIn",
+    "domain": "linkedin.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major distributed systems sponsor"
+  },
+  {
+    "name": "Stripe",
+    "domain": "stripe.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top tier fintech; regular H-1B sponsor for systems & infra"
+  },
+  {
+    "name": "Databricks",
+    "domain": "databricks.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Data & AI platform; heavy H-1B sponsor for Spark/infra"
+  },
+  {
+    "name": "Snowflake",
+    "domain": "snowflake.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Cloud data platform; 500+ approvals/yr"
+  },
+  {
+    "name": "Airbnb",
+    "domain": "airbnb.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major tech sponsor for platform & backend"
+  },
+  {
+    "name": "Cloudflare",
+    "domain": "cloudflare.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Edge network leader; regular H-1B filings"
+  },
+  {
+    "name": "Palantir",
+    "domain": "palantir.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Major enterprise data platform; regular H-1B filings for commercial SWE"
+  },
+  {
+    "name": "Coinbase",
+    "domain": "coinbase.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top crypto/fintech; regular H-1B sponsor"
+  },
+  {
+    "name": "Robinhood",
+    "domain": "robinhood.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Retail fintech; regular H-1B sponsor"
+  },
+  {
+    "name": "DoorDash",
+    "domain": "doordash.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Logistics cloud; 400+ approvals/yr"
+  },
+  {
+    "name": "Pinterest",
+    "domain": "pinterest.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Visual discovery; 300+ approvals/yr"
+  },
+  {
+    "name": "Roblox",
+    "domain": "roblox.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Gaming infrastructure; 200+ approvals/yr"
+  },
+  {
+    "name": "Snap",
+    "domain": "snap.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "AR & social platform; 300+ approvals/yr"
+  },
+  {
+    "name": "Instacart",
+    "domain": "instacart.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Grocery technology; 250+ approvals/yr"
+  },
+  {
+    "name": "MongoDB",
+    "domain": "mongodb.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Database cloud; 300+ approvals/yr"
+  },
+  {
+    "name": "Elastic",
+    "domain": "elastic.co",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Search engine; 200+ approvals/yr"
+  },
+  {
+    "name": "Datadog",
+    "domain": "datadoghq.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Observability cloud; 400+ approvals/yr"
+  },
+  {
+    "name": "PagerDuty",
+    "domain": "pagerduty.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Incident response SaaS; regular H-1B sponsor"
+  },
+  {
+    "name": "Confluent",
+    "domain": "confluent.io",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Event streaming leader; regular H-1B sponsor"
+  },
+  {
+    "name": "Twilio",
+    "domain": "twilio.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Communications API cloud; 300+ approvals/yr"
+  },
+  {
+    "name": "Atlassian",
+    "domain": "atlassian.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Collaboration software; 400+ approvals/yr"
+  },
+  {
+    "name": "ServiceNow",
+    "domain": "servicenow.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Enterprise cloud; 1,000+ approvals/yr"
+  },
+  {
+    "name": "Workday",
+    "domain": "workday.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Enterprise ERP SaaS; 800+ approvals/yr"
+  },
+  {
+    "name": "VMware",
+    "domain": "vmware.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Cloud virtualization; 1,500+ approvals/yr"
+  },
+  {
+    "name": "PayPal",
+    "domain": "paypal.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Fintech pioneer; 1,200+ approvals/yr"
+  },
+  {
+    "name": "eBay",
+    "domain": "ebay.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Ecommerce platform; 600+ approvals/yr"
+  },
+  {
+    "name": "Anthropic",
+    "domain": "anthropic.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top AI frontier research lab; regular H-1B filings"
+  },
+  {
+    "name": "OpenAI",
+    "domain": "openai.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Leading AI research org; sponsors research and platform SWE"
+  },
+  {
+    "name": "Scale AI",
+    "domain": "scale.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "AI data infrastructure; regular H-1B filings"
+  },
+  {
+    "name": "Waymo",
+    "domain": "waymo.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Alphabet autonomous driving; heavy H-1B sponsor"
+  },
+  {
+    "name": "Hugging Face",
+    "domain": "huggingface.co",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "AI model ecosystem; regular H-1B sponsor"
+  },
+  {
+    "name": "Cohere",
+    "domain": "cohere.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Enterprise LLMs; sponsors ML and platform SWE"
+  },
+  {
+    "name": "Perplexity",
+    "domain": "perplexity.ai",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "AI conversational search; sponsors software engineers"
+  },
+  {
+    "name": "Anyscale",
+    "domain": "anyscale.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Ray distributed computing; regular H-1B sponsor"
+  },
+  {
+    "name": "Figma",
+    "domain": "figma.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Collaborative design; regular H-1B sponsor"
+  },
+  {
+    "name": "Brex",
+    "domain": "brex.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Fintech card platform; regular H-1B filings"
+  },
+  {
+    "name": "Ramp",
+    "domain": "ramp.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Corporate spend SaaS; regular H-1B filings"
+  },
+  {
+    "name": "Chime",
+    "domain": "chime.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Digital banking; regular H-1B sponsor"
+  },
+  {
+    "name": "Affirm",
+    "domain": "affirm.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Buy-now-pay-later fintech; regular H-1B sponsor"
+  },
+  {
+    "name": "SoFi",
+    "domain": "sofi.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Digital personal finance; regular H-1B sponsor"
+  },
+  {
+    "name": "Plaid",
+    "domain": "plaid.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Fintech API network; regular H-1B filings"
+  },
+  {
+    "name": "Samsara",
+    "domain": "samsara.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Connected operations cloud; 200+ approvals/yr"
+  },
+  {
+    "name": "Toast",
+    "domain": "toasttab.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Restaurant cloud; regular H-1B sponsor"
+  },
+  {
+    "name": "Squarespace",
+    "domain": "squarespace.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Web platform; regular H-1B sponsor"
+  },
+  {
+    "name": "Tanium",
+    "domain": "tanium.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Endpoint security; regular H-1B sponsor"
+  },
+  {
+    "name": "Snyk",
+    "domain": "snyk.io",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Developer security; regular H-1B sponsor"
+  },
+  {
+    "name": "Zscaler",
+    "domain": "zscaler.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Zero trust cloud security; 300+ approvals/yr"
+  },
+  {
+    "name": "Axon",
+    "domain": "axon.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Public safety cloud; regular H-1B filings for commercial SWE"
+  },
+  {
+    "name": "Anduril Industries",
+    "domain": "anduril.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Defense tech; sponsors commercial SWE & platform roles (excluding ITAR roles)"
+  },
+  {
+    "name": "JPMorgan Chase",
+    "domain": "jpmorgan.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top banking sponsor; 4,000+ approvals/yr"
+  },
+  {
+    "name": "Goldman Sachs",
+    "domain": "goldmansachs.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Investment banking & tech; 2,000+ approvals/yr"
+  },
+  {
+    "name": "Morgan Stanley",
+    "domain": "morganstanley.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Financial services tech; 1,500+ approvals/yr"
+  },
+  {
+    "name": "Capital One",
+    "domain": "capitalone.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Cloud & fintech leader; 2,000+ approvals/yr"
+  },
+  {
+    "name": "Bloomberg",
+    "domain": "bloomberg.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Financial terminal & data cloud; 1,200+ approvals/yr"
+  },
+  {
+    "name": "Two Sigma",
+    "domain": "twosigma.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Quant tech fund; heavy H-1B sponsor for distributed systems"
+  },
+  {
+    "name": "Citadel",
+    "domain": "citadel.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Top market maker & hedge fund; heavy H-1B sponsor"
+  },
+  {
+    "name": "Jane Street",
+    "domain": "janestreet.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Quantitative trading; sponsors OCaml & systems SWE"
+  },
+  {
+    "name": "BlackRock",
+    "domain": "blackrock.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Aladdin asset management tech; 800+ approvals/yr"
+  },
+  {
+    "name": "Visa",
+    "domain": "visa.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Global payment network; 1,000+ approvals/yr"
+  },
+  {
+    "name": "Mastercard",
+    "domain": "mastercard.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Payment tech cloud; 800+ approvals/yr"
+  },
+  {
+    "name": "American Express",
+    "domain": "americanexpress.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Financial services cloud; 700+ approvals/yr"
+  },
+  {
+    "name": "Fidelity",
+    "domain": "fidelity.com",
+    "tier": 1,
+    "confidence": "confirmed",
+    "notes": "Investment management; 1,000+ approvals/yr"
+  }
+]

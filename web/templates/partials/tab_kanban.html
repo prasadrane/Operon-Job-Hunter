@@ -1,0 +1,130 @@
+<!-- Tab 1: Pipeline Kanban Board Partial -->
+<section id="tab-kanban" class="tab-pane active space-y-5">
+  <!-- Toolbar: Header, Scan Trigger & Filter Controls -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0d121f] p-4 rounded-xl border border-white/[0.08] shadow-lg">
+    <div>
+      <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+        <i data-lucide="trello" class="w-5 h-5 text-cyan-400"></i>
+        Active Pipeline Kanban
+      </h2>
+      <p class="text-xs text-slate-400 mt-0.5">End-to-end autonomous flow from portal discovery to offer stage</p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="flex flex-wrap items-center gap-2.5">
+      <div class="relative flex-1 sm:w-64 min-w-[200px]">
+        <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+        <form role="search" autocomplete="off" onsubmit="return false;" class="contents">
+          <input
+            type="text"
+            id="kanban-search-input"
+            name="kanban_search_prevent_autofill"
+            role="searchbox"
+            autocomplete="new-password"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            data-lpignore="true"
+            data-1p-ignore="true"
+            data-dashlane-ignore="true"
+            data-bwignore="true"
+            data-form-type="other"
+            placeholder="Search title, tech, company..."
+            class="form-input pl-8 pr-7 py-1.5 text-xs"
+          />
+        </form>
+        <button id="btn-clear-search" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-200 text-xs font-bold">&times;</button>
+      </div>
+
+      <!-- Portal Pill Buttons -->
+      <div class="flex items-center p-0.5 bg-slate-900/90 border border-slate-800 rounded-lg text-xs" id="portal-pill-group">
+        <button class="portal-pill active" data-portal="all">All</button>
+        <button class="portal-pill" data-portal="greenhouse">Greenhouse</button>
+        <button class="portal-pill" data-portal="lever">Lever</button>
+        <button class="portal-pill" data-portal="ashby">Ashby</button>
+        <button class="portal-pill" data-portal="workday">Workday</button>
+      </div>
+
+      <!-- Counter Badge -->
+      <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-800 text-slate-400 hidden lg:inline-flex items-center gap-1">
+        <span id="kanban-filtered-count" class="text-cyan-400 font-bold">0</span>/<span id="kanban-total-count">0</span>
+      </span>
+
+      <button id="btn-trigger-scan" class="btn-primary text-xs px-3.5 py-2 flex items-center gap-1.5 shadow-md">
+        <i data-lucide="radar" class="w-3.5 h-3.5"></i>
+        <span>Scan Jobs</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Kanban Column Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 overflow-x-auto pb-4">
+    
+    <!-- Column 1: Discovered -->
+    <div class="kanban-col" data-col="discovered">
+      <div class="kanban-header border-b border-blue-900/40 bg-blue-950/20 text-blue-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-400 ring-2 ring-blue-500/20"></span> Discovered
+        </span>
+        <span class="col-count text-blue-300" id="count-discovered">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-discovered"></div>
+    </div>
+
+    <!-- Column 2: Evaluating / Matched -->
+    <div class="kanban-col" data-col="matched">
+      <div class="kanban-header border-b border-cyan-900/40 bg-cyan-950/20 text-cyan-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 ring-2 ring-cyan-500/20"></span> Matched (&ge;85)
+        </span>
+        <span class="col-count text-cyan-300" id="count-matched">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-matched"></div>
+    </div>
+
+    <!-- Column 3: Tailored (Ready for Review) -->
+    <div class="kanban-col" data-col="tailored">
+      <div class="kanban-header border-b border-indigo-900/40 bg-indigo-950/20 text-indigo-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 ring-2 ring-indigo-500/20"></span> Tailored ATS
+        </span>
+        <span class="col-count text-indigo-300" id="count-tailored">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-tailored"></div>
+    </div>
+
+    <!-- Column 4: Applied (Submitted) -->
+    <div class="kanban-col" data-col="applied">
+      <div class="kanban-header border-b border-emerald-900/40 bg-emerald-950/20 text-emerald-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-emerald-500/20"></span> Applied
+        </span>
+        <span class="col-count text-emerald-300" id="count-applied">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-applied"></div>
+    </div>
+
+    <!-- Column 5: Interviewing -->
+    <div class="kanban-col" data-col="interviewing">
+      <div class="kanban-header border-b border-amber-900/40 bg-amber-950/20 text-amber-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-amber-500/20"></span> Interviewing
+        </span>
+        <span class="col-count text-amber-300" id="count-interviewing">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-interviewing"></div>
+    </div>
+
+    <!-- Column 6: Offers / Archival -->
+    <div class="kanban-col" data-col="archived">
+      <div class="kanban-header border-b border-purple-900/40 bg-purple-950/20 text-purple-300">
+        <span class="flex items-center gap-2 font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-purple-400 ring-2 ring-purple-500/20"></span> Offers & Archive
+        </span>
+        <span class="col-count text-purple-300" id="count-archived">0</span>
+      </div>
+      <div class="kanban-cards" id="cards-archived"></div>
+    </div>
+
+  </div>
+</section>

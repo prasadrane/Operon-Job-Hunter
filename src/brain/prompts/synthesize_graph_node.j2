@@ -1,0 +1,13 @@
+You are a training data generator. Given a knowledge graph node, produce {{ num_variants }} Q&A pairs.
+
+NODE TYPE: {{ chunk.metadata.get('node_type', 'Unknown') }}
+NODE NAME: {{ chunk.metadata.get('name', chunk.content) }}
+CONTENT: {{ chunk.content }}
+{% if chunk.metadata.get('bullets') %}
+BULLETS: {{ chunk.metadata['bullets'] | join('; ') }}
+{% endif %}
+
+Generate natural questions someone might ask about this topic, and answer in first person.
+Only use facts from the content above.
+
+Respond in JSON: {"pairs": [{"question": "...", "answer": "..."}]}

@@ -1,0 +1,70 @@
+{
+  "questions": [
+    {"id": "avatar_1", "mode": "avatar", "query": "Tell me about your Kafka experience"},
+    {"id": "avatar_2", "mode": "avatar", "query": "Describe a time you improved system reliability"},
+    {"id": "avatar_3", "mode": "avatar", "query": "Tell me about your AWS modernization work"},
+    {"id": "avatar_4", "mode": "avatar", "query": "Walk me through your approach to microservices migration"},
+    {"id": "avatar_5", "mode": "avatar", "query": "How did you handle a production incident?"},
+    {"id": "avatar_6", "mode": "avatar", "query": "Give me an example of leading a cross-team initiative"},
+    {"id": "avatar_7", "mode": "avatar", "query": "Tell me about your .NET background"},
+    {"id": "avatar_8", "mode": "avatar", "query": "Describe your experience with CI/CD pipelines"},
+    {"id": "avatar_9", "mode": "avatar", "query": "What was your biggest architectural decision?"},
+    {"id": "avatar_10", "mode": "avatar", "query": "Tell me about a time you mentored junior engineers"},
+
+    {"id": "tailoring_1", "mode": "tailoring", "query": "Tailor my resume for a senior backend role", "job_desc": "Senior Backend Engineer, Kafka, AWS, microservices"},
+    {"id": "tailoring_2", "mode": "tailoring", "query": "Tailor my resume", "job_desc": "Staff Engineer, .NET, Azure, event-driven architecture"},
+    {"id": "tailoring_3", "mode": "tailoring", "query": "Adapt my profile for this role", "job_desc": "Platform Engineer, Kubernetes, Terraform, observability"},
+    {"id": "tailoring_4", "mode": "tailoring", "query": "Tailor resume for this job", "job_desc": "Principal Engineer, distributed systems, gRPC, Kafka Streams"},
+    {"id": "tailoring_5", "mode": "tailoring", "query": "Customize my application", "job_desc": "Engineering Manager, backend platform team, AWS"},
+    {"id": "tailoring_6", "mode": "tailoring", "query": "Match my experience to this", "job_desc": "Senior SRE, incident response, observability, PagerDuty"},
+    {"id": "tailoring_7", "mode": "tailoring", "query": "Tailor for this position", "job_desc": "Lead Developer, C#, Blazor, SQL Server, microservices"},
+    {"id": "tailoring_8", "mode": "tailoring", "query": "Adjust my resume", "job_desc": "Solutions Architect, AWS, Well-Architected Framework, migrations"},
+    {"id": "tailoring_9", "mode": "tailoring", "query": "Fit my profile to this role", "job_desc": "Backend Tech Lead, Go, PostgreSQL, Kubernetes"},
+    {"id": "tailoring_10", "mode": "tailoring", "query": "Resume tailoring", "job_desc": "DevOps Lead, GitHub Actions, ArgoCD, Helm, AWS EKS"},
+
+    {"id": "qa_1", "mode": "qa", "query": "What certifications do you hold?"},
+    {"id": "qa_2", "mode": "qa", "query": "How many years of experience with .NET?"},
+    {"id": "qa_3", "mode": "qa", "query": "What is your current location?"},
+    {"id": "qa_4", "mode": "qa", "query": "Are you open to relocation?"},
+    {"id": "qa_5", "mode": "qa", "query": "What is your notice period?"},
+    {"id": "qa_6", "mode": "qa", "query": "Do you have a degree in computer science?"},
+    {"id": "qa_7", "mode": "qa", "query": "What programming languages are you proficient in?"},
+    {"id": "qa_8", "mode": "qa", "query": "Have you worked with event sourcing?"},
+    {"id": "qa_9", "mode": "qa", "query": "What is your GitHub profile?"},
+    {"id": "qa_10", "mode": "qa", "query": "Do you require visa sponsorship?"},
+
+    {"id": "multi_1", "mode": "avatar", "query": "Tell me about your Kafka experience, then how you'd apply it to a senior backend role"},
+    {"id": "multi_2", "mode": "avatar", "query": "Describe your cloud background and how it fits an AWS modernization role"},
+    {"id": "multi_3", "mode": "tailoring", "query": "Tailor my resume for a hybrid role", "job_desc": "Hybrid: 50% backend .NET, 50% DevOps Kubernetes"},
+    {"id": "multi_4", "mode": "avatar", "query": "Tell me about a failure and what you learned from it"},
+    {"id": "multi_5", "mode": "qa", "query": "Summarize your top 3 strengths and relevant certifications"},
+
+    {"id": "edge_1", "mode": "auto", "query": ""},
+    {"id": "edge_2", "mode": "auto", "query": "   "},
+    {"id": "edge_3", "mode": "avatar", "query": "hi"},
+    {"id": "edge_4", "mode": "qa", "query": "x"},
+    {"id": "edge_5", "mode": "tailoring", "query": "tailor", "job_desc": ""},
+    {"id": "edge_6", "mode": "tailoring", "query": "tailor resume", "job_desc": "engineer"},
+    {"id": "edge_7", "mode": "avatar", "query": "Tell me about your experience with xyznotarealtech"},
+    {"id": "edge_8", "mode": "qa", "query": "What is your favorite color?"},
+    {"id": "edge_9", "mode": "auto", "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"id": "edge_10", "mode": "avatar", "query": "Tell me about your experience\n\n\n\nwith\n\ncarriage\n\nreturns"},
+    {"id": "edge_11", "mode": "qa", "query": "What is your expected salary range?"},
+    {"id": "edge_12", "mode": "avatar", "query": "Tell me about a time you disagreed with your manager"},
+    {"id": "edge_13", "mode": "tailoring", "query": "Tailor for this", "job_desc": "Senior Engineer with 10+ years in Haskell and formal verification"},
+    {"id": "edge_14", "mode": "qa", "query": "Can you start immediately?"},
+    {"id": "edge_15", "mode": "avatar", "query": "Tell me about your experience with GraphQL and DDD"}
+  ],
+  "metadata": {
+    "version": "1.0",
+    "total_questions": 50,
+    "modes": {
+      "avatar": 15,
+      "tailoring": 12,
+      "qa": 13,
+      "multi": 5,
+      "edge": 10
+    },
+    "description": "Evaluation suite for Career Brain inference pipeline"
+  }
+}

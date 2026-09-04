@@ -1,0 +1,907 @@
+<title>Anti-Detection Playbook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg-deep: #f7f8fc;
+    --bg-surface: #ffffff;
+    --bg-panel: #eef1f8;
+    --bg-code: #f0f2f8;
+    --text-primary: #1a1f36;
+    --text-secondary: #4a5068;
+    --text-muted: #7b819a;
+    --border: #d8dce8;
+    --border-strong: #b8bdd0;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --signal: #059669;
+    --signal-bg: #d1fae5;
+    --warning: #d97706;
+    --warning-bg: #fef3c7;
+    --danger: #dc2626;
+    --danger-bg: #fee2e2;
+    --info: #7c3aed;
+    --info-bg: #ede9fe;
+    --rating-high: #059669;
+    --rating-med: #d97706;
+    --rating-low: #dc2626;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-deep: #0b0f1a;
+      --bg-surface: #131825;
+      --bg-panel: #1a2035;
+      --bg-code: #1a2035;
+      --text-primary: #e4e7f1;
+      --text-secondary: #a0a6c0;
+      --text-muted: #6b7194;
+      --border: #2a3050;
+      --border-strong: #3a4268;
+      --accent: #60a5fa;
+      --accent-soft: #1e3a5f;
+      --signal: #34d399;
+      --signal-bg: #064e3b;
+      --warning: #fbbf24;
+      --warning-bg: #78350f;
+      --danger: #f87171;
+      --danger-bg: #7f1d1d;
+      --info: #a78bfa;
+      --info-bg: #4c1d95;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg-deep: #0b0f1a;
+    --bg-surface: #131825;
+    --bg-panel: #1a2035;
+    --bg-code: #1a2035;
+    --text-primary: #e4e7f1;
+    --text-secondary: #a0a6c0;
+    --text-muted: #6b7194;
+    --border: #2a3050;
+    --border-strong: #3a4268;
+    --accent: #60a5fa;
+    --accent-soft: #1e3a5f;
+    --signal: #34d399;
+    --signal-bg: #064e3b;
+    --warning: #fbbf24;
+    --warning-bg: #78350f;
+    --danger: #f87171;
+    --danger-bg: #7f1d1d;
+    --info: #a78bfa;
+    --info-bg: #4c1d95;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.65;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0;
+    min-height: 100vh;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .sidebar-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 20px 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .sidebar nav a {
+    display: block;
+    padding: 6px 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+  }
+  .sidebar nav a:hover {
+    color: var(--text-primary);
+    background: var(--bg-panel);
+    border-left-color: var(--border-strong);
+  }
+  .sidebar nav .section-group {
+    padding: 12px 20px 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Main content */
+  .main {
+    padding: 40px 48px 80px;
+    max-width: 960px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-wrap: balance;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-wrap: balance;
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--text-primary);
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+
+  p { margin-bottom: 12px; color: var(--text-secondary); }
+  strong { color: var(--text-primary); font-weight: 600; }
+  em { font-style: italic; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0 24px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead { background: var(--bg-panel); }
+  th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 500; color: var(--text-primary); }
+
+  /* Rating pills */
+  .rating {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .rating-high { background: var(--signal-bg); color: var(--signal); }
+  .rating-med { background: var(--warning-bg); color: var(--warning); }
+  .rating-low { background: var(--danger-bg); color: var(--danger); }
+
+  /* Callouts */
+  .callout {
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    font-size: 13.5px;
+    border-left: 3px solid;
+  }
+  .callout-danger { background: var(--danger-bg); border-left-color: var(--danger); }
+  .callout-warning { background: var(--warning-bg); border-left-color: var(--warning); }
+  .callout-signal { background: var(--signal-bg); border-left-color: var(--signal); }
+  .callout-info { background: var(--info-bg); border-left-color: var(--info); }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Code */
+  code {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    background: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  /* Lists */
+  ul, ol { margin: 8px 0 16px 20px; color: var(--text-secondary); }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--text-muted); }
+
+  /* Effectiveness matrix */
+  .matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0 24px;
+  }
+  .matrix-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .matrix-card .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .matrix-card .value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .matrix-card .detail {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* Platform badges */
+  .platform-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    margin-right: 4px;
+  }
+
+  /* Section numbering */
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Comparison bars */
+  .bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-panel);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s;
+  }
+  .bar-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 24px 20px 60px; }
+    h1 { font-size: 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Intel Dossier</div>
+    <nav>
+      <div class="section-group">Detection</div>
+      <a href="#platform-detection">Platform Detection</a>
+      <a href="#ats-detection">ATS-Level Defense</a>
+      <a href="#detection-patterns">Common Patterns</a>
+      <div class="section-group">Evasion</div>
+      <a href="#stealth-browsers">Stealth Browsers</a>
+      <a href="#fingerprint">Fingerprint Mgmt</a>
+      <a href="#behavior">Behavior Simulation</a>
+      <a href="#session">Session & IP</a>
+      <a href="#headless">Headless vs Headed</a>
+      <div class="section-group">Operations</div>
+      <a href="#captcha">CAPTCHA Handling</a>
+      <a href="#rate-limiting">Rate Limiting</a>
+      <a href="#legal">Legal / ToS</a>
+      <div class="section-group">Field Intel</div>
+      <a href="#existing-tools">Production Tools</a>
+      <a href="#recommendations">Recommendations</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <h1>Anti-Detection Playbook</h1>
+    <p class="subtitle">Bot evasion strategies for job application portals — detection mechanisms, countermeasures, effectiveness ratings, and legal risk. Compiled Aug 2026.</p>
+
+    <!-- ============ SECTION 1: PLATFORM DETECTION ============ -->
+    <h2 id="platform-detection"><span class="section-num">§1</span>How Job Portals Detect Bots</h2>
+
+    <h3>LinkedIn</h3>
+    <p>LinkedIn operates a <strong>multi-layered, progressive enforcement</strong> system. Detection combines behavioral ML models, CAPTCHA challenges, IP reputation scoring, and device fingerprinting. Their approach has grown significantly more aggressive since 2024.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Detection Layer</th><th>Mechanism</th><th>Trigger</th></tr></thead>
+        <tbody>
+          <tr><td>Behavioral ML</td><td>Models trained on thousands of human sessions detect statistical outliers in trajectory entropy, typing cadence, interaction coherence</td><td>Too-consistent timing, instant element jumps, missing micro-hesitations</td></tr>
+          <tr><td>CAPTCHA</td><td>Progressive challenges on suspicious sessions; first warning, then escalating difficulty</td><td>Unusual activity patterns, high-frequency actions</td></tr>
+          <tr><td>IP Reputation</td><td>Datacenter IP ranges flagged; residential proxy abuse detected via ML (Bot Management v8)</td><td>Repeated searches from same DC IP, known proxy subnets</td></tr>
+          <tr><td>Fingerprinting</td><td>Canvas, WebGL, hardware concurrency, timezone/geo alignment checks</td><td>Mismatches between declared settings and connection metadata</td></tr>
+          <tr><td>Honeypot Fields</td><td>Hidden form fields that only bots auto-fill</td><td>Any interaction with invisible elements</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warning">
+      <strong>Enforcement Escalation</strong>
+      Warnings → temporary feature restrictions → CAPTCHA walls → temporary blocks → permanent account suspension. LinkedIn rarely bans immediately; they watch first, then escalate. Community-tested safe limits: <strong>20-25 connection requests/day</strong> (new accounts), <strong>80-100/day</strong> (established), <strong>50-100 messages/day</strong>.
+    </div>
+
+    <h3>Indeed</h3>
+    <p>Indeed's anti-automation has evolved from simple checkbox verification to sophisticated abuse protection. Key measures:</p>
+    <ul>
+      <li><strong>Smart Bot & Abuse Protection Layer</strong> — detects suspicious device patterns and fake candidate signals at the application level</li>
+      <li><strong>ToS enforcement</strong> — explicitly prohibits "robots, spiders, scrapers, or other automated means"</li>
+      <li><strong>Device fingerprinting + visitor ID tracking</strong> — stitches isolated sessions together</li>
+      <li>Anti-bot systems have grown more aggressive through 2025-2026, with multiple sources documenting evolving countermeasures</li>
+    </ul>
+
+    <h3 id="ats-detection">ATS-Level Detection (Workday / Greenhouse / Lever / iCIMS)</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Platform</th><th>Primary Defense</th><th>Secondary Layers</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="platform-badge">Workday</span></td>
+            <td><strong>Cloudflare Bot Management</strong> — ML-based behavioral analysis, global threat intelligence</td>
+            <td>TLS fingerprinting (JA3/JA4), HTTP/2 frame analysis, IP reputation</td>
+          </tr>
+          <tr>
+            <td><span class="platform-badge">Greenhouse</span></td>
+            <td><strong>DataDome</strong> — real-time bot protection + fraud prevention</td>
+            <td>IPQS fraud scoring, email verification codes (6-digit) on detecting automation, Greenhouse Real Talent™ spam detection</td>
+          </tr>
+          <tr>
+            <td><span class="platform-badge">Lever</span></td>
+            <td>Anti-bot protection + third-party fraud integrations</td>
+            <td>Sardine AI webhook integration for suspicious application flagging</td>
+          </tr>
+          <tr>
+            <td><span class="platform-badge">iCIMS</span></td>
+            <td><strong>hCaptcha</strong> (upgraded from reCAPTCHA, June 2025)</td>
+            <td>Enterprise bot detection with AI agent verification capabilities</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Key Insight</strong>
+      No major ATS natively runs AI content detection or auto-rejects based on AI authorship. These protections prevent <em>automated bulk submission</em> and <em>scraping</em>, not resume quality evaluation. The defense is at the <em>form submission layer</em>, not the <em>screening layer</em>.
+    </div>
+
+    <h3 id="detection-patterns">Common Detection Patterns Across Platforms</h3>
+
+    <div class="matrix">
+      <div class="matrix-card">
+        <div class="label">TLS Fingerprinting</div>
+        <div class="value" style="color: var(--danger);">JA3/JA4</div>
+        <div class="detail">Cloudflare introduced new TLS fingerprint detection mid-2025. Most stealth plugins broke instantly.</div>
+      </div>
+      <div class="matrix-card">
+        <div class="label">HTTP/2 Analysis</div>
+        <div class="value" style="color: var(--danger);">SETTINGS</div>
+        <div class="detail">SETTINGS frame anomalies and QUIC protocol differences reveal non-browser HTTP stacks.</div>
+      </div>
+      <div class="matrix-card">
+        <div class="label">Temporal Correlation</div>
+        <div class="value" style="color: var(--warning);">Fleet</div>
+        <div class="detail">Systems detect groups of similar automated sessions — not just individual bad actors.</div>
+      </div>
+      <div class="matrix-card">
+        <div class="label">Visitor ID Stitching</div>
+        <div class="value" style="color: var(--warning);">Persistent</div>
+        <div class="detail">Persistent identifiers link isolated submissions back to a single device/browser profile.</div>
+      </div>
+      <div class="matrix-card">
+        <div class="label">Behavioral ML</div>
+        <div class="value" style="color: var(--danger);">Deep</div>
+        <div class="detail">Mouse trajectory entropy, typing cadence, interaction coherence — trained on real human baselines.</div>
+      </div>
+      <div class="matrix-card">
+        <div class="label">Geo-IP Alignment</div>
+        <div class="value" style="color: var(--warning);">Cross-ref</div>
+        <div class="detail">Timezone, language, and IP geography must all align. Mismatches are instant flags.</div>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 2: ANTI-DETECTION ============ -->
+    <h2 id="stealth-browsers"><span class="section-num">§2</span>Anti-Detection Techniques</h2>
+
+    <h3>Stealth Browser Landscape (2026)</h3>
+
+    <div class="callout callout-danger">
+      <strong>playwright-stealth is Effectively Dead</strong>
+      As of mid-2025, <code>playwright-extra-plugin-stealth</code> fails against Cloudflare Turnstile, DataDome, and PerimeterX. Not meaningfully updated in ~18 months. It patches JS-level fingerprints only — does NOT address TLS fingerprinting, HTTP/2 anomalies, or network-layer signals.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Approach</th><th>Effectiveness</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Patchright</strong></td>
+            <td>Drop-in Playwright replacement; source-level fingerprint patches</td>
+            <td><span class="rating rating-high">HIGH</span></td>
+            <td>Passes 30/30 detection tests. Best current option for Playwright users.</td>
+          </tr>
+          <tr>
+            <td><strong>Browser Use (forked Chromium)</strong></td>
+            <td>C++ / OS-level modifications to Chromium core</td>
+            <td><span class="rating rating-high">HIGH</span></td>
+            <td>Native indicator variables reflect genuine runtime states. Integrated challenge resolution. Feb 2026.</td>
+          </tr>
+          <tr>
+            <td><strong>Camoufox</strong></td>
+            <td>Firefox-based stealth browser</td>
+            <td><span class="rating rating-med">MEDIUM</span></td>
+            <td>Better fingerprint consistency but incomplete coverage vs Patchright.</td>
+          </tr>
+          <tr>
+            <td><strong>noDriver</strong></td>
+            <td>Chromium without CDP driver entirely</td>
+            <td><span class="rating rating-med">MEDIUM</span></td>
+            <td>Avoids automation overhead; less flexible for complex flows.</td>
+          </tr>
+          <tr>
+            <td><strong>playwright-stealth</strong></td>
+            <td>JS-level patches via plugin</td>
+            <td><span class="rating rating-low">BROKEN</span></td>
+            <td>Defunct against modern detection. Do not use as sole defense.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="fingerprint">Browser Fingerprint Management</h3>
+    <p>Each session needs a <strong>coherent, self-consistent identity</strong>. Anti-bot systems cross-reference everything — spoofing individual properties while leaving others inconsistent is worse than no spoofing at all.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Signal</th><th>What to Manage</th><th>Common Failure</th></tr></thead>
+        <tbody>
+          <tr><td>Canvas</td><td>Randomized per-session hash; consistent within session</td><td>Returning identical hash across sessions = bot signature</td></tr>
+          <tr><td>WebGL</td><td>Vendor/renderer string, max texture size, shading language version</td><td>Server GPU strings on residential IP = instant flag</td></tr>
+          <tr><td>Fonts</td><td>Installed font list matching OS + region</td><td>Windows font enumeration on macOS UA = mismatch</td></tr>
+          <tr><td>Timezone</td><td>Must align with IP geography AND language settings</td><td>UTC+0 with English/US locale and US IP is fine; UTC+9 with en-US and Virginia IP is not</td></tr>
+          <tr><td>Hardware</td><td>screen resolution, deviceMemory, hardwareConcurrency</td><td>Claiming 32GB RAM on a "mobile" viewport</td></tr>
+          <tr><td>Audio</td><td>AudioContext fingerprint (sample rate, channel count)</td><td>Often overlooked; detectable by advanced systems</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warning">
+      <strong>Entropy Problem</strong>
+      Adding more stealth flags paradoxically <em>raises</em> fingerprint entropy, making the browser stand out <em>more</em>. The goal is to look like an <em>extremely common</em> real browser, not a perfectly unique one.
+    </div>
+
+    <h3 id="behavior">Human-Like Behavior Simulation</h3>
+    <p>This is the <strong>highest-leverage defense layer</strong> in 2026. Modern anti-bot ML focuses heavily on behavioral signals because they're hardest to fake at scale.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Signal</th><th>Technique</th><th>Effectiveness</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Mouse Movement</strong></td>
+            <td>Bézier curves with randomized control points; overshoot + correction; sub-pixel jitter; variable speed profiles (ease-in-out, not linear)</td>
+            <td><span class="rating rating-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Typing Patterns</strong></td>
+            <td>Variable keystroke intervals (Poisson distribution); realistic backspacing; pause-before-typing; "thinking" gaps between words; occasional typos + corrections</td>
+            <td><span class="rating rating-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Scroll Behavior</strong></td>
+            <td>Momentum-based scrolling with natural deceleration; slight reversals; variable velocity; not jump-scrolling directly to form fields</td>
+            <td><span class="rating rating-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Timing</strong></td>
+            <td>Probabilistic distributions (not fixed waits); respect page load states; dynamic delays tied to XHR completion</td>
+            <td><span class="rating rating-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Navigation</strong></td>
+            <td>Non-linear paths; occasional "wasted" clicks; hovering before clicking; reading time on content pages</td>
+            <td><span class="rating rating-med">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Key tools:</strong> <code>humanization-playwright</code> (Python, patches CDP for Bézier mouse + realistic typing), <code>human-behavior-simulation-kit</code> (modular toolkit), DMTG framework (academic, entropy-controlled diffusion models for mouse trajectories).</p>
+
+    <h3 id="session">Session & IP Management</h3>
+
+    <h3>IP Rotation Strategy</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Proxy Type</th><th>Detection Risk</th><th>Cost</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Residential (rotating)</strong></td>
+            <td><span class="rating rating-low">LOW</span></td>
+            <td>$5-15/GB</td>
+            <td>Primary production use. Real ISP-assigned IPs. Cloudflare ML can now detect some residential proxy abuse.</td>
+          </tr>
+          <tr>
+            <td><strong>Static Residential (ISP)</strong></td>
+            <td><span class="rating rating-low">LOW</span></td>
+            <td>$2-5/IP/mo</td>
+            <td>Account-linked sessions. Same IP per account = less suspicious than rotation.</td>
+          </tr>
+          <tr>
+            <td><strong>Datacenter</strong></td>
+            <td><span class="rating rating-high">HIGH</span></td>
+            <td>$0.5-2/GB</td>
+            <td>Avoid for job portals. Known IP ranges are heavily scrutinized and often preemptively blocked.</td>
+          </tr>
+          <tr>
+            <td><strong>Mobile</strong></td>
+            <td><span class="rating rating-low">LOWEST</span></td>
+            <td>$20-40/GB</td>
+            <td>Highest trust IPs. Expensive. Best for critical one-shot applications.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Session Persistence</h3>
+    <ul>
+      <li><strong>Cookie persistence</strong> — Maintain cookies, localStorage, and IndexedDB across runs. Fresh sessions trigger higher scrutiny.</li>
+      <li><strong>One account = one identity</strong> — Persistent residential IP + consistent fingerprint + same account. Never rotate fingerprint mid-session.</li>
+      <li><strong>Login frequency limits</strong> — Don't log in/out repeatedly. Stay logged in across sessions using saved auth state.</li>
+      <li><strong>Browser profile isolation</strong> — Each account gets its own browser profile directory with its own cookies, cache, and fingerprint.</li>
+    </ul>
+
+    <h3 id="headless">Headless vs Headed Mode</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspect</th><th>Headless</th><th>Headed (with stealth)</th><th>New Headless (Chrome 112+)</th></tr></thead>
+        <tbody>
+          <tr><td>Detection Risk</td><td><span class="rating rating-high">HIGH</span> — 75% of blocks from header signals alone</td><td><span class="rating rating-low">LOW</span></td><td><span class="rating rating-med">MEDIUM</span> — better but still detectable</td></tr>
+          <tr><td>Resource Usage</td><td>Low</td><td>High (GPU, display)</td><td>Low</td></tr>
+          <tr><td>Speed</td><td>Fast</td><td>Slower (render pipeline)</td><td>Fast</td></tr>
+          <tr><td>TLS Fingerprint</td><td>Often mismatched</td><td>Native browser stack</td><td>Native browser stack</td></tr>
+          <tr><td>Canvas/WebGL</td><td>Missing or software-rendered</td><td>Hardware-accelerated</td><td>Software-rendered (detectable)</td></tr>
+          <tr><td>Production Verdict</td><td colspan="3" style="text-align:center;"><strong>Use headed mode for job portals.</strong> The resource cost is worth the detection reduction.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============ SECTION 3: CAPTCHA ============ -->
+    <h2 id="captcha"><span class="section-num">§3</span>CAPTCHA Handling</h2>
+
+    <h3>Service Comparison</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Method</th><th>Solve Time</th><th>reCAPTCHA v2</th><th>hCaptcha</th><th>Turnstile</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>CapSolver</strong></td>
+            <td>AI-powered</td>
+            <td>3-9s (0.2s some types)</td>
+            <td>$0.80/1K</td>
+            <td>$1.00/1K</td>
+            <td>$3.00/1K</td>
+          </tr>
+          <tr>
+            <td><strong>2Captcha</strong></td>
+            <td>Human workers</td>
+            <td>7-15s</td>
+            <td>$1.00-1.45/1K</td>
+            <td>$1.20/1K</td>
+            <td>$2.99/1K</td>
+          </tr>
+          <tr>
+            <td><strong>Anti-Captcha</strong></td>
+            <td>Human workers</td>
+            <td>7-20s</td>
+            <td>~$1.00/1K</td>
+            <td>~$1.00/1K</td>
+            <td>~$2.00/1K</td>
+          </tr>
+          <tr>
+            <td><strong>CapMonster</strong></td>
+            <td>AI + hybrid</td>
+            <td>5-12s</td>
+            <td>$0.60/1K</td>
+            <td>$0.80/1K</td>
+            <td>N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Portal → CAPTCHA Type Mapping</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Portal/ATS</th><th>CAPTCHA Type</th><th>Frequency</th></tr></thead>
+        <tbody>
+          <tr><td>LinkedIn</td><td>Proprietary challenge + occasional reCAPTCHA</td><td>On suspicious activity</td></tr>
+          <tr><td>Indeed</td><td>Checkbox verification → escalating to image CAPTCHA</td><td>Rare for logged-in users; more frequent for automation patterns</td></tr>
+          <tr><td>Workday</td><td>Cloudflare Turnstile (managed by Cloudflare Bot Management)</td><td>On application submission</td></tr>
+          <tr><td>Greenhouse</td><td>DataDome challenges (invisible → interactive)</td><td>Behavior-triggered</td></tr>
+          <tr><td>iCIMS</td><td>hCaptcha (since June 2025)</td><td>Per application</td></tr>
+          <tr><td>Lever</td><td>Anti-bot protection (vendor undisclosed)</td><td>Behavior-triggered</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-signal">
+      <strong>Best Strategy: Avoid Triggering CAPTCHAs Entirely</strong>
+      CAPTCHA solving adds $1-3 per application and 5-20s latency. The better approach is behavioral mimicry + consistent fingerprinting + residential IP so the CAPTCHA never triggers. Treat solving as a fallback, not the primary strategy. Browser Use's forked Chromium includes "integrated challenge resolution" that handles standard verifications without external services.
+    </div>
+
+    <!-- ============ SECTION 4: RATE LIMITING ============ -->
+    <h2 id="rate-limiting"><span class="section-num">§4</span>Rate Limiting Best Practices</h2>
+
+    <h3>Optimal Application Frequency</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Platform</th><th>Conservative</th><th>Moderate</th><th>Aggressive (risky)</th></tr></thead>
+        <tbody>
+          <tr><td>LinkedIn Easy Apply</td><td>5-10/day</td><td>15-25/day</td><td>30+/day → triggers review</td></tr>
+          <tr><td>Indeed</td><td>5-8/day</td><td>10-15/day</td><td>20+/day → CAPTCHA walls</td></tr>
+          <tr><td>Workday portals</td><td>3-5/day per company</td><td>8-12/day total</td><td>15+ across ATS instances</td></tr>
+          <tr><td>Greenhouse/Lever</td><td>3-5/day</td><td>8-10/day</td><td>12+ triggers DataDome</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Account Warming Strategy</h3>
+    <ol>
+      <li><strong>Week 1-2:</strong> Manual activity only. Build browsing history, save jobs, follow companies. Establish baseline.</li>
+      <li><strong>Week 3-4:</strong> 1-2 automated applications/day mixed with manual browsing. Test detection thresholds.</li>
+      <li><strong>Week 5+:</strong> Gradual ramp to target volume. Always mix automated apps with genuine browsing activity.</li>
+      <li><strong>Ongoing:</strong> Maintain 20-30% "noise" — random profile views, article reads, job saves that aren't part of automation flow.</li>
+    </ol>
+
+    <h3>Geographic Distribution</h3>
+    <ul>
+      <li>Use <strong>static residential IPs</strong> matched to account's claimed location</li>
+      <li>Never change IP geography mid-session or across sessions for same account</li>
+      <li>Timezone, language, and locale must all match the IP geography</li>
+      <li>For multi-account strategies: each account gets its own IP + geo + fingerprint bundle</li>
+    </ul>
+
+    <!-- ============ SECTION 5: LEGAL ============ -->
+    <h2 id="legal"><span class="section-num">§5</span>Legal & ToS Considerations</h2>
+
+    <div class="callout callout-danger">
+      <strong>Risk Summary</strong>
+      Automation violates the ToS of every major job portal. Criminal prosecution under CFAA is unlikely for personal job-seeking but <em>not impossible</em>. Account bans are near-certain at scale. Civil liability (breach of contract) is the primary legal risk.
+    </div>
+
+    <h3>LinkedIn ToS — Key Prohibitions</h3>
+    <ul>
+      <li>Section 8.2: Bots/automation explicitly forbidden</li>
+      <li>Prohibits tools that "override any security feature or bypass access controls or use limits"</li>
+      <li>Prohibits scraping "profiles and other data" without permission</li>
+      <li>Browser extensions carry <em>higher</em> detection exposure than cloud tools</li>
+    </ul>
+
+    <h3>Legal Precedent</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Case</th><th>Ruling</th><th>Relevance</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>hiQ Labs v. LinkedIn</strong> (2019-2022)</td>
+            <td>Scraping publicly visible profiles does NOT violate CFAA</td>
+            <td>Limits criminal exposure for public data. Does NOT authorize ToS violations.</td>
+          </tr>
+          <tr>
+            <td><strong>Aaron Taylor (Unbounce) v. LinkedIn</strong> (2021-2022)</td>
+            <td>Case dismissed — LinkedIn's ToS was "not ambiguous" and Taylor agreed to follow them</td>
+            <td>Direct precedent: using a job application bot + getting banned = your problem. Court sided with LinkedIn.</td>
+          </tr>
+          <tr>
+            <td><strong>SEC v. Van der Velden</strong> (2018)</td>
+            <td>ToS violation can constitute CFAA violation in certain contexts</td>
+            <td>Establishes that breaching ToS isn't just a platform matter — federal law can apply.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Risk Mitigation</h3>
+    <ul>
+      <li><strong>Single-account, moderate volume</strong> — mimics power user, not bot farm</li>
+      <li><strong>Never scrape at scale</strong> — scraping + automation compounds legal exposure</li>
+      <li><strong>Use for personal job search only</strong> — commercial resale of scraped data or application-as-a-service increases risk</li>
+      <li><strong>Don't circumvent paywalls or authentication</strong> — Easy Apply uses your existing login, which is lower risk than creating fake accounts</li>
+      <li><strong>Document legitimate use</strong> — if challenged, showing it was personal career management (not commercial scraping) is your best defense</li>
+    </ul>
+
+    <!-- ============ SECTION 6: PRODUCTION TOOLS ============ -->
+    <h2 id="existing-tools"><span class="section-num">§6</span>How Existing Tools Handle This</h2>
+
+    <h3>AIHawk (Open Source)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspect</th><th>Approach</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Browser</td><td>Standard Playwright</td><td><span class="rating rating-med">MODERATE</span> — no deep stealth</td></tr>
+          <tr><td>Detection Evasion</td><td>Basic stealth patches, some TLS/fingerprint awareness</td><td><span class="rating rating-low">WEAK</span> — gets flagged at scale</td></tr>
+          <tr><td>Production Results</td><td>Claims: 1000+ apps overnight, ~50 interviews. Reality: most users report low success rate; high volume ≠ job offers</td><td><span class="rating rating-med">MIXED</span></td></tr>
+          <tr><td>Account Safety</td><td>Users report warnings within weeks of heavy use</td><td><span class="rating rating-low">HIGH RISK</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Browser Use (Open Source + Commercial)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspect</th><th>Approach</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Browser</td><td>Forked Chromium (Feb 2026) — C++/OS-level modifications</td><td><span class="rating rating-high">STRONG</span></td></tr>
+          <tr><td>Detection Evasion</td><td>Source-level patches; native indicators reflect genuine runtime states; integrated challenge resolution</td><td><span class="rating rating-high">STRONG</span></td></tr>
+          <tr><td>Production Approach</td><td>Synchronized signal generation across full stack; residential proxy alignment; dynamic timezone coupling</td><td><span class="rating rating-high">PRODUCTION-GRADE</span></td></tr>
+          <tr><td>Infrastructure</td><td>Stealth browser infrastructure as managed service; avoids external CAPTCHA solving costs</td><td><span class="rating rating-high">INTEGRATED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Commercial Services (LoopCV, JobCopilot, LazyApply, Sonara)</h3>
+    <ul>
+      <li>Generally use anti-detect browser profiles or cloud-based stealth infrastructure</li>
+      <li>Spread load across multiple accounts/IPs to stay under per-account thresholds</li>
+      <li>Built-in rate limiting and warming schedules</li>
+      <li>Handle CAPTCHA solving internally (cost baked into subscription)</li>
+      <li>Real production results are opaque — marketing claims vs. verified success rates are hard to validate</li>
+    </ul>
+
+    <!-- ============ SECTION 7: RECOMMENDATIONS ============ -->
+    <h2 id="recommendations"><span class="section-num">§7</span>Recommendations for CareerGraph AI</h2>
+
+    <div class="callout callout-signal">
+      <strong>Recommended Stack</strong>
+      Based on this research, here's the priority-ordered approach for the Stage 4 submission pipeline.
+    </div>
+
+    <ol>
+      <li>
+        <strong>Browser: Patchright or Browser Use's Chromium fork</strong><br>
+        Patchright is the drop-in replacement if staying in Playwright ecosystem. Browser Use's fork if building dedicated infra. Both address TLS, HTTP/2, and CDP leaks that playwright-stealth misses.
+      </li>
+      <li>
+        <strong>Behavior simulation: humanization-playwright</strong><br>
+        Bézier mouse movements + Poisson-distributed typing delays. This single addition has the highest marginal detection reduction.
+      </li>
+      <li>
+        <strong>IP: Static residential proxies, one per account</strong><br>
+        Not rotating — persistent. Matched to account geography. $2-5/IP/month is the sweet spot.
+      </li>
+      <li>
+        <strong>Headed mode always for job portals</strong><br>
+        The resource cost is justified. Headless is detectable even with patches; headed inherits native TLS and rendering.
+      </li>
+      <li>
+        <strong>Rate limiting: conservative defaults</strong><br>
+        5-10 applications/day per platform. Ramp over 4 weeks. 20-30% noise activity (profile views, job saves).
+      </li>
+      <li>
+        <strong>CAPTCHA: avoidance-first architecture</strong><br>
+        Good behavior simulation + residential IP + headed mode = CAPTCHAs rarely trigger. CapSolver as $0.80-3.00/1K fallback.
+      </li>
+      <li>
+        <strong>Circuit breaker pattern</strong><br>
+        If CAPTCHA triggers 3x in a session → stop, wait 2-4 hours, resume. If account gets warning → drop to manual-only for 48 hours.
+      </li>
+    </ol>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Layer</th><th>Priority</th><th>Cost/App</th><th>Detection Reduction</th></tr></thead>
+        <tbody>
+          <tr><td>Behavior simulation (mouse/typing)</td><td>P0</td><td>Free</td><td>~40% reduction in behavioral flags</td></tr>
+          <tr><td>Stealth browser (Patchright/Browser Use)</td><td>P0</td><td>Free (OSS)</td><td>~60% reduction in fingerprint flags</td></tr>
+          <tr><td>Residential static IP</td><td>P1</td><td>~$0.01/app</td><td>~30% reduction in IP-based blocks</td></tr>
+          <tr><td>Headed mode</td><td>P1</td><td>Hardware cost</td><td>~25% reduction in detection overall</td></tr>
+          <tr><td>Account warming</td><td>P1</td><td>Time cost</td><td>~50% reduction in early-session flags</td></tr>
+          <tr><td>CAPTCHA solver (fallback)</td><td>P2</td><td>$0.001-0.003/app</td><td>N/A (reactive, not preventive)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted);">
+      <p>Research compiled 2026-08-25. Sources: Browser Use blog, Fingerprint.com, ConnectSafely, Scrapewise, Bright Data, AlterLab, Browserless, arXiv 2606.14525, LinkedIn User Agreement, Greenhouse Support docs, iCIMS Community, multiple scraping/anti-detection benchmarks.</p>
+    </div>
+  </main>
+</div>

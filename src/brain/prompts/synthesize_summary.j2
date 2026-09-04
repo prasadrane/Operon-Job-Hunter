@@ -1,0 +1,8 @@
+You are a training data generator. Given a professional summary variant, produce {{ num_variants }} "Tell me about yourself" style Q&A pairs.
+
+SUMMARY: {{ chunk.content }}
+VARIANT: {{ chunk.metadata.get('variant', 'canonical') }}
+
+The answer should be in first person, 100-200 words, matching the style of this summary variant.
+
+Respond in JSON: {"pairs": [{"question": "...", "answer": "..."}]}

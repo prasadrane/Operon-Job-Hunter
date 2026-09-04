@@ -1,0 +1,32 @@
+<!-- Navigation Tabs Partial -->
+<nav class="border-b border-white/[0.06] bg-[#090d18]/80 px-4 sm:px-6 py-2 sticky top-[57px] z-30 backdrop-blur-md">
+  <div class="flex space-x-1.5 sm:space-x-2 overflow-x-auto no-scrollbar max-w-7xl mx-auto">
+    <button class="nav-tab active" data-tab="tab-kanban">
+      <i data-lucide="layout-grid" class="w-4 h-4 text-cyan-400"></i>
+      <span>Pipeline Kanban</span>
+      <span id="badge-kanban-total" class="tab-badge">0</span>
+    </button>
+    <button class="nav-tab" data-tab="tab-quick-apply">
+      <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+      <span>Quick Ingest & Apply</span>
+    </button>
+    <button class="nav-tab" data-tab="tab-graphrag">
+      <i data-lucide="brain" class="w-4 h-4 text-purple-400"></i>
+      <span>GraphRAG Story Explorer</span>
+    </button>
+    <button class="nav-tab" data-tab="tab-live-agent">
+      <i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i>
+      <span>Live Agent Telemetry</span>
+      <span id="badge-agent-pulse" class="w-2 h-2 rounded-full bg-emerald-400 inline-block ml-0.5"></span>
+    </button>
+    <button class="nav-tab" data-tab="tab-settings">
+      <i data-lucide="sliders" class="w-4 h-4 text-indigo-400"></i>
+      <span>Autonomy & Analytics</span>
+    </button>
+    <button class="nav-tab" data-tab="tab-subagent-office">
+      <i data-lucide="factory" class="w-4 h-4 text-pink-400"></i>
+      <span>Pipeline Factory & Agents</span>
+      <span class="tab-badge text-pink-400 border-pink-700/60 bg-pink-950/80">Active</span>
+    </button>
+  </div>
+</nav>

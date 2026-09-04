@@ -1,0 +1,41 @@
+<!-- Top Navigation Header Partial -->
+<header class="border-b border-white/[0.08] bg-[#0d121f]/90 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-6 py-3 flex items-center justify-between shadow-xl shadow-black/40">
+  <div class="flex items-center space-x-3.5">
+    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 text-white font-black">
+      <i data-lucide="zap" class="w-5 h-5"></i>
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <h1 class="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+          OperonJobHuntAI
+        </h1>
+        <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-700/60 text-cyan-400 font-mono font-medium flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3 h-3"></i> Mission Control
+        </span>
+      </div>
+      <p class="text-xs text-slate-400 hidden sm:block">Autonomous Job Discovery, 7-Block Fit Scoring & GraphRAG Auto-Submitter</p>
+    </div>
+  </div>
+
+  <!-- Live Status Badges & Global Controls -->
+  <div class="flex items-center space-x-3 sm:space-x-4">
+    <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-xs">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span class="text-slate-400">Agent:</span>
+      <span id="header-agent-status" class="font-semibold text-emerald-400">Autonomous Ready</span>
+    </div>
+
+    <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-xs font-mono">
+      <span class="text-slate-400">Threshold:</span>
+      <span id="header-min-score" class="text-cyan-300 font-bold">85</span>
+    </div>
+
+    <button id="btn-refresh-all" class="btn-secondary text-xs px-3 py-1.5 flex items-center gap-1.5" title="Refresh all pipeline data">
+      <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+      <span class="hidden sm:inline">Refresh</span>
+    </button>
+  </div>
+</header>

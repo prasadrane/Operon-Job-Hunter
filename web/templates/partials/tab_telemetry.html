@@ -1,0 +1,107 @@
+<!-- Tab 4: Live Agent Mission Control & Telemetry Partial -->
+<section id="tab-live-agent" class="tab-pane hidden space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0d121f] p-4 rounded-xl border border-white/[0.08]">
+    <div>
+      <h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+        <i data-lucide="terminal" class="w-5 h-5 text-emerald-400"></i>
+        Live Agent Mission Control & Telemetry
+      </h2>
+      <p class="text-xs text-slate-400 mt-0.5">Real-time Playwright browser state, CAPTCHA interception gates, and lifecycle automation logs.</p>
+    </div>
+    <div class="flex items-center gap-2.5">
+      <button id="btn-trigger-email-sync" class="btn-secondary text-xs px-3 py-2 flex items-center gap-1.5">
+        <i data-lucide="mail-check" class="w-3.5 h-3.5 text-cyan-400"></i>
+        <span>Sync Gmail Status</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Telemetry Dashboard Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- Card 1: Multi-Model Consensus Voting -->
+    <div class="bg-[#0d121f] border border-white/[0.08] rounded-xl p-4 space-y-2 hover:border-cyan-500/30 transition">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold text-slate-400">Consensus Voting Guard</span>
+        <i data-lucide="vote" class="w-4 h-4 text-cyan-400"></i>
+      </div>
+      <div class="flex items-center justify-between bg-[#07090e] p-2 rounded border border-white/[0.04]">
+        <span class="text-xs font-mono text-emerald-400 font-bold" id="telemetry-consensus-rate">98.5% Agreement</span>
+        <span class="text-[10px] text-cyan-300 font-mono" id="telemetry-consensus-conf">Conf: 0.94</span>
+      </div>
+      <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Dual Rule + Gemini Flash Guard
+      </div>
+    </div>
+
+    <!-- Card 2: Execution Circuit Breakers -->
+    <div class="bg-[#0d121f] border border-white/[0.08] rounded-xl p-4 space-y-2 hover:border-emerald-500/30 transition">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold text-slate-400">Execution Circuit Breaker</span>
+        <i data-lucide="zap-off" class="w-4 h-4 text-amber-400"></i>
+      </div>
+      <div class="flex items-center justify-between bg-[#07090e] p-2 rounded border border-white/[0.04]">
+        <span class="text-xs font-mono text-emerald-400 font-bold" id="telemetry-cb-status">Active (45s Budget)</span>
+        <span class="text-[10px] text-slate-400 font-mono" id="telemetry-cb-stalls">0 Stalls</span>
+      </div>
+      <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Prevents hanging browser runs
+      </div>
+    </div>
+
+    <!-- Card 3: Checkpointer & State Pruning -->
+    <div class="bg-[#0d121f] border border-white/[0.08] rounded-xl p-4 space-y-2 hover:border-indigo-500/30 transition">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold text-slate-400">State Snapshot Checkpoints</span>
+        <i data-lucide="database" class="w-4 h-4 text-indigo-400"></i>
+      </div>
+      <div class="flex items-center justify-between bg-[#07090e] p-2 rounded border border-white/[0.04]">
+        <span class="text-xs font-mono text-indigo-300 font-bold" id="telemetry-cp-driver">SqliteSaver (WAL)</span>
+        <span class="text-[10px] text-emerald-400 font-mono" id="telemetry-cp-size">&lt; 10 KB State</span>
+      </div>
+      <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Dynamic Snapshot Pruning
+      </div>
+    </div>
+
+    <!-- Card 4: Dynamic Crawler Registry -->
+    <div class="bg-[#0d121f] border border-white/[0.08] rounded-xl p-4 space-y-2 hover:border-purple-500/30 transition">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold text-slate-400">Deferred Tool Registry</span>
+        <i data-lucide="layers" class="w-4 h-4 text-purple-400"></i>
+      </div>
+      <div class="flex items-center justify-between bg-[#07090e] p-2 rounded border border-white/[0.04]">
+        <span class="text-xs font-mono text-purple-300 font-bold" id="telemetry-registry-count">9 Dynamic Tools</span>
+        <span class="text-[10px] text-purple-400 font-mono">On-Demand</span>
+      </div>
+      <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Domain URL dynamic dispatch
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Log Stream -->
+  <div class="bg-[#07090e] border border-white/[0.08] rounded-xl p-4 space-y-3 font-mono text-xs shadow-2xl">
+    <div class="flex flex-wrap items-center justify-between border-b border-white/[0.08] pb-3 gap-2">
+      <span class="text-slate-200 font-bold flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Live Agent Telemetry Stream
+      </span>
+      
+      <div class="flex items-center gap-3">
+        <select id="log-filter-level" class="form-input py-1 px-2 text-[11px] w-auto">
+          <option value="ALL">All Levels</option>
+          <option value="INFO">INFO</option>
+          <option value="WARNING">WARNING</option>
+          <option value="ERROR">ERROR</option>
+        </select>
+
+        <button id="btn-clear-logs" class="text-[11px] text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-900 border border-slate-800">
+          Clear Logs
+        </button>
+      </div>
+    </div>
+
+    <div id="live-logs-box" class="h-96 overflow-y-auto space-y-1 text-slate-300 pr-1">
+      <!-- Logs injected by JS -->
+    </div>
+  </div>
+</section>

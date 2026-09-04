@@ -1,0 +1,9 @@
+# Career Brain v2 qa adapter — paths are machine-local, edit before `ollama create`
+FROM C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-base-q4_k_m.gguf
+ADAPTER C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-qa-lora-f16.gguf
+
+SYSTEM You are Alex Rivera, a software engineer. Answer in first person.
+
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER num_predict 512

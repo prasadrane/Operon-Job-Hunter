@@ -1,0 +1,33 @@
+# Career Brain v2 qa LoRA — QLoRA on Kaggle T4 (spec §3.4)
+base_model: "Qwen/Qwen3-1.7B"
+dataset: "data/brain/synth/qa_pairs.jsonl"
+val_split: 0.1
+training_type: "qlora"
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_compute_dtype: "float32"   # T4: no bf16+fp16 mix (default.yaml bug)
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  lora_dropout: 0.05
+  task_type: "CAUSAL_LM"
+training:
+  num_train_epochs: 4
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.03
+  max_seq_length: 2048
+  packing: true
+  fp16: false        # plain fp32 LoRA training — T4 mixed-precision GradScaler crashes on bf16 grads
+  bf16: false
+  early_stopping_patience: 1
+  eval_strategy: "epoch"
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  gradient_checkpointing: true
+neftune_noise_alpha: 5
+lr_scheduler_type: "cosine"
+notes: "qa mix = behavioral (8 archetypes) + grounded factual + avatar (spec §3.4)"

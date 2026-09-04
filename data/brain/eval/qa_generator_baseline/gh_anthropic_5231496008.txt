@@ -1,0 +1,127 @@
+# job gh_anthropic_5231496008 | Staff + Sr. Software Engineer, Cloud Inference @ Anthropic
+# mode=tailoring conf=1.00 warnings=[]
+
+{
+ "section": {
+  "title": "skills",
+  "type": "string"
+ },
+ "skills_to_emphasize": {
+  "items": [
+   "Cloud Native",
+   "CI/CD",
+   "Observability",
+   "API Design",
+   "Security",
+   "Performance Optimization"
+  ],
+  "title": "Skills To Emphasize",
+  "type": "array"
+ },
+ "stories": {
+  "items": [
+   {
+    "id": "Story_12",
+    "why": "OAuth2/JWT Authentication Migration",
+    "emphasize": [
+     "OAuth2/JWT",
+     "Security Audit",
+     "Authentication Failures"
+    ]
+   },
+   {
+    "id": "Story_13",
+    "why": "Cloud Inference Team",
+    "emphasize": [
+     "Cloud Inference",
+     "CI/CD Automation",
+     "Observability",
+     "API Design",
+     "Security",
+     "Performance Optimization"
+    ]
+   }
+  ]
+ },
+ "bullets": {
+  "items": [
+   {
+    "text": "Optimized SQL Server query execution plans for nightly enterprise batch reports across thousands of properties",
+    "source": "Action 41",
+    "bold": [
+     "SQL Server",
+     "Query Optimization",
+     "Batch Reports",
+     "Latency Reduction"
+    ]
+   },
+   {
+    "text": "Built a full audit trail logging every prompt/response pair to S3 for compliance and continuous prompt-tuning analysis",
+    "source": "Action 32",
+    "bold": [
+     "Audit Trail",
+     "Prompt-Tuning",
+     "Compliance",
+     "S3"
+    ]
+   },
+   {
+    "text": "Owned the end-to-end migration from vulnerable session-based authentication to OAuth2/JWT across 7 dependent teams",
+    "source": "STAR_Story_12",
+    "bold": [
+     "OAuth2/JWT",
+     "Security Audit",
+     "Authentication Failures",
+     "Legacy Modernization"
+    ]
+   },
+   {
+    "text": "Architected a self-service Product Configuration platform using Angular 18, .NET 6/8, and DynamoDB",
+    "source": "Action 17",
+    "bold": [
+     "Angular 18",
+     ".NET 6/8",
+     "DynamoDB",
+     "Configuration",
+     "Deployment Time",
+     "Production Rule Changes"
+    ]
+   },
+   {
+    "text": "Designed and scaled distributed systems on AWS (ECS Fargate, Lambda, DynamoDB)",
+    "source": "Result_2",
+    "bold": [
+     "AWS",
+     "ECS Fargate",
+     "Lambda",
+     "DynamoDB",
+     "99.95% Uptime",
+     "Infrastructure Costs"
+    ]
+   },
+   {
+    "text": "Architected an Amazon Bedrock (Claude Sonnet) AI Intent-to-API routing engine",
+    "source": "Result_1",
+    "bold": [
+     "Amazon Bedrock",
+     "Claude Sonnet",
+     "Intent-to-API",
+     "Loan Lookup Time",
+     "Sub-Second Routing Latency"
+    ]
+   }
+  ]
+ },
+ "gaps": {
+  "items": [
+   "Cloud Inference Team",
+   "CI/CD Automation",
+   "Observability",
+   "API Design",
+   "Security",
+   "Performance Optimization"
+  ],
+  "title": "Gaps",
+  "type": "array"
+ }
+}
