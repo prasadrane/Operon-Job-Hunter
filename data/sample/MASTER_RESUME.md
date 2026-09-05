@@ -17,21 +17,21 @@ Redis, AWS, Terraform.
 
 ## Experience
 
-### Senior Backend Engineer — Nimbus Analytics
-*March 2022 – Present | Seattle, WA*
+### Senior Backend Engineer - Nimbus Analytics
+*March 2022 - Present | Seattle, WA*
 - Designed and built the event ingestion platform handling 40M events/day (Python, FastAPI, Kafka), cutting p95 ingest latency 62% via backpressure batching and consumer-group rebalancing.
 - Led migration of 14 services from ECS to Kubernetes; wrote Terraform modules + rollout tooling, zero-downtime cutover in 6 weeks.
 - Introduced contract tests for 9 internal APIs, reducing cross-team integration incidents 45% quarter-over-quarter.
 - Mentor 3 engineers; run the platform on-call design review.
 
-### Backend Engineer — Helios Commerce
-*June 2019 – February 2022 | Portland, OR*
+### Backend Engineer - Helios Commerce
+*June 2019 - February 2022 | Portland, OR*
 - Reworked payment-capture flow with idempotency keys (PostgreSQL advisory locks), eliminating duplicate-charge incidents ( since launch vs ~12/quarter).
 - Sharded the orders database by merchant_id; p99 query time down 71%.
 - Built order-webhooks delivery system (Kafka + Redis retry queues), 99.97% delivered-within-60s.
 
-### Software Engineer — Brightline Labs
-*July 2017 – May 2019 | Remote*
+### Software Engineer - Brightline Labs
+*July 2017 - May 2019 | Remote*
 - Extracted auth and billing services from Django monolith (strangler pattern), deploy frequency weekly to daily.
 - Wrote load-test harness (Locust) that caught two memory leaks pre-launch.
 
@@ -62,7 +62,7 @@ Action: Quarantine harness, deterministic time/random fixtures, retry budget.
 Result: Flake rate under 1% in one quarter.
 
 ## Education
-BS Computer Science — Western State University, 2017
+BS Computer Science - Western State University, 2017
 
 ## Certifications
-- AWS Certified Solutions Architect – Associate (fictional)
+- AWS Certified Solutions Architect - Associate (fictional)

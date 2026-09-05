@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Code Navigation — Use Graph Tools First
+## Code Navigation - Use Graph Tools First
 
 This repo has **graphify** and **codebase-memory-mcp** indexed. Before manually reading files to understand structure, callers, or dependencies:
 
@@ -17,7 +17,7 @@ Only fall back to manual file reading (Read/Grep) when graph coverage is insuffi
 
 ## Project Overview
 
-CareerGraph AI is an autonomous agentic platform for job search automation. It implements a 5-stage pipeline: Discovery → Evaluation → Tailoring → Submission → Lifecycle. The system uses LangGraph StateGraph for orchestration, a 3-tier memory architecture (Core/Recall/Archival), and supports multiple LLM providers (Alibaba Qwen as primary, Gemini/OpenRouter as fallback).
+Operon Job Hunter is an autonomous agentic platform for job search automation. It implements a 5-stage pipeline: Discovery → Evaluation → Tailoring → Submission → Lifecycle. The system uses LangGraph StateGraph for orchestration, a 3-tier memory architecture (Core/Recall/Archival), and supports multiple LLM providers (Alibaba Qwen as primary, Gemini/OpenRouter as fallback).
 
 ## Common Commands
 
@@ -81,7 +81,7 @@ The pipeline is orchestrated via LangGraph StateGraph (`src/pipeline/state_machi
 
 3. **Stage 3 - Tailoring** (`src/pipeline/3_tailoring/`): Multi-hop GraphRAG retrieval from NetworkX career knowledge graph. Evaluator-Optimizer loop (Recruiter, Hiring Manager, ATS Specialist personas) with surgical delta patching. Deterministic PDF compiler (ReportLab/Typst) with <20% bold cap validation.
 
-4. **Stage 4 - Submission** (`src/pipeline/4_submission/`): 3-tier submission architecture: (T1) FastPath deterministic DOM autofill with ordered selector tuples + self-healing for standard profile fields across all portals, (T2) Browser Use Agent (LLM-driven via `browser_use.Agent`) for unknown/generic portals with dynamic DOMs, (T3) WebSurfer Agent (AXTree + Set-of-Marks visual grounding) as rule-based fallback. ATS-specific adapters (Greenhouse, Lever, Ashby, WorkdayAgentic multi-step wizard, Generic) for platform-specific form handling. CredentialVault (`src/core/credentials/vault.py`) stores portal credentials in OS keyring (configurable: keyring/env/file backends via `CREDENTIAL_BACKEND`). Pipeline state carries only `credential_ref` (a string key reference) — raw credentials are never persisted to checkpoints. Submission audit logger (`submission_audit.py`) tracks every browser action to SQLite `submission_audit_log` table for observability and lifecycle learning. 180-second circuit breaker on submit_node. Kill switch: `SUBMISSION_BROWSER_USE_ENABLED=false`. Candidate profile and tailored artifacts passed through from pipeline state.
+4. **Stage 4 - Submission** (`src/pipeline/4_submission/`): 3-tier submission architecture: (T1) FastPath deterministic DOM autofill with ordered selector tuples + self-healing for standard profile fields across all portals, (T2) Browser Use Agent (LLM-driven via `browser_use.Agent`) for unknown/generic portals with dynamic DOMs, (T3) WebSurfer Agent (AXTree + Set-of-Marks visual grounding) as rule-based fallback. ATS-specific adapters (Greenhouse, Lever, Ashby, WorkdayAgentic multi-step wizard, Generic) for platform-specific form handling. CredentialVault (`src/core/credentials/vault.py`) stores portal credentials in OS keyring (configurable: keyring/env/file backends via `CREDENTIAL_BACKEND`). Pipeline state carries only `credential_ref` (a string key reference) - raw credentials are never persisted to checkpoints. Submission audit logger (`submission_audit.py`) tracks every browser action to SQLite `submission_audit_log` table for observability and lifecycle learning. 180-second circuit breaker on submit_node. Kill switch: `SUBMISSION_BROWSER_USE_ENABLED=false`. Candidate profile and tailored artifacts passed through from pipeline state.
 
 5. **Stage 5 - Lifecycle** (`src/pipeline/5_lifecycle/`): Gmail watcher monitors confirmation receipts and status changes. OA Radar tracks online assessments. Retrospective agent analyzes outcomes.
 
@@ -116,7 +116,7 @@ Playwright with stealth plugin (`playwright-stealth`) for persistent browser ses
 
 ### Multi-Agent Platform (P5)
 
-`src/agents/` hosts reactive agents on the core domain bus (`src/core/events/`, bridged into the Mission Control SSE stream via `install_sse_bridge`): `discovery_orchestrator` (drives `JobScanner`, emits `JOB_DISCOVERED`), `application_agent` (wraps `BatchPipelineDispatcher.process_single_job` off-thread on discovery; submission stays gated by the LangGraph `interrupt_before=["submit_node"]` HITL — resume only via `mission resume`), `networking_agent` (LLM-drafted outreach; requires a resolved approval row before any LinkedIn send). Every decision lands in the `agent_decisions` SQLite table (`src/core/telemetry/agent_ledger.py`); `PipelineGraphState` carries append-only `agent_decisions`/`integration_results` keys; stage introspection via `src/core/stages/stage_registry.py`. `src/integrations/` holds read-only ATS board API enrichment (`ats_readonly.py` — no public ATS API allows application submission) and LinkedIn automation via Patchright (`linkedin/`) behind three mandatory gates: `LINKEDIN_ENABLED` (default false), `LinkedInActionBudget` (SQLite daily caps), `LinkedInApprovalGate` (`linkedin_approvals` table). New API-backed boards: `remote_boards.py` (Remotive, Adzuna). CLI: `python -m src.interface.cli.main mission start|scan|status|approvals list|approvals approve <id>|resume <JOB_ID>`.
+`src/agents/` hosts reactive agents on the core domain bus (`src/core/events/`, bridged into the Mission Control SSE stream via `install_sse_bridge`): `discovery_orchestrator` (drives `JobScanner`, emits `JOB_DISCOVERED`), `application_agent` (wraps `BatchPipelineDispatcher.process_single_job` off-thread on discovery; submission stays gated by the LangGraph `interrupt_before=["submit_node"]` HITL - resume only via `mission resume`), `networking_agent` (LLM-drafted outreach; requires a resolved approval row before any LinkedIn send). Every decision lands in the `agent_decisions` SQLite table (`src/core/telemetry/agent_ledger.py`); `PipelineGraphState` carries append-only `agent_decisions`/`integration_results` keys; stage introspection via `src/core/stages/stage_registry.py`. `src/integrations/` holds read-only ATS board API enrichment (`ats_readonly.py` - no public ATS API allows application submission) and LinkedIn automation via Patchright (`linkedin/`) behind three mandatory gates: `LINKEDIN_ENABLED` (default false), `LinkedInActionBudget` (SQLite daily caps), `LinkedInApprovalGate` (`linkedin_approvals` table). New API-backed boards: `remote_boards.py` (Remotive, Adzuna). CLI: `python -m src.interface.cli.main mission start|scan|status|approvals list|approvals approve <id>|resume <JOB_ID>`.
 
 ## Key Configuration
 

@@ -107,15 +107,15 @@ def main():
 
     # Verdict
     if page_errors:
-        print("\nVERDICT: FAIL — uncaught page errors present")
+        print("\nVERDICT: FAIL -  uncaught page errors present")
         return 1
     if not pixi_loaded:
-        print("\nVERDICT: FAIL — PIXI did not load (CDN/network issue?)")
+        print("\nVERDICT: FAIL -  PIXI did not load (CDN/network issue?)")
         return 1
     if not factory_exposed:
-        print("\nVERDICT: FAIL — window.factory not exposed (JS init failed)")
+        print("\nVERDICT: FAIL -  window.factory not exposed (JS init failed)")
         return 1
-    print("\nVERDICT: PASS — page loaded, PIXI rendered, factory initialized, no uncaught errors")
+    print("\nVERDICT: PASS -  page loaded, PIXI rendered, factory initialized, no uncaught errors")
     return 0
 
 if __name__ == "__main__":

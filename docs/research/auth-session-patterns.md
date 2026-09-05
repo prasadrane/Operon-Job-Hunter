@@ -27,8 +27,8 @@
 
 - **Persistent context** automatically persists both `localStorage` and `sessionStorage` across runs
 - **Storage state export** captures `localStorage` but NOT `sessionStorage` (session-scoped by design)
-- Some sites store auth tokens in `localStorage` (e.g., JWT-based SPAs) — these survive via persistent context
-- Service workers cache API tokens in IndexedDB — only persistent context captures this
+- Some sites store auth tokens in `localStorage` (e.g., JWT-based SPAs) - these survive via persistent context
+- Service workers cache API tokens in IndexedDB - only persistent context captures this
 
 **Implementation:**
 ```python
@@ -139,17 +139,17 @@ async def validate_session(context: BrowserContext) -> bool:
 - Common IdPs: Microsoft Entra ID (Azure AD), Okta, PingFederate, CyberArk
 
 **Handling strategy:**
-1. **Corporate SSO is the hardest to automate** — each employer has different IdP
+1. **Corporate SSO is the hardest to automate** - each employer has different IdP
 2. Pre-authenticate via the corporate IdP and persist the SAML assertion cookies
 3. Workday sessions are typically 8-12 hours; persist `wday_vps_cookie`
 4. For "Apply" on Workday-hosted career sites, many don't require login (public forms)
 5. For authenticated Workday access: use OAuth On-Behalf-Of flow if IdP supports it
 
-**CareerGraph Current:** Has `adapters/workday.py` and `adapters/workday_agentic.py` — likely handles public Workday career site forms.
+**CareerGraph Current:** Has `adapters/workday.py` and `adapters/workday_agentic.py` - likely handles public Workday career site forms.
 
 ### Greenhouse / Lever / Ashby
 
-**Auth flow:** Usually NO login required — public application forms
+**Auth flow:** Usually NO login required - public application forms
 - These ATS platforms host career pages as public portals
 - Application submission is unauthenticated (name, email, resume upload)
 - Some have "Save for later" via email, but no persistent login needed
@@ -212,7 +212,7 @@ class TOTPAutomator:
 1. During initial manual login, capture the TOTP secret from the authenticator app's `otpauth://` URI
 2. Store the base32 secret in the encrypted credential vault (keyring)
 3. On subsequent automated logins, generate codes with `pyotp.TOTP(secret).now()`
-4. Handle clock skew: `pyotp.TOTP(secret, interval=30, digits=6)` — default matches Google Authenticator
+4. Handle clock skew: `pyotp.TOTP(secret, interval=30, digits=6)` - default matches Google Authenticator
 
 **Security consideration:** The TOTP secret is equivalent to having the authenticator app. Store in OS keyring, NOT in plaintext env vars.
 
@@ -563,7 +563,7 @@ async def detect_auth_redirect(page: Page) -> bool:
 
 ### Checkpoint and Resume Strategy
 
-**CareerGraph already has LangGraph checkpointing** — leverage this for auth failures.
+**CareerGraph already has LangGraph checkpointing** - leverage this for auth failures.
 
 **Recommended pattern:**
 ```python
@@ -586,7 +586,7 @@ checkpoint = {
 # 4. Continue from checkpoint.step
 ```
 
-**Key insight from BrowserUse docs:** Don't checkpoint raw DOM interactions — checkpoint *semantic goals* (e.g., "resume uploaded", "cover letter filled"). DOM structures change between sessions, but business-level milestones are stable.
+**Key insight from BrowserUse docs:** Don't checkpoint raw DOM interactions - checkpoint *semantic goals* (e.g., "resume uploaded", "cover letter filled"). DOM structures change between sessions, but business-level milestones are stable.
 
 ### Alerting on Auth Failures
 
@@ -607,7 +607,7 @@ class AuthFailureAlert:
             # Log + batch notification
             logger.warning("Auth degradation: %s on %s", failure.message, failure.site)
             await self.telegram.send(
-                f"⚠️ Auth warning: {failure.site} — {failure.message}"
+                f"⚠️ Auth warning: {failure.site} - {failure.message}"
             )
 
         # Always record in recall memory
@@ -645,10 +645,10 @@ Wire LangGraph checkpoint to auth state:
 
 ### Priority 4: 2FA Automation Stack
 Layer the 2FA strategies by priority:
-1. **TOTP** (pyotp) — fastest, most reliable, for services that support it
-2. **Email OTP** (Gmail API) — for services that email codes
-3. **SMS Relay** (Telegram forwarding) — for SMS-only services
-4. **HITL** (Telegram approval) — fallback for visual challenges
+1. **TOTP** (pyotp) - fastest, most reliable, for services that support it
+2. **Email OTP** (Gmail API) - for services that email codes
+3. **SMS Relay** (Telegram forwarding) - for SMS-only services
+4. **HITL** (Telegram approval) - fallback for visual challenges
 
 ### Priority 5: OAuth Consent Automation
 Handle "Apply with LinkedIn" and similar OAuth flows:

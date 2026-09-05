@@ -11,7 +11,7 @@ from src.core.models import JobPosting
 def generate_resume():
     job_desc = """
     Urgent Opening for Technical lead - .Net C#, Angular, Sacramento, California, (Hybrid)
-    Must have Skills – C#,.Net Framework & Angular & Python We are looking for 7 – 10 years of experience, Git / GitHub / Bitbucket knowledge, Web Development Languages and Tools , JavaScript / TypeScript , HTML / Angular , C# / .NET , Scripting Languages , Python / PyTest.
+    Must have Skills - C#,.Net Framework & Angular & Python We are looking for 7 - 10 years of experience, Git / GitHub / Bitbucket knowledge, Web Development Languages and Tools , JavaScript / TypeScript , HTML / Angular , C# / .NET , Scripting Languages , Python / PyTest.
     """
     
     # Create a JobPosting instance

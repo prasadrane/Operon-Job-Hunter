@@ -1,10 +1,10 @@
 # Browser Use Integration Architecture
 
-**Status**: IN PROGRESS — P1 complete, P2a complete, P2b complete (RoutingEngine + SessionValidator + tiered wiring), P2c complete (CredentialVault + config settings)  
+**Status**: IN PROGRESS - P1 complete, P2a complete, P2b complete (RoutingEngine + SessionValidator + tiered wiring), P2c complete (CredentialVault + config settings)  
 **Author**: Software Architect Agent  
 **Date**: 2026-08-25  
 **Last Updated**: 2026-08-26  
-**Scope**: CareerGraph Stage 4 (Submission) — Browser Use integration
+**Scope**: CareerGraph Stage 4 (Submission) - Browser Use integration
 
 ---
 
@@ -31,7 +31,7 @@ DECISION MATRIX
 │ Maturity         │ 10%      │ 8/10      │ 111k stars, active CDP       │
 │                  │          │           │ migration complete           │
 └──────────────────┴──────────┴───────────┴──────────────────────────────┘
-WEIGHTED: 7.05 / 10 — useful but not a wholesale replacement.
+WEIGHTED: 7.05 / 10 - useful but not a wholesale replacement.
 ```
 
 ### Routing Decision (3-tier)
@@ -381,13 +381,13 @@ class CareerGraphController(Controller):
                     profile=self.profile,
                     job_context=self.job_context,
                 )
-            return "Unable to answer — no synthesizer available"
+            return "Unable to answer - no synthesizer available"
         
         @self.action("Fill candidate profile fields")
         async def fill_profile_fields(field_name: str, value: str) -> str:
             """Fill a specific profile field. Use this when you identify a form 
             field that matches candidate data (name, email, phone, etc)."""
-            # This is a hint action — the LLM uses it to map fields
+            # This is a hint action - the LLM uses it to map fields
             # Actual filling happens via standard type/fill actions
             return f"Field '{field_name}' mapped to value (use type action to fill)"
     
@@ -508,34 +508,34 @@ Important:
 
 **INPUT: `SubmissionTask` (Pydantic model)**
 ```
-job_url: str                    — required
-company: str                    — required
-title: str                      — required
-portal_type: str                — default "unknown"
-profile: dict                   — required (CandidateProfile.model_dump())
-resume_pdf_path: str?           — optional
-cover_letter_path: str?         — optional
-credentials: dict?              — optional (from CredentialVault)
-job_description: str?           — optional (for question answering)
-star_narratives: list?          — optional (from GraphRAG archival memory)
-use_vision: str                 — "auto" | "true" | "false"
-max_steps: int                  — default 30
-timeout_seconds: int            — default 90
+job_url: str                   - required
+company: str                   - required
+title: str                     - required
+portal_type: str               - default "unknown"
+profile: dict                  - required (CandidateProfile.model_dump())
+resume_pdf_path: str?          - optional
+cover_letter_path: str?        - optional
+credentials: dict?             - optional (from CredentialVault)
+job_description: str?          - optional (for question answering)
+star_narratives: list?         - optional (from GraphRAG archival memory)
+use_vision: str                - "auto" | "true" | "false"
+max_steps: int                 - default 30
+timeout_seconds: int           - default 90
 ```
 
 **OUTPUT: `SubmissionResult` (Pydantic model)**
 ```
-success: bool                   — required
-confirmation_id: str?           — extracted receipt code
-screenshot_path: str?           — final page screenshot
-steps_taken: int                — agent step count
-tokens_used: int                — LLM token consumption
-duration_seconds: float         — wall-clock time
-error_message: str?             — on failure
-filled_fields: dict             — audit: what was filled
-questions_answered: int         — custom Q count
-tier_used: str                  — "T1" | "T2" | "T3"
-audit_trail: list[dict]         — step-by-step log
+success: bool                  - required
+confirmation_id: str?          - extracted receipt code
+screenshot_path: str?          - final page screenshot
+steps_taken: int               - agent step count
+tokens_used: int               - LLM token consumption
+duration_seconds: float        - wall-clock time
+error_message: str?            - on failure
+filled_fields: dict            - audit: what was filled
+questions_answered: int        - custom Q count
+tier_used: str                 - "T1" | "T2" | "T3"
+audit_trail: list[dict]        - step-by-step log
 ```
 
 ### 3.3 Custom Actions (detail)
@@ -629,12 +629,12 @@ class TierExhaustedError(SubmissionError):
 
 ## 3.5 Submission Audit Layer
 
-**Status**: Implemented in P2a — `src/pipeline/4_submission/submission_audit.py`
+**Status**: Implemented in P2a - `src/pipeline/4_submission/submission_audit.py`
 
 Every major browser action is logged to SQLite (`submission_audit_log` table) for:
-1. **Debugging** submission failures — trace exactly which action failed, on which selector, with what error
-2. **Lifecycle learning** — analyze patterns across submissions to improve form-fill accuracy
-3. **Observability** — SSE broadcast via AGENT_LOGS for real-time UI visibility
+1. **Debugging** submission failures - trace exactly which action failed, on which selector, with what error
+2. **Lifecycle learning** - analyze patterns across submissions to improve form-fill accuracy
+3. **Observability** - SSE broadcast via AGENT_LOGS for real-time UI visibility
 
 ### AuditEntry Schema
 
@@ -666,7 +666,7 @@ Every major browser action is logged to SQLite (`submission_audit_log` table) fo
 
 ## 4. Migration Path
 
-### Phase 1: Wire FastPath + Fix Bugs (Week 1-2) — **QUICK WIN**
+### Phase 1: Wire FastPath + Fix Bugs (Week 1-2) - **QUICK WIN**
 
 **Goal**: Make existing code work. Zero new dependencies.
 
@@ -674,14 +674,14 @@ Every major browser action is logged to SQLite (`submission_audit_log` table) fo
 |------|------|--------|
 | 1a. Fix `submit()` signature bug | `state_machine.py:329` | Pass `profile=state["profile"]`, `artifacts=state["artifacts"]` |
 | 1b. Wire FastPath into SubmitterEngine | `submitter_engine.py` | Import `FastPathSubmitter`, try T1 first before adapter |
-| 1c. Wire FormHealingEngine | `fastpath_engine.py` | Already done internally — verify integration |
+| 1c. Wire FormHealingEngine | `fastpath_engine.py` | Already done internally - verify integration |
 | 1d. Raise circuit breaker | `state_machine.py:389` | `with_circuit_breaker(120)` (from 45s) |
 | 1e. Add routing to adapter chain | `adapters/__init__.py` | Add `WorkdayAgenticSubmitter` to `ATS_ADAPTERS` |
 | 1f. Unit tests | `tests/unit/test_submission/` | Tests for FastPath + healing + routing |
 
 **Deliverable**: T1 FastPath works for Greenhouse/Lever/Ashby. Deterministic, fast, zero LLM cost.
 
-### Phase 2: Browser Use Integration (Week 3-5) — **CORE WORK**
+### Phase 2: Browser Use Integration (Week 3-5) - **CORE WORK**
 
 | Task | File | Change | Status |
 |------|------|--------|--------|
@@ -734,14 +734,14 @@ Every major browser action is logged to SQLite (`submission_audit_log` table) fo
 
 | # | Risk | Impact | Probability | Mitigation |
 |---|------|--------|-------------|------------|
-| R1 | **LLM hallucination clicks wrong button** (e.g. "Delete" instead of "Submit") | 🔴 CRITICAL — submits wrong data or destroys application | Medium | `output_model_schema` validation; dry-run mode for first 30 days; confirm-before-submit custom action that screenshots pre-submit state; human approval gate for first N applications |
-| R2 | **Token cost explosion** — BU uses 5-15k tokens per form fill | 🟠 HIGH — $0.01-0.05/application adds up at scale | High | T1 FastPath handles 60-70% of applications at zero LLM cost; T2 only for unknown portals; cache task prompts for KV reuse; set `max_steps=30` cap; monitor `calculate_cost=True` |
-| R3 | **Browser Use CDP breaks on Playwright-specific code** — we use Playwright stealth/profiles | 🟠 HIGH — stealth layer fails | Medium | Patchright is a Playwright drop-in replacement with CDP fixes; test all stealth injections against Patchright first; keep Playwright as fallback if Patchright fails |
-| R4 | **LinkedIn/account bans from detection** — BU's Chromium fork has known signatures | 🔴 CRITICAL — loses access to platform | Medium | LinkedIn is NOT in our target list (we target corporate career sites, not LinkedIn); use Patchright + behavioral sim; rate limit 5-10 apps/day; 4-week account warming; static residential IP per account |
-| R5 | **Circuit breaker trips during BU agent run** — 90s agent vs 45s breaker | 🟠 HIGH — kills in-flight submission | Certain (if not fixed) | Raise circuit breaker to 180s (Phase 1 task 1d); inner per-tier timeouts prevent runaway; BU `max_failures=3` prevents infinite loops |
-| R6 | **Prompt injection via webpage text** — malicious job page injects instructions | 🟠 HIGH — agent executes attacker's commands | Low-Medium | BU's DOM extraction sanitizes text; add `override_system_message` with strict role constraints; never trust page text as instructions; scope agent actions to form-fill only |
-| R7 | **Credential leakage through checkpoints** — passwords in PipelineGraphState | 🔴 CRITICAL — SQLite checkpoint DB has plaintext passwords | High (current bug) | CredentialVault uses OS keyring, NOT pipeline state; credentials passed via ephemeral reference, never serialized; add `prune_transient_state` to strip credential refs before checkpoint |
-| R8 | **Browser Use API dependency** — if `BROWSER_USE_API_KEY` service goes down | 🟡 MEDIUM — T2 tier unavailable | Low | OSS mode works without API key (uses local Chromium); fallback_llm chain (Alibaba → Gemini → OpenRouter); T1 FastPath still works independently |
+| R1 | **LLM hallucination clicks wrong button** (e.g. "Delete" instead of "Submit") | 🔴 CRITICAL - submits wrong data or destroys application | Medium | `output_model_schema` validation; dry-run mode for first 30 days; confirm-before-submit custom action that screenshots pre-submit state; human approval gate for first N applications |
+| R2 | **Token cost explosion** - BU uses 5-15k tokens per form fill | 🟠 HIGH - $0.01-0.05/application adds up at scale | High | T1 FastPath handles 60-70% of applications at zero LLM cost; T2 only for unknown portals; cache task prompts for KV reuse; set `max_steps=30` cap; monitor `calculate_cost=True` |
+| R3 | **Browser Use CDP breaks on Playwright-specific code** - we use Playwright stealth/profiles | 🟠 HIGH - stealth layer fails | Medium | Patchright is a Playwright drop-in replacement with CDP fixes; test all stealth injections against Patchright first; keep Playwright as fallback if Patchright fails |
+| R4 | **LinkedIn/account bans from detection** - BU's Chromium fork has known signatures | 🔴 CRITICAL - loses access to platform | Medium | LinkedIn is NOT in our target list (we target corporate career sites, not LinkedIn); use Patchright + behavioral sim; rate limit 5-10 apps/day; 4-week account warming; static residential IP per account |
+| R5 | **Circuit breaker trips during BU agent run** - 90s agent vs 45s breaker | 🟠 HIGH - kills in-flight submission | Certain (if not fixed) | Raise circuit breaker to 180s (Phase 1 task 1d); inner per-tier timeouts prevent runaway; BU `max_failures=3` prevents infinite loops |
+| R6 | **Prompt injection via webpage text** - malicious job page injects instructions | 🟠 HIGH - agent executes attacker's commands | Low-Medium | BU's DOM extraction sanitizes text; add `override_system_message` with strict role constraints; never trust page text as instructions; scope agent actions to form-fill only |
+| R7 | **Credential leakage through checkpoints** - passwords in PipelineGraphState | 🔴 CRITICAL - SQLite checkpoint DB has plaintext passwords | High (current bug) | CredentialVault uses OS keyring, NOT pipeline state; credentials passed via ephemeral reference, never serialized; add `prune_transient_state` to strip credential refs before checkpoint |
+| R8 | **Browser Use API dependency** - if `BROWSER_USE_API_KEY` service goes down | 🟡 MEDIUM - T2 tier unavailable | Low | OSS mode works without API key (uses local Chromium); fallback_llm chain (Alibaba → Gemini → OpenRouter); T1 FastPath still works independently |
 
 ### Rollback Strategy
 
@@ -884,7 +884,7 @@ def test_routing_t1_disabled():
 
 ### 7.3 Mock ATS Server Enhancements
 
-Current: `tests/fixtures/mock_ats_server.py` — basic form submission mock.
+Current: `tests/fixtures/mock_ats_server.py` - basic form submission mock.
 
 **Add**:
 
@@ -1065,13 +1065,13 @@ async def test_browser_use_fallback_llm(sample_task):
 **Completed**: 2026-08-26
 
 ### Files Created
-- `src/core/credentials/vault.py` — CredentialVault with 3 backends (keyring, env, file)
-- `src/core/credentials/__init__.py` — Package init with public exports
-- `tests/unit/test_credential_vault.py` — Unit tests for all 3 backends
+- `src/core/credentials/vault.py` - CredentialVault with 3 backends (keyring, env, file)
+- `src/core/credentials/__init__.py` - Package init with public exports
+- `tests/unit/test_credential_vault.py` - Unit tests for all 3 backends
 
 ### Files Modified
-- `src/core/config.py` — Added `credential_backend`, `credential_service_name`, `credential_file_path` settings
-- `src/pipeline/4_submission/submitter_engine.py` — Uses CredentialVault via `credential_ref` pattern (reference, not raw credentials in state)
+- `src/core/config.py` - Added `credential_backend`, `credential_service_name`, `credential_file_path` settings
+- `src/pipeline/4_submission/submitter_engine.py` - Uses CredentialVault via `credential_ref` pattern (reference, not raw credentials in state)
 
 ### Config Settings Added
 ```python
@@ -1082,7 +1082,7 @@ credential_file_path: str = "./data/credentials.json"  # for file backend
 ```
 
 ### Security Design
-- **Credentials never persisted to checkpoints** — pipeline state holds only a `credential_ref` (string key), not raw passwords
-- **OS keyring default** — uses Windows Credential Manager / macOS Keychain / Linux Secret Service
-- **File backend for CI** — `credential_backend=file` uses encrypted JSON (not for production)
-- **Env backend for containers** — `credential_backend=env` reads from `CREDENTIAL_{SITE}_{FIELD}` env vars
+- **Credentials never persisted to checkpoints** - pipeline state holds only a `credential_ref` (string key), not raw passwords
+- **OS keyring default** - uses Windows Credential Manager / macOS Keychain / Linux Secret Service
+- **File backend for CI** - `credential_backend=file` uses encrypted JSON (not for production)
+- **Env backend for containers** - `credential_backend=env` reads from `CREDENTIAL_{SITE}_{FIELD}` env vars

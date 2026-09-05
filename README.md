@@ -1,4 +1,4 @@
-# CareerGraph AI — Autonomous Multi-Agent Job Search & Application Platform
+# Operon Job Hunter - Autonomous Multi-Agent Job Search & Application Platform
 
 [![Unit Tests](https://img.shields.io/badge/Unit%20Tests-1%2C256%20Passed-brightgreen.svg)](tests/unit/)
 [![Integration Tests](https://img.shields.io/badge/Integration%20Tests-95%20Passed-brightgreen.svg)](tests/integration/)
@@ -7,13 +7,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Offline Demo](https://img.shields.io/badge/Offline%20Demo-Zero--Key%20Ready-blueviolet.svg)](docs/demo.md)
 
-CareerGraph AI is a production-grade autonomous multi-agent platform that executes the entire software engineering job hunt: discovering postings across corporate career pages, scoring fit against multi-dimensional rubrics, compiling ATS-optimized resumes grounded in a multi-hop knowledge graph, and automatically completing complex application forms via persistent browser automation with human-in-the-loop oversight.
+Operon Job Hunter is a production-grade autonomous multi-agent platform that executes the entire software engineering job hunt: discovering postings across corporate career pages, scoring fit against multi-dimensional rubrics, compiling ATS-optimized resumes grounded in a multi-hop knowledge graph, and automatically completing complex application forms via persistent browser automation with human-in-the-loop oversight.
 
 ---
 
 ## Architecture Overview
 
-CareerGraph AI orchestrates autonomous workers across a 5-stage Directed Acyclic Graph (DAG) with thread-scoped SQLite WAL checkpointing, circuit-breaker fault isolation, and deterministic anti-hallucination guardrails:
+Operon Job Hunter orchestrates autonomous workers across a 5-stage Directed Acyclic Graph (DAG) with thread-scoped SQLite WAL checkpointing, circuit-breaker fault isolation, and deterministic anti-hallucination guardrails:
 
 ![System Architecture](docs/architecture_diagram.svg)
 
@@ -91,7 +91,7 @@ python -m src.interface.cli.main ui
 
 ## Career Brain: Local Distilled SLM
 
-In addition to cloud LLMs (Gemini, Alibaba DashScope, OpenRouter), CareerGraph AI features **Career Brain**, a domain-specialized 1.7B parameter SLM distilled from teacher models and fine-tuned using QLoRA on free Kaggle NVIDIA T4 GPUs:
+In addition to cloud LLMs (Gemini, Alibaba DashScope, OpenRouter), Operon Job Hunter features **Career Brain**, a domain-specialized 1.7B parameter SLM distilled from teacher models and fine-tuned using QLoRA on free Kaggle NVIDIA T4 GPUs:
 - **Zero Cost & Sub-100ms Latency:** Runs locally on CPU/edge devices via Ollama (GGUF Q4_K_M).
 - **Evaluation-Gated Synthesis:** High-quality instruction dataset synthesized with strict token-pool grounding filters.
 - **Training Walkthrough:** See [docs/career-brain-training.md](docs/career-brain-training.md) for the complete Kaggle fine-tuning notebook instructions.
@@ -118,7 +118,7 @@ python scripts/guard_personal.py
 ## Project Layout
 
 ```
-CareerGraph-AI/
+Operon-Job-Hunter/
 ├── src/
 │   ├── core/                  # Configuration, models, persona, gateway, and database
 │   │   ├── gateway/           # Multi-provider LLM failover (Alibaba, Gemini, Mock)
@@ -144,7 +144,7 @@ CareerGraph-AI/
 
 ## Privacy Architecture & Extensibility
 
-CareerGraph AI is architected for strict data isolation:
+Operon Job Hunter is architected for strict data isolation:
 - **Default Public State:** Ships exclusively with the fictional candidate persona **Alex Rivera** (`src/core/persona.py`).
 - **Personal Private Use:** To run the platform with your own career profile, configure `PROFILE_DATA_DIR` in `.env`:
   ```dotenv
@@ -156,4 +156,4 @@ CareerGraph AI is architected for strict data isolation:
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

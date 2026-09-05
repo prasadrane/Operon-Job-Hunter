@@ -166,7 +166,7 @@ def parse_resume_md(text: str) -> List[Dict[str, Any]]:
 
         if in_experience:
             # Company/Role line
-            clean = line.replace("—", " - ").replace("–", " - ").replace("—", " - ").replace("–", " - ")
+            clean = line.replace(" - ", " - ").replace("-", " - ").replace(" - ", " - ").replace("-", " - ")
             clean_h = re.sub(r"^#+\s*", "", clean).replace("*", "").strip()
             if line.startswith("### ") and " - " in clean and not clean_h.lower().startswith("story"):
                 flush_story()

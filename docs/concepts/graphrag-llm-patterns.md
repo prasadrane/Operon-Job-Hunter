@@ -5,14 +5,14 @@
 Standard Retrieval-Augmented Generation (RAG) relies on cosine similarity over flat text chunks embedded into vector databases. In resume tailoring and technical evaluation, this naive approach fails in three critical ways:
 
 1. **Loss of Relational Structure:** A vector search for `"high-throughput distributed streaming"` might retrieve a Kafka bullet from Company A and an AWS Lambda bullet from Company B, mixing achievements and fabricating composite timelines.
-2. **Metric & Technology Hallucination:** When prompted to "tailor this bullet for a Kubernetes role," general-purpose LLMs routinely invent experience—claiming the candidate migrated clusters or managed Helm charts when their master profile mentions only Docker.
+2. **Metric & Technology Hallucination:** When prompted to "tailor this bullet for a Kubernetes role," general-purpose LLMs routinely invent experience - claiming the candidate migrated clusters or managed Helm charts when their master profile mentions only Docker.
 3. **Keyword Stuffing vs. Contextual Grounding:** Generic tailoring models insert keywords at the expense of ATS readability, failing strict page budget constraints and formatting parsers.
 
 ---
 
 ## 2. Architectural Solution: Knowledge Graph + Multi-Hop GraphRAG
 
-CareerGraph AI replaces flat text chunking with a **NetworkX-powered Knowledge Graph** (`data/embedded_graph.json`), modeling the candidate's career as a strongly typed entity-relationship graph:
+Operon Job Hunter replaces flat text chunking with a **NetworkX-powered Knowledge Graph** (`data/embedded_graph.json`), modeling the candidate's career as a strongly typed entity-relationship graph:
 
 ```
  (Company: Helios Commerce)
@@ -31,7 +31,7 @@ CareerGraph AI replaces flat text chunking with a **NetworkX-powered Knowledge G
 ```
 
 ### 2.1. Multi-Hop Relational Retrieval
-When tailoring for a target job, the [`HybridGraphRetriever`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/hybrid_graph_retriever.py) extracts key requirements from the job posting and traverses the knowledge graph:
+When tailoring for a target job, the [`HybridGraphRetriever`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/hybrid_graph_retriever.py) extracts key requirements from the job posting and traverses the knowledge graph:
 1. **Anchor Node Matching:** Identifies candidate technologies matching the job's core stack.
 2. **Neighbor Expansion (1-2 Hops):** Retrieves the parent `STAR_Story`, the associated `Action`, the verified `ImpactMetric`, and the corresponding `Company`.
 3. **Provenance Binding:** Ensures that metrics are never detached from the specific role and timeframe where they occurred.
@@ -40,7 +40,7 @@ When tailoring for a target job, the [`HybridGraphRetriever`](file:///c:/Users/m
 
 ## 3. FactGuard: Anti-Hallucination Verification
 
-Before any tailored bullet is compiled into a PDF artifact, it must pass through [`FactGuard`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/fact_guard.py), a deterministic integrity validator:
+Before any tailored bullet is compiled into a PDF artifact, it must pass through [`FactGuard`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/fact_guard.py), a deterministic integrity validator:
 
 ```python
 class FactGuard:

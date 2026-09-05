@@ -26,7 +26,7 @@ def generate_gold(frozen_path: Path, evaluator, limit: Optional[int],
                   dry_run: bool, force: bool = False) -> dict:
     rows = [json.loads(l) for l in frozen_path.read_text(encoding="utf-8").splitlines() if l.strip()]
     if any(r.get("gold") for r in rows) and not force:
-        raise RuntimeError("gold already present — use --force to regenerate (hash contract!)")
+        raise RuntimeError("gold already present -  use --force to regenerate (hash contract!)")
     manifest_path = _manifest_path(frozen_path.parent)
     old_hashes = json.loads(manifest_path.read_text(encoding="utf-8")).get("files", {}) \
         if manifest_path.exists() else {}
@@ -39,7 +39,7 @@ def generate_gold(frozen_path: Path, evaluator, limit: Optional[int],
                          company=row["company"], url="", description=row["jd"])
         res = evaluator.evaluate(job)
         # Real EvaluationResult (src/core/models.py): block_scores dict, no
-        # `passed` field — derive it the same way the pipeline gates progression.
+        # `passed` field -  derive it the same way the pipeline gates progression.
         block_b = (res.block_scores.get("block_b") or {})
         row["gold"] = {"fit_score": res.fit_score,
                        "passed": (not res.work_auth_blocker and not res.is_ghost_job

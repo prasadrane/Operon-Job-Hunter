@@ -3,14 +3,14 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "careergraph-ai"
+name = "operon-job-hunter"
 version = "0.1.0"
 description = "Autonomous Agentic Job Search, Evaluation, GraphRAG Tailoring & Persistent Playwright Submitter"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-    { name = "CareerGraph-AI Authors" }
+    { name = "Operon-Job-Hunter Authors" }
 ]
 dependencies = [
     "fastapi>=0.110.0",

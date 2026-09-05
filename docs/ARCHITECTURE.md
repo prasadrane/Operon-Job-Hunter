@@ -1,4 +1,4 @@
-# CareerGraph-AI: System Architecture & Design Specification
+# Operon-Job-Hunter: System Architecture & Design Specification
 
 **Document Version:** 2.0.0  
 **Status:** Production Standard  
@@ -9,15 +9,15 @@
 
 ## 1. Executive Summary & Architectural Philosophy
 
-**CareerGraph-AI** is a stateful, autonomous Agentic Operating System designed for career acceleration, automated job discovery, 7-block candidate evaluation, multi-hop GraphRAG tailoring, and resilient Playwright browser submission.
+**Operon-Job-Hunter** is a stateful, autonomous Agentic Operating System designed for career acceleration, automated job discovery, 7-block candidate evaluation, multi-hop GraphRAG tailoring, and resilient Playwright browser submission.
 
-Rather than relying on unconstrained, monolithic agent loops—which suffer from attention degradation, unpredictable latency, and runaway API costs—CareerGraph-AI implements a **Nested Hybrid Architecture**:
+Rather than relying on unconstrained, monolithic agent loops - which suffer from attention degradation, unpredictable latency, and runaway API costs - Operon-Job-Hunter implements a **Nested Hybrid Architecture**:
 1. **Macro Orchestration (Prescriptive Workflow):** A deterministic, typed Directed Acyclic Graph (DAG) built on **LangGraph StateGraph** that enforces structured phase gates, state reducers, and checkpoint persistence.
 2. **Micro-Autonomy (Bounded Subagents):** Specialized functional tools (e.g. **Discovery Squad**, **Evaluator-Optimizer Tailoring Loop**, and **WebSurfer AXTree Browser Agent**) execute within bounded context windows (≤ 5 turns) and return typed Pydantic payloads back to the central state.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                            CareerGraph-AI Core Architectural Metrics                             │
+│                            Operon-Job-Hunter Core Architectural Metrics                             │
 ├──────────────────────────┬───────────────────────────────────────────────────────────────────────┤
 │ Target Application Cost  │ < $0.015 USD per verified application run                             │
 ├──────────────────────────┼───────────────────────────────────────────────────────────────────────┤
@@ -35,9 +35,9 @@ Rather than relying on unconstrained, monolithic agent loops—which suffer from
 
 ## 2. System Architecture Diagram
 
-![CareerGraph-AI System Architecture](file:///c:/Users/mamat/Github/CareerGraph-AI/docs/architecture_diagram.png)
+![Operon-Job-Hunter System Architecture](file:///c:/Users/mamat/Github/Operon-Job-Hunter/docs/architecture_diagram.png)
 
-The diagram above details the **5 Architectural Tiers** of the CareerGraph-AI platform:
+The diagram above details the **5 Architectural Tiers** of the Operon-Job-Hunter platform:
 
 1. **Interface & Human-in-the-Loop Channels:** FastAPI REST + Server-Sent Events (SSE) stream, Mission Control 2.0 Web UI with D3 Knowledge Graph visualization, unified CLI, and Telegram mobile approval bot.
 2. **Macro Orchestration & State Machine:** LangGraph StateGraph DAG with thread-scoped checkpoints, fail-safe execution circuit breakers, and dynamic `interrupt()` approval gates.
@@ -96,7 +96,7 @@ class PipelineGraphState(TypedDict, total=False):
 
 ### Pillar 2: 3-Tier Stateful OS Memory Architecture
 
-CareerGraph-AI structures memory following modern OS memory-tiering abstractions (`src/core/memory/`):
+Operon-Job-Hunter structures memory following modern OS memory-tiering abstractions (`src/core/memory/`):
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -117,16 +117,16 @@ CareerGraph-AI structures memory following modern OS memory-tiering abstractions
 ```
 
 #### Multi-Hop GraphRAG Traversal
-Rather than relying on naive vector cosine similarity (which produces hallucinated or context-poor bullet points), CareerGraph-AI extracts multi-hop causal paths from the verified career knowledge graph:
+Rather than relying on naive vector cosine similarity (which produces hallucinated or context-poor bullet points), Operon-Job-Hunter extracts multi-hop causal paths from the verified career knowledge graph:
 $$\text{Job Requirement} \longrightarrow \text{Project Node} \xrightarrow{\text{USED\_TECH}} \text{Technology Nodes} \xrightarrow{\text{DELIVERED}} \text{Verified Metric}$$
 
 ---
 
 ### Pillar 3: Multi-Model Consensus Voting & Guardrails
 
-For high-stakes compliance decisions—specifically visa sponsorship verification (H-1B, STEM OPT, ITAR export controls)—single-prompt classification exhibits runtime variance.
+For high-stakes compliance decisions - specifically visa sponsorship verification (H-1B, STEM OPT, ITAR export controls) - single-prompt classification exhibits runtime variance.
 
-CareerGraph-AI implements **Parallel Consensus Voting** (`src/pipeline/2_evaluation/work_auth_guard.py`):
+Operon-Job-Hunter implements **Parallel Consensus Voting** (`src/pipeline/2_evaluation/work_auth_guard.py`):
 1. **Primary Layer:** Fast regex token matching identifying hard citizenship blockers and clearance requirements.
 2. **Secondary Layer:** In ambiguous disclosures, an LLM classifier evaluates candidate eligibility.
 3. **Consensus Aggregation:** Majority consensus ensembling validates eligibility before any job is promoted to tailoring, eliminating both false dismissals and illegal submissions.
@@ -155,6 +155,6 @@ To interact with arbitrary ATS job application portals without blowing token con
 
 ## 4. Engineering Standards & TDD Verification
 
-CareerGraph-AI maintains **100% test coverage** across all core pipelines:
+Operon-Job-Hunter maintains **100% test coverage** across all core pipelines:
 * **Unit Test Suite:** 416 tests covering all models, evaluators, memory managers, and gateway adapters (`pytest tests/unit/`).
 * **Integration Test Suite:** End-to-end async subagent sprints, mock ATS server fixtures, and checkpoint recovery validation (`pytest tests/integration/`).

@@ -28,7 +28,7 @@ def main() -> int:
 
     brain = BrainInference()
     if not brain.ollama.is_available():
-        print("Ollama not running — start it and re-run. Baseline NOT written.")
+        print("Ollama not running -  start it and re-run. Baseline NOT written.")
         return 1
 
     registry_model = (get_model_registry().get_model_for_mode("qa") or {}).get("model_name")
@@ -61,7 +61,7 @@ def main() -> int:
     out["tailor"] = {"n": len(tailor), "latency_p50_ms": statistics.median(lat),
                      "latency_p95_ms": sorted(lat)[int(len(lat) * 0.95) - 1],
                      "plan_parse_rate": 1 - fmt_fail / max(len(tailor), 1),
-                     "note": "v1 emits prose; parse rate expected ~0 — reference only"}
+                     "note": "v1 emits prose; parse rate expected ~0 -  reference only"}
 
     Path(a.out).write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(out, indent=2))

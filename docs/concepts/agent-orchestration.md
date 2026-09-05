@@ -2,7 +2,7 @@
 
 ## 1. The Challenge
 
-Autonomous agentic pipelines that span multi-step workflows—from job discovery and rubric evaluation to GraphRAG resume compilation and browser-based application submission—face fundamental distributed systems challenges:
+Autonomous agentic pipelines that span multi-step workflows - from job discovery and rubric evaluation to GraphRAG resume compilation and browser-based application submission - face fundamental distributed systems challenges:
 
 1. **Cascading Failures & Timeouts:** An unresponsive external LLM provider or hanging browser page load can stall an entire pipeline thread indefinitely.
 2. **State Corruption & Lost Progress:** If an application crashes halfway through an evaluation or submission loop, re-running the entire workflow from scratch is wasteful, expensive, and risks duplicate submissions.
@@ -13,7 +13,7 @@ Autonomous agentic pipelines that span multi-step workflows—from job discovery
 
 ## 2. Architectural Pattern
 
-CareerGraph AI solves these challenges using a **StateGraph Directed Acyclic Graph (DAG)** built on **LangGraph**, complemented by:
+Operon Job Hunter solves these challenges using a **StateGraph Directed Acyclic Graph (DAG)** built on **LangGraph**, complemented by:
 - **Thread-Scoped SQLite WAL Checkpointing:** Every pipeline node transition commits a snapshot of the execution state to disk under a dedicated thread ID (`job_id`).
 - **Circuit-Breaker Protected Nodes:** Every DAG node execution is wrapped in a decorator that enforces a strict 45-second execution timeout and catches unhandled exceptions before they crash the graph.
 - **Explicit Interrupt Gates (`interrupt_before`):** Critical operational thresholds (such as automated submission) pause execution and yield control back to the operator for HITL approval.
@@ -51,10 +51,10 @@ CareerGraph AI solves these challenges using a **StateGraph Directed Acyclic Gra
 
 ---
 
-## 3. Implementation in CareerGraph AI
+## 3. Implementation in Operon Job Hunter
 
 ### 3.1. Pipeline DAG Definition
-In [`src/pipeline/state_machine.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_machine.py), the workflow compiles three core nodes with conditional routing:
+In [`src/pipeline/state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py), the workflow compiles three core nodes with conditional routing:
 
 ```python
 workflow = StateGraph(PipelineGraphState)
@@ -94,7 +94,7 @@ def with_circuit_breaker(timeout_seconds: float = 45.0):
 ```
 
 ### 3.3. Thread-Scoped SQLite WAL Checkpointing
-Rather than requiring heavy external state brokers (like Redis or PostgreSQL) for local operation, [`src/core/db/checkpointer.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/core/db/checkpointer.py) provides a thread-safe SQLite checkpointer operating in Write-Ahead Logging (WAL) mode. Each job execution runs under its own isolated `thread_id=job.id`, allowing jobs to pause, recover, or re-run independently.
+Rather than requiring heavy external state brokers (like Redis or PostgreSQL) for local operation, [`src/core/db/checkpointer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/core/db/checkpointer.py) provides a thread-safe SQLite checkpointer operating in Write-Ahead Logging (WAL) mode. Each job execution runs under its own isolated `thread_id=job.id`, allowing jobs to pause, recover, or re-run independently.
 
 ---
 

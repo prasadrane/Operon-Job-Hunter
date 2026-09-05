@@ -1,4 +1,4 @@
-# CareerGraph-AI: Architectural Principles & Research Benchmark
+# Operon-Job-Hunter: Architectural Principles & Research Benchmark
 
 **Document Version:** 1.0.0  
 **Date:** 2026-08-23  
@@ -9,15 +9,15 @@
 
 ## 1. Executive Summary & Architectural Vision
 
-This document provides a comprehensive architectural evaluation and cross-reference of **CareerGraph-AI** against contemporary state-of-the-art agentic AI research principles. 
+This document provides a comprehensive architectural evaluation and cross-reference of **Operon-Job-Hunter** against contemporary state-of-the-art agentic AI research principles. 
 
-CareerGraph-AI implements a **Nested Hybrid Architecture**—combining a macro **Deterministic Directed Acyclic Graph (DAG)** workflow with **isolated micro-autonomous agents** in bounded domains. This design delivers predictability, strict cost governance (<$0.015 per application), zero hallucination on critical facts, and crash resilience.
+Operon-Job-Hunter implements a **Nested Hybrid Architecture** - combining a macro **Deterministic Directed Acyclic Graph (DAG)** workflow with **isolated micro-autonomous agents** in bounded domains. This design delivers predictability, strict cost governance (<$0.015 per application), zero hallucination on critical facts, and crash resilience.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                              CareerGraph-AI Agentic Operating System                                   │
+│                              Operon-Job-Hunter Agentic Operating System                                   │
 ├──────────────────────────┬──────────────────────────────────────────┬──────────────────────────────────┤
-│ Architectural Pillar     │ Research Paper Specification             │ CareerGraph-AI Implementation    │
+│ Architectural Pillar     │ Research Paper Specification             │ Operon-Job-Hunter Implementation    │
 ├──────────────────────────┼──────────────────────────────────────────┼──────────────────────────────────┤
 │ 1. Workflow Taxonomy     │ Workflows vs. Autonomous Agents          │ Typed LangGraph StateGraph Macro │
 │                          │ (Prescriptive code paths vs dynamic loops│ + Bounded Micro-Agents (WebSurfer│
@@ -48,8 +48,8 @@ CareerGraph-AI implements a **Nested Hybrid Architecture**—combining a macro *
 * **Prescriptive Workflows:** Constrain the solution space by enforcing structured control-flow gates, providing deterministic performance, high auditability, bounded cost, and predictable latency.
 * **Autonomous Agents:** Dynamically adapt their execution trajectories based on environmental feedback for open-ended problem domains.
 
-#### CareerGraph-AI Implementation
-CareerGraph-AI models the core end-to-end recruitment pipeline as a deterministic **LangGraph StateGraph** ([`state_machine.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_machine.py)), spanning 5 distinct stages:
+#### Operon-Job-Hunter Implementation
+Operon-Job-Hunter models the core end-to-end recruitment pipeline as a deterministic **LangGraph StateGraph** ([`state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py)), spanning 5 distinct stages:
 1. **Discovery Squad (`src/pipeline/1_discovery/`):** Concurrent ingestors and canonicalizers.
 2. **7-Block Evaluation (`src/pipeline/2_evaluation/`):** Strict visa and rubric scoring.
 3. **GraphRAG Tailoring (`src/pipeline/3_tailoring/`):** Evaluator-optimizer resume generator.
@@ -76,13 +76,13 @@ graph TD
 
 ### Pillar 2: Core Orchestration Patterns
 
-| Orchestration Pattern | Research Definition | CareerGraph-AI Implementation |
+| Orchestration Pattern | Research Definition | Operon-Job-Hunter Implementation |
 | :--- | :--- | :--- |
-| **Prompt Chaining** | Sequential single-purpose LLM calls where intermediate outputs are validated before passing to the next stage. | [`resume_generator.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/resume_generator.py) $\to$ [`ats_optimizer.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/ats_optimizer.py) $\to$ [`pdf_renderer.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/pdf_renderer.py). |
-| **Routing** | Lightweight classifier evaluating requests and directing them to specialized prompts or model tiers. | [`work_auth_guard.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/2_evaluation/work_auth_guard.py), [`ghost_job_detector.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/2_evaluation/ghost_job_detector.py), and `route_evaluation_result()` in [`state_machine.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_machine.py). |
-| **Parallelization (Sectioning)** | Breaking larger tasks into independent parallel sub-tasks. | Discovery Squad crawlers ([`scanner.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/1_discovery/scanner.py)) and parallel 3-persona critiques in [`evaluator_panel.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/evaluator_panel.py). |
-| **Parallelization (Voting)** | Executing identical tasks across independent calls for majority consensus. | Multi-Persona Evaluator consensus in [`evaluator_panel.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/evaluator_panel.py) (Recruiter, Hiring Manager, ATS Spec). |
-| **Evaluator-Optimizer Loop** | Iterative refinement loop with concrete metrics and maximum iteration bounds. | [`surgical_optimizer.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/surgical_optimizer.py) + [`fact_guard.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/fact_guard.py) bounded to 2 iterations. |
+| **Prompt Chaining** | Sequential single-purpose LLM calls where intermediate outputs are validated before passing to the next stage. | [`resume_generator.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/resume_generator.py) $\to$ [`ats_optimizer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/ats_optimizer.py) $\to$ [`pdf_renderer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/pdf_renderer.py). |
+| **Routing** | Lightweight classifier evaluating requests and directing them to specialized prompts or model tiers. | [`work_auth_guard.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/2_evaluation/work_auth_guard.py), [`ghost_job_detector.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/2_evaluation/ghost_job_detector.py), and `route_evaluation_result()` in [`state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py). |
+| **Parallelization (Sectioning)** | Breaking larger tasks into independent parallel sub-tasks. | Discovery Squad crawlers ([`scanner.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/1_discovery/scanner.py)) and parallel 3-persona critiques in [`evaluator_panel.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/evaluator_panel.py). |
+| **Parallelization (Voting)** | Executing identical tasks across independent calls for majority consensus. | Multi-Persona Evaluator consensus in [`evaluator_panel.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/evaluator_panel.py) (Recruiter, Hiring Manager, ATS Spec). |
+| **Evaluator-Optimizer Loop** | Iterative refinement loop with concrete metrics and maximum iteration bounds. | [`surgical_optimizer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/surgical_optimizer.py) + [`fact_guard.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/fact_guard.py) bounded to 2 iterations. |
 
 ---
 
@@ -90,9 +90,9 @@ graph TD
 
 The research contrasts **Handoff Orchestration** (transferring full conversational ownership to a specialist) with **Agents-as-Tools** (manager retains control and invokes bounded worker utilities).
 
-CareerGraph-AI implements the **Agents-as-Tools (Manager-Worker)** archetype:
+Operon-Job-Hunter implements the **Agents-as-Tools (Manager-Worker)** archetype:
 * The root LangGraph StateGraph acts as the top-level orchestrator.
-* Subagents ([`websurfer_agent.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/4_submission/websurfer_agent.py), [`evaluator_panel.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/evaluator_panel.py), [`star_simulator.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/agents/interview/star_simulator.py)) operate as functional worker tools.
+* Subagents ([`websurfer_agent.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/4_submission/websurfer_agent.py), [`evaluator_panel.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/evaluator_panel.py), [`star_simulator.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/agents/interview/star_simulator.py)) operate as functional worker tools.
 * **Context Isolation:** Subagents return strictly typed Pydantic payloads (e.g. `EvaluatorCritique`, `WebSurferResult`) rather than full conversational history dumps, preventing context bloat.
 
 ---
@@ -100,13 +100,13 @@ CareerGraph-AI implements the **Agents-as-Tools (Manager-Worker)** archetype:
 ### Pillar 4: Tool Design & Agent-Computer Interface (ACI)
 
 1. **Poka-Yoke (Mistake-Proofing):**
-   * All tool parameters and state attributes are validated against strict Pydantic schemas ([`state_schema.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_schema.py), [`models.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/core/models.py)).
+   * All tool parameters and state attributes are validated against strict Pydantic schemas ([`state_schema.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_schema.py), [`models.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/core/models.py)).
    * Malformed outputs from models trigger schema rejection before reaching runtime execution.
 2. **Semantic Browser Perception:**
    * Avoids raw HTML/DOM and screenshot token dumps.
-   * Uses **Accessibility Tree parsing** ([`axtree_parser.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/4_submission/axtree_parser.py)) + **Set-of-Marks visual bounding boxes** ([`som_annotator.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/4_submission/som_annotator.py)), reducing perception token overhead by $\approx 80\%$.
+   * Uses **Accessibility Tree parsing** ([`axtree_parser.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/4_submission/axtree_parser.py)) + **Set-of-Marks visual bounding boxes** ([`som_annotator.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/4_submission/som_annotator.py)), reducing perception token overhead by $\approx 80\%$.
 3. **DOM Quiescence & Stability:**
-   * [`dom_quiescence.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/4_submission/dom_quiescence.py) ensures network idle and DOM mutation stability before any agent click or form submission is dispatched.
+   * [`dom_quiescence.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/4_submission/dom_quiescence.py) ensures network idle and DOM mutation stability before any agent click or form submission is dispatched.
 
 ---
 
@@ -132,7 +132,7 @@ CareerGraph-AI implements the **Agents-as-Tools (Manager-Worker)** archetype:
 #### Graph Reducers & Checkpointing
 * **Schema Reducers:** `qa_answers: Annotated[dict, operator.ior]`, `audit_logs: Annotated[list, operator.add]` prevent write clobbering across parallel branches.
 * **Persistent Checkpointer:** `SqliteSaver` keyed to `thread_id=job.id` guarantees crash resilience and idempotent resume.
-* **Dynamic HITL Interruption:** Uses LangGraph `interrupt()` prior to final form submission, dispatching an interactive approval card to Telegram ([`telegram_hitl.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/interface/bot/telegram_hitl.py)) and re-hydrating state via `Command(resume=payload)`.
+* **Dynamic HITL Interruption:** Uses LangGraph `interrupt()` prior to final form submission, dispatching an interactive approval card to Telegram ([`telegram_hitl.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/interface/bot/telegram_hitl.py)) and re-hydrating state via `Command(resume=payload)`.
 
 ---
 
@@ -140,7 +140,7 @@ CareerGraph-AI implements the **Agents-as-Tools (Manager-Worker)** archetype:
 
 ```mermaid
 gantt
-    title CareerGraph-AI Agentic Engineering Roadmap
+    title Operon-Job-Hunter Agentic Engineering Roadmap
     dateFormat  YYYY-MM-DD
     section Priority 0
     Multi-Model Consensus Voting (Work Auth Guard) :active, p0_1, 2026-08-24, 2d
@@ -154,18 +154,18 @@ gantt
 
 ### Priority 0: High-Impact / Immediate Enhancements
 1. **Multi-Model Consensus Voting on Work Authorization:**
-   * *Mechanism:* Run parallel lightweight classification calls (Gemini Flash + secondary validator) with majority voting on complex sponsorship disclosures in [`work_auth_guard.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/2_evaluation/work_auth_guard.py).
+   * *Mechanism:* Run parallel lightweight classification calls (Gemini Flash + secondary validator) with majority voting on complex sponsorship disclosures in [`work_auth_guard.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/2_evaluation/work_auth_guard.py).
    * *Outcome:* Reduces false-rejection rate to near zero on ambiguous job postings.
 2. **State Snapshot Pruning for SQLite Checkpointer:**
-   * *Mechanism:* Automatically strip intermediate raw DOM trees and base64 screenshot strings from the graph state prior to serializing checkpoints in [`state_machine.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_machine.py).
+   * *Mechanism:* Automatically strip intermediate raw DOM trees and base64 screenshot strings from the graph state prior to serializing checkpoints in [`state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py).
    * *Outcome:* Keeps checkpoint serialization payload under $10\text{ KB}$ per super-step.
 
 ### Priority 1: Resilience & Scalability Upgrades
 3. **Execution Circuit Breakers & Dynamic Latency Budgets:**
-   * *Mechanism:* Enforce maximum token budgets and wall-clock timeouts per super-step in [`state_machine.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/state_machine.py).
+   * *Mechanism:* Enforce maximum token budgets and wall-clock timeouts per super-step in [`state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py).
    * *Outcome:* Prevents hanging browser sessions on broken or protected web portals.
 4. **PostgresSaver Checkpointing for Distributed Workers:**
-   * *Mechanism:* Support both `SqliteSaver` (single-node) and `PostgresSaver` (multi-node Celery clusters in [`celery_app.py`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/core/distributed/celery_app.py)).
+   * *Mechanism:* Support both `SqliteSaver` (single-node) and `PostgresSaver` (multi-node Celery clusters in [`celery_app.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/core/distributed/celery_app.py)).
    * *Outcome:* Allows horizontal scaling of worker pools across multiple cloud instances.
 
 ### Priority 2: Advanced Tool Capabilities

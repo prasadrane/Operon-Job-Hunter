@@ -1,4 +1,4 @@
-"""Generate CareerGraph-AI System Architecture Diagram using programmatic SVG + Playwright render."""
+﻿"""Generate Operon-Job-Hunter System Architecture Diagram using programmatic SVG + Playwright render."""
 
 from __future__ import annotations
 import math
@@ -26,7 +26,7 @@ BAND_BORDER = "#e2e8f0"
 LAYER_STYLE = {
     "L1": ("#2563eb", "#eff6ff", "1. INTERFACE & HUMAN-IN-THE-LOOP CHANNELS"),
     "L2": ("#059669", "#ecfdf5", "2. MACRO ORCHESTRATION & STATE MACHINE (LANGGRAPH)"),
-    "L3": ("#b45309", "#fffbeb", "3. SPECIALIZED MICRO-AGENTS & ENGINES"),
+    "L3": ("#b45309", "#fffbeb", "3. SPECIALIZED 5-STAGE PIPELINE AGENTS & ENGINES"),
     "L4": ("#7c3aed", "#f5f3ff", "4. REASONING ENGINE & COMPILER GATES"),
     "L5": ("#0284c7", "#f0f9ff", "5. 3-TIER OS MEMORY & PERSISTENT DATA STORES"),
 }
@@ -46,7 +46,7 @@ FS_TITLE, FS_SUB, FS_EDGE, FS_BAND, FS_LEGEND = 15, 12, 11, 13, 12
 BOXES = {
     # L1: Interface (y: 110-210)
     "web_ui": (80, 115, 430, 95, "L1", "box", "Mission Control 2.0 (Web & D3)", "FastAPI REST + Live SSE Telemetry + D3 Graph"),
-    "cli_main": (550, 115, 430, 95, "L1", "box", "Unified CLI Controller", "Daemon, Scanner, Evaluator & Playwright Submitter"),
+    "cli_main": (550, 115, 430, 95, "L1", "box", "Unified CLI Controller", "Daemon, Scanner, Evaluator, Tailor & Offline Demo"),
     "telegram_hitl": (1020, 115, 480, 95, "L1", "box", "Telegram HITL Approval Bot", "Interactive Cards, PDF Previews & Approval Signals"),
 
     # L2: Orchestration (y: 290-390)
@@ -54,18 +54,19 @@ BOXES = {
     "circuit_breaker": (550, 295, 430, 95, "L2", "box", "Execution Circuit Breakers", "Bounded Worker Threads, 45s Timeout Budgets"),
     "hitl_gate": (1020, 295, 480, 95, "L2", "box", "Dynamic interrupt() Gate", "Pre-Submission Checkpoint & Command(resume) Engine"),
 
-    # L3: Micro-Agents (y: 470-570)
-    "discovery_squad": (70, 475, 335, 95, "L3", "box", "Discovery Squad (9 Crawlers)", "Deferred Tool Search & USCIS H-1B Verification"),
-    "eval_guard": (435, 475, 335, 95, "L3", "box", "7-Block Evaluator & Work Auth", "Multi-Model Consensus Voting & Ghost-Job Filter"),
-    "tailor_optimizer": (800, 475, 335, 95, "L3", "box", "GraphRAG Evaluator-Optimizer", "3-Persona Critic & Surgical Delta Patching"),
-    "websurfer_sub": (1165, 475, 355, 95, "L3", "box", "WebSurfer Agent & FastPath", "AXTree + Set-of-Marks, Quiescence & Form Healing"),
+    # L3: Micro-Agents & 5-Stage Pipeline (y: 470-570)
+    "discovery_squad": (60, 475, 280, 95, "L3", "box", "Stage 1: Discovery Squad", "9 Crawlers & USCIS H-1B Checker"),
+    "eval_guard": (360, 475, 280, 95, "L3", "box", "Stage 2: 7-Block Evaluator", "Consensus Voting & Ghost-Job Filter"),
+    "tailor_optimizer": (660, 475, 280, 95, "L3", "box", "Stage 3: GraphRAG Tailoring", "3-Persona Critic & FactGuard"),
+    "websurfer_sub": (960, 475, 280, 95, "L3", "box", "Stage 4: Submitter Engine", "FastPath DOM & AXTree WebSurfer"),
+    "lifecycle_engine": (1260, 475, 280, 95, "L3", "box", "Stage 5: Lifecycle Engine", "Status Tracker & Follow-Up Automator"),
 
     # L4: Gateway & Compiler (y: 645-745)
-    "llm_gateway": (80, 645, 780, 105, "L4", "box", "LLM Gateway & Model Tiering Router", "Tiered Routing: Gemini Flash (S1/2/4) & Gemini Pro (S3)"),
-    "pdf_compiler": (900, 645, 620, 105, "L4", "dashed", "Deterministic Compiler & Page Gate", "ReportLab / Typst Engine + Strict 1-Page / 2-Page Layout Bounds"),
+    "llm_gateway": (80, 645, 820, 105, "L4", "box", "LLM Gateway & Local Career Brain", "Tiered Routing: Distilled Local SLM + Cloud Fallbacks"),
+    "pdf_compiler": (930, 645, 590, 105, "L4", "dashed", "Deterministic Compiler & Page Gate", "ReportLab / Typst Engine + Strict 1-Page / 2-Page Bounds"),
 
     # L5: 3-Tier OS Memory (y: 845-965)
-    "core_mem": (70, 845, 340, 120, "L5", "cyl", "Core Memory (In-Context RAM)", "Candidate Constraints, Floor Salary & Dynamic Tool API"),
+    "core_mem": (70, 845, 340, 120, "L5", "cyl", "Core Memory (In-Context RAM)", "Candidate Profile, Active State & Working Memory"),
     "recall_mem": (440, 845, 340, 120, "L5", "cyl", "Recall Memory (SQLite Ledger)", "Append-Only Applications, Q&A Cache, SqliteSaver WAL"),
     "archival_mem": (810, 845, 340, 120, "L5", "cyl", "Archival Memory (GraphRAG)", "NetworkX Knowledge Graph, STAR Stories & Impact Metrics"),
     "browser_profile": (1180, 845, 340, 120, "L5", "cyl", "Playwright Browser Profile", "Persistent Session Cookies, Storage State & Evasions"),
@@ -73,10 +74,10 @@ BOXES = {
 
 # Chips inside llm_gateway
 CHIPS = [
-    (100, 710, 160, 28, "Gemini 2.5 Flash", "Low-Latency Tier"),
-    (280, 710, 160, 28, "Gemini 2.5 Pro", "Deep Reasoning Tier"),
-    (460, 710, 160, 28, "Qwen 2.5 72B", "Alibaba Open Gateway"),
-    (640, 710, 180, 28, "OpenRouter / DeepSeek", "Multi-Provider Fallback"),
+    (95, 710, 185, 28, "Career Brain 1.7B", "Local Distilled SLM (Ollama)"),
+    (295, 710, 185, 28, "Alibaba Qwen", "Primary Cloud Gateway"),
+    (495, 710, 185, 28, "Gemini 2.5 Pro / Flash", "Reasoning Fallback Tier"),
+    (695, 710, 190, 28, "Mock LLM Provider", "Deterministic Offline Demo"),
 ]
 
 # Bands: (layer, y_top, y_bot)
@@ -106,24 +107,23 @@ EDGES = [
     ("hitl_gate", "telegram_hitl", "req", "interrupt() alert", (1260, 250), [(1260, 295), (1260, 210)]),
 
     # L2 -> L3
-    ("langgraph_dag", "discovery_squad", "req", "Stage 1", (180, 435), [(180, 390), (180, 475)]),
-    ("langgraph_dag", "eval_guard", "req", "Stage 2", (510, 435), [(350, 390), (350, 430), (510, 430), (510, 475)]),
-    ("circuit_breaker", "tailor_optimizer", "req", "Stage 3 (bounded)", (920, 435), [(820, 390), (820, 430), (920, 430), (920, 475)]),
-    ("hitl_gate", "websurfer_sub", "req", "Stage 4 (approved)", (1340, 435), [(1340, 390), (1340, 475)]),
+    ("langgraph_dag", "discovery_squad", "req", "Stage 1", (170, 435), [(170, 390), (170, 475)]),
+    ("langgraph_dag", "eval_guard", "req", "Stage 2", (450, 435), [(350, 390), (350, 430), (450, 430), (450, 475)]),
+    ("circuit_breaker", "tailor_optimizer", "req", "Stage 3 (bounded)", (780, 435), [(765, 390), (765, 430), (780, 430), (780, 475)]),
+    ("hitl_gate", "websurfer_sub", "req", "Stage 4 (approved)", (1100, 435), [(1150, 390), (1150, 430), (1100, 430), (1100, 475)]),
+    ("hitl_gate", "lifecycle_engine", "req", "Stage 5", (1380, 435), [(1380, 390), (1380, 475)]),
 
     # L3 -> L4
-    ("eval_guard", "llm_gateway", "llm", "consensus vote", (480, 608), [(540, 570), (540, 645)]),
-    ("tailor_optimizer", "llm_gateway", "llm", "evaluator-optimizer", (720, 608), [(850, 570), (850, 605), (680, 605), (680, 645)]),
-    ("tailor_optimizer", "pdf_compiler", "write", "compile AST", (1100, 608), [(950, 570), (950, 605), (1150, 605), (1150, 645)]),
+    ("eval_guard", "llm_gateway", "llm", "consensus vote", (480, 608), [(500, 570), (500, 645)]),
+    ("tailor_optimizer", "llm_gateway", "llm", "evaluator-optimizer", (720, 608), [(780, 570), (780, 605), (720, 605), (720, 645)]),
+    ("tailor_optimizer", "pdf_compiler", "write", "compile AST", (1100, 608), [(820, 570), (820, 605), (1150, 605), (1150, 645)]),
 
     # L3/L4 -> L5 (Data Stores)
     ("discovery_squad", "core_mem", "read", "verify H-1B", (130, 810), [(130, 570), (130, 845)]),
     ("eval_guard", "recall_mem", "write", "persist score", (610, 810), [(610, 570), (610, 845)]),
-    ("tailor_optimizer", "archival_mem", "read", "Multi-Hop GraphRAG", (980, 810), [(980, 570), (980, 845)]),
-    ("websurfer_sub", "browser_profile", "read", "session cookies", (1350, 810), [(1350, 570), (1350, 845)]),
+    ("tailor_optimizer", "archival_mem", "read", "Multi-Hop GraphRAG", (980, 810), [(800, 570), (800, 600), (980, 600), (980, 845)]),
+    ("websurfer_sub", "browser_profile", "read", "session cookies", (1350, 810), [(1100, 570), (1100, 800), (1350, 800), (1350, 845)]),
 ]
-
-
 
 
 def esc(s: str) -> str:
@@ -154,8 +154,8 @@ def emit_svg() -> str:
         "  </defs>",
         "",
         "  <!-- DIAGRAM TITLE -->",
-        f'  <text x="80" y="42" font-size="22" font-weight="800" fill="{INK}" letter-spacing="-0.5px">CareerGraph-AI — System Architecture &amp; Agentic Operating System</text>',
-        f'  <text x="80" y="62" font-size="13" font-weight="500" fill="{MUTED}">Production Architecture: 5-Stage LangGraph DAG, 3-Tier OS Memory, AXTree Grounding &amp; Multi-Model Consensus</text>',
+        f'  <text x="80" y="42" font-size="22" font-weight="800" fill="{INK}" letter-spacing="-0.5px">Operon-Job-Hunter: System Architecture &amp; Agentic Operating System</text>',
+        f'  <text x="80" y="62" font-size="13" font-weight="500" fill="{MUTED}">Production Architecture: 5-Stage LangGraph DAG, 3-Tier OS Memory, GraphRAG &amp; Multi-Model Consensus</text>',
         "",
         "  <!-- LAYER SWIMLANES -->",
     ]
@@ -240,7 +240,6 @@ def emit_svg() -> str:
     return "\n".join(lines)
 
 
-
 def main():
     svg_content = emit_svg()
     SVG_OUT.write_text(svg_content, encoding="utf-8")
@@ -262,4 +261,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

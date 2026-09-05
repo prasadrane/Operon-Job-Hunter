@@ -13,7 +13,7 @@ Before training, generate high-quality, grounded instruction pairs using the syn
 python -m src.brain.synthesizer --profile data/sample/MASTER_RESUME.jsonl --out data/brain/training_pairs.jsonl
 ```
 
-The synthesizer automatically invokes [`FactGuard`](file:///c:/Users/mamat/Github/CareerGraph-AI/src/pipeline/3_tailoring/fact_guard.py) and token-pool grounding filters to ensure that 100% of synthesized training data is factually anchored.
+The synthesizer automatically invokes [`FactGuard`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/fact_guard.py) and token-pool grounding filters to ensure that 100% of synthesized training data is factually anchored.
 
 ---
 

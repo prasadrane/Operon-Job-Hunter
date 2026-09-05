@@ -8,7 +8,7 @@ from typing import Dict, List
 
 def evaluate(records: List[Dict]) -> Dict[str, Dict]:
     """Each signal's denominator is the records that OBSERVE it (have the
-    field). Zero observers -> N/A with value None — never PASS on absent
+    field). Zero observers -> N/A with value None -  never PASS on absent
     data (P7 producers add fields incrementally; blind telemetry must not
     read as an all-clear)."""
     def v(status, value, trigger):

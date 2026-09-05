@@ -22,7 +22,7 @@ NEGATIVE_PROBES = [
 
 _LEVEL_WORDS = re.compile(r"\b(senior|staff|principal|lead|jr|junior|ii|iii|iv|sr)\b", re.I)
 _BUCKET_BY_MODE = {"qa": "factual", "auto": "factual", "avatar": "avatar"}
-# B4: tailoring-mode seed questions are deliberately NOT bucketed — they are
+# B4: tailoring-mode seed questions are deliberately NOT bucketed -  they are
 # tailoring requests, not interview questions.
 _TARGETS = {"behavioral": 18, "factual": 18, "avatar": 7}
 
@@ -111,7 +111,7 @@ def _stratified_sample(jobs: List[Dict], n: int, seed: int) -> List[Dict]:
 
 
 def _build_qa(suite_path: Path) -> List[Dict]:
-    """Seed first, authored top-up to targets (B4) — total always 55."""
+    """Seed first, authored top-up to targets (B4) -  total always 55."""
     data = json.loads(suite_path.read_text(encoding="utf-8"))
     buckets: Dict[str, List[Dict]] = {b: [] for b in _TARGETS}
     for i, q in enumerate(data.get("questions", [])):

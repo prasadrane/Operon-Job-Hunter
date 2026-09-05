@@ -1,5 +1,5 @@
 """G1 synth driver: JD pool -> section-tagged tailor pairs + three qa facets
-(behavioral x story, grounded factual, avatar — spec §3.4, plan Rev 1.3).
+(behavioral x story, grounded factual, avatar -  spec §3.4, plan Rev 1.3).
 
 Train format == serve format (P8): pairs are built by Synthesizer facet
 methods on the real retrieval + serving-prompt path.
@@ -9,7 +9,7 @@ build): facet jobs run concurrently under asyncio.Semaphore(4).
 Crash-safety (round 2): every completed unit appends + fsyncs its pairs/rejects
 to the out-dir JSONLs IMMEDIATELY, so a mid-session death loses at most the
 in-flight calls, not the whole run. File order = COMPLETION order (not task
-order) — accepted: resume skips by job_id/wid and the final dedup rewrites the
+order) -  accepted: resume skips by job_id/wid and the final dedup rewrites the
 files, so byte order is not a contract. Resume: existing tailor_pairs.jsonl /
 qa_pairs.jsonl are read on start; tailor/letter jobs whose job_id already has a
 pair and qa work items whose wid already has a pair are skipped (auto-detected
@@ -33,14 +33,14 @@ if str(PROJECT_ROOT) not in sys.path:
 def _load_held_out(eval_dir: Path) -> Set:
     p = eval_dir / "tailor_frozen.jsonl"
     if not p.exists():
-        print(f"WARNING: no frozen tailor set at {p} — held-out exclusion disabled")
+        print(f"WARNING: no frozen tailor set at {p} -  held-out exclusion disabled")
         return set()
     return {json.loads(l)["job_id"] for l in p.read_text(encoding="utf-8").splitlines() if l.strip()}
 
 
 QA_FACETS = ("behavioral", "factual", "avatar", "legacy", "compare")
 
-# v2.4: minimum chunk substance (words) for an ANCHOR — below this the
+# v2.4: minimum chunk substance (words) for an ANCHOR -  below this the
 # teacher has nothing to honestly say (name-node probes 2026-08-28).
 RICH_MIN = 12
 # spec §3.4 qa mix (plan Rev 1.3 + F5 + grounded-volume v2)
@@ -49,7 +49,7 @@ LEGACY_PAIRS = Path("data/brain/training_pairs.jsonl")  # v1 corpus re-synthesiz
 
 # v2 grounding vocab: capitalized query entities that are sentence furniture,
 # not facts to ground (probe 2026-08-28: 338/359 legacy questions fully
-# groundable in chunk text — the failures were RRF ranking luck, not data).
+# groundable in chunk text -  the failures were RRF ranking luck, not data).
 _QUERY_STOP = {"what", "which", "how", "can", "could", "do", "does", "tell",
                "describe", "walk", "explain", "many", "is", "are", "was",
                "were", "your", "you", "have", "had", "did", "any", "i", "the",
@@ -63,17 +63,17 @@ def _query_entities(question: str) -> Set[str]:
     # v2.3: no trailing \b (kills "C#" before "?"); token must end alnum/#.
     return {m.lower().rstrip(".,;:")
             for m in re.findall(r"(?<![A-Za-z0-9])[A-Z][A-Za-z0-9+#.\-]*[A-Za-z0-9#]", question)} \
-        - _QUERY_STOP
+       - _QUERY_STOP
 
 
 def _legacy_qa_rows(chunks: List[Dict]) -> List[Dict]:
     """Spec §3.4 remainder: the existing 386 legacy pairs re-synthesized into
     the grounded format (v2: anchored on the FIRST chunk whose text contains
-    every capitalized query entity — deterministic grounding by construction,
+    every capitalized query entity -  deterministic grounding by construction,
     not serve-retrieval luck; ungroundable questions are SKIPPED at plan time
     so no teacher call is burned on a refusal)."""
     if not LEGACY_PAIRS.exists():
-        print(f"WARNING: no legacy pairs at {LEGACY_PAIRS} — F5 remainder skipped")
+        print(f"WARNING: no legacy pairs at {LEGACY_PAIRS} -  F5 remainder skipped")
         return []
     index_by_id = {c.get("id", ""): c for c in chunks}
     tok_map: Dict[str, List[str]] = {}
@@ -101,7 +101,7 @@ def _legacy_qa_rows(chunks: List[Dict]) -> List[Dict]:
             if not common:
                 skipped += 1
                 continue
-            # v2.3: richest common chunk; v2.4: must clear RICH_MIN words —
+            # v2.3: richest common chunk; v2.4: must clear RICH_MIN words - 
             # a name-node proving the token still supports no honest answer.
             anchor = max((c.get("id", "") for c in chunks if c.get("id", "") in common),
                          key=lambda cid: len((index_by_id[cid].get("content") or "").split()))
@@ -119,7 +119,7 @@ def _legacy_qa_rows(chunks: List[Dict]) -> List[Dict]:
 
 def _compare_rows(chunks: List[Dict]) -> List[Dict]:
     """v2 grounded volume: 'Compare X and Y' ONLY where both tech names occur
-    in one chunk (anchor-by-construction grounding — the post-fix smoke showed
+    in one chunk (anchor-by-construction grounding -  the post-fix smoke showed
     template-level 'Compare {name} to alternatives' refusal-drowning on nodes
     with no alternative present). One pair per chunk, deterministic order."""
     import re
@@ -128,7 +128,7 @@ def _compare_rows(chunks: List[Dict]) -> List[Dict]:
                     and (c.get("metadata") or {}).get("node_type") == "Technology"
                     and (c.get("metadata") or {}).get("name")})
     # v2.1: nested product names (".NET"/".NET Core", "AWS"/"AWS Lambda")
-    # are not comparables — co-occurrence is a substring artifact.
+    # are not comparables -  co-occurrence is a substring artifact.
     def _collide(a, b):
         na, nb = a.lower(), b.lower()
         return na in nb or nb in na
@@ -140,7 +140,7 @@ def _compare_rows(chunks: List[Dict]) -> List[Dict]:
             continue                      # support an honest "how featured"
         hits = sorted(t for t in techs if pat[t].search(txt))
         # <=3 non-colliding pairs per chunk (first pairs in sorted order),
-        # global pair dedup — each (x,y) question asked once, anchored on the
+        # global pair dedup -  each (x,y) question asked once, anchored on the
         # chunk that co-mentions them.
         made = 0
         for i, x in enumerate(hits[:8]):
@@ -163,14 +163,14 @@ def _compare_rows(chunks: List[Dict]) -> List[Dict]:
 def qa_facet_jobs() -> List[Dict]:
     """Deterministic G1 qa work plan over the MASTER_RESUME chunk pool
     (v2.4: every row anchored on >=RICH_MIN-word chunks that actually mention
-    its subject — honest-teacher smokes proved thin/abstract anchors only
+    its subject -  honest-teacher smokes proved thin/abstract anchors only
     produce refusals or fabrications). behavioral = 1 fit row per AUTHORED
     archetype (serve-retrieved whole stories at run time); factual = per-
     Technology mention rows ("Tell me about your work with X.", router->avatar
     first-person) + bank templates over rich non-Technology nodes; compare =
     co-occurring tech pairs inside rich chunks; avatar = AVATAR_QUESTIONS x
     persona chunks; legacy = spec §3.4 386 re-synth, richest mentioning chunk.
-    Rows are {"facet", "question", "chunk_ids", "wid"} — wid is the stable
+    Rows are {"facet", "question", "chunk_ids", "wid"} -  wid is the stable
     resume identity written into pair metadata for crash-safe resume."""
     from src.brain.synthesizer import (AVATAR_QUESTIONS, DEFAULT_FACT_QUESTIONS,
                                        FACT_QUESTIONS, SYNTHESIZABLE_NODE_TYPES)
@@ -184,7 +184,7 @@ def qa_facet_jobs() -> List[Dict]:
 
     # v2 behavioral: one row per archetype question; the anchor chunks are the
     # SERVE-retrieved top-3 STAR-family nodes for that question (fit by
-    # construction — the forced 18x18 grid drowned in honest refusals).
+    # construction -  the forced 18x18 grid drowned in honest refusals).
     for i, q in enumerate(AUTHORED_BEHAVIORAL):
         jobs.append({"facet": "behavioral", "question": q, "chunk_ids": [],
                      "wid": f"behavioral:{i:02d}"})
@@ -241,7 +241,7 @@ def qa_facet_jobs() -> List[Dict]:
 
 SYNTH_CONCURRENCY = 4  # teacher calls in flight (rate-limit-safe, pilot-measured)
 
-# G1 gates. qa amended 2026-08-28 (user ruling, see notes.md): 900 -> 400 —
+# G1 gates. qa amended 2026-08-28 (user ruling, see notes.md): 900 -> 400 - 
 # honest-grounded capacity of MASTER_RESUME measured ~718 rows @ ~45-72%
 # acceptance across v2.2-v2.4 smokes; refusals are correct teacher behavior;
 # v1 trained on 386 pairs; spec §3.4 defers bank growth to flywheel rounds.
@@ -258,7 +258,7 @@ def _read_jsonl(path: Path) -> List[Dict]:
 class _Sink:
     """Crash-safe JSONL appender: each row is written, flushed AND fsynced
     under a lock. asyncio is single-threaded but teacher calls run on executor
-    threads and the sink is called from task continuations — the lock keeps
+    threads and the sink is called from task continuations -  the lock keeps
     line appends atomic regardless."""
 
     def __init__(self, out_dir: Path):
@@ -308,7 +308,7 @@ def _dedupe_in_place(path: Path) -> int:
 
 
 def _cap_per_facet(qa_rows: List[Dict], cap: int) -> List[Dict]:
-    """Smoke aid: stride-sample `cap` jobs per facet — the first N rows of a
+    """Smoke aid: stride-sample `cap` jobs per facet -  the first N rows of a
     facet pile up on ONE anchor (all templates of one node, one question x
     the first stories), which biases acceptance measurement. Striding takes
     evenly spaced rows across the facet's whole anchor pool."""
@@ -416,7 +416,7 @@ async def _run_synth(jobs: List[Dict], out_dir: Path,
             pair["metadata"]["wid"] = job.get("wid")  # resume identity
             sink.pair(pair)
         else:
-            # reason returned per call (F2) — no shared instance state to mask
+            # reason returned per call (F2) -  no shared instance state to mask
             sink.reject({"facet": facet, "question": q, "chunk_ids": job["chunk_ids"],
                          "reason": reason or "ungrounded"})
 
@@ -459,7 +459,7 @@ def build(db_path: Path, out_dir: Path, jd_limit: int, seed: int,
     if allow_held_out:
         # Smoke-only escape hatch: the frozen set covers the top strata, so
         # every small stratified sample lands 100% held-out (observed at
-        # jd_limit 2/4/8/12/30). NEVER use for the real build — its pairs
+        # jd_limit 2/4/8/12/30). NEVER use for the real build -  its pairs
         # would teach the model its own eval answers.
         print("WARNING: held-out exclusion DISABLED (smoke-only flag)")
         excluded = 0
@@ -469,7 +469,7 @@ def build(db_path: Path, out_dir: Path, jd_limit: int, seed: int,
     out_dir.mkdir(parents=True, exist_ok=True)
     t_file, q_file = out_dir / "tailor_pairs.jsonl", out_dir / "qa_pairs.jsonl"
     if not append and (t_file.exists() or q_file.exists()):
-        print(f"WARNING: existing pair files in {out_dir} — append/resume mode "
+        print(f"WARNING: existing pair files in {out_dir} -  append/resume mode "
               f"(pass --append to silence, or clear the dir for a fresh build)")
         append = True
     # resume: skip work whose output is already on disk. tailor/letter skip by
@@ -500,7 +500,7 @@ def build(db_path: Path, out_dir: Path, jd_limit: int, seed: int,
     (out_dir / "synth_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     # G1 gates: tailor >=1600 (plan); qa amended 2026-08-28 (user ruling):
     # 900 -> 400. Measured honest-grounded capacity of MASTER_RESUME is
-    # ~718 rows / ~45% acceptance (v2.2-v2.4 smokes) — the refusal class is
+    # ~718 rows / ~45% acceptance (v2.2-v2.4 smokes) -  the refusal class is
     # CORRECT teacher behavior, and v1 itself trained on 386 pairs. Spec
     # §3.4 defers bank growth to flywheel rounds; qa bank expands post-G3.
     t_pass = "PASS" if n_tailor >= G1_TAILOR_GATE else "FAIL"
@@ -517,7 +517,7 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--allow-held-out", action="store_true",
                     help="SMOKE ONLY: skip held-out exclusion (small samples land "
-                         "100% inside the frozen set) — never for the real build")
+                         "100% inside the frozen set) -  never for the real build")
     ap.add_argument("--qa-cap", type=int, default=None,
                     help="smoke aid: cap planned qa jobs per facet, stride-sampled "
                          "(0 = skip qa entirely; omit for full v2 plan: behav 18 / "

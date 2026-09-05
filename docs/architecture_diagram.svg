@@ -18,8 +18,8 @@
   </defs>
 
   <!-- DIAGRAM TITLE -->
-  <text x="80" y="42" font-size="22" font-weight="800" fill="#0f172a" letter-spacing="-0.5px">CareerGraph-AI — System Architecture &amp; Agentic Operating System</text>
-  <text x="80" y="62" font-size="13" font-weight="500" fill="#64748b">Production Architecture: 5-Stage LangGraph DAG, 3-Tier OS Memory, AXTree Grounding &amp; Multi-Model Consensus</text>
+  <text x="80" y="42" font-size="22" font-weight="800" fill="#0f172a" letter-spacing="-0.5px">Operon-Job-Hunter: System Architecture &amp; Agentic Operating System</text>
+  <text x="80" y="62" font-size="13" font-weight="500" fill="#64748b">Production Architecture: 5-Stage LangGraph DAG, 3-Tier OS Memory, GraphRAG &amp; Multi-Model Consensus</text>
 
   <!-- LAYER SWIMLANES -->
   <!-- Band L1 -->
@@ -30,7 +30,7 @@
   <text x="75" y="275" font-size="13" font-weight="700" fill="#059669" letter-spacing="0.5px">2. MACRO ORCHESTRATION &amp; STATE MACHINE (LANGGRAPH)</text>
   <!-- Band L3 -->
   <rect x="50" y="435" width="1500" height="155" rx="12" fill="#fffbeb" stroke="#e2e8f0" stroke-width="1.2" />
-  <text x="75" y="455" font-size="13" font-weight="700" fill="#b45309" letter-spacing="0.5px">3. SPECIALIZED MICRO-AGENTS &amp; ENGINES</text>
+  <text x="75" y="455" font-size="13" font-weight="700" fill="#b45309" letter-spacing="0.5px">3. SPECIALIZED 5-STAGE PIPELINE AGENTS &amp; ENGINES</text>
   <!-- Band L4 -->
   <rect x="50" y="615" width="1500" height="155" rx="12" fill="#f5f3ff" stroke="#e2e8f0" stroke-width="1.2" />
   <text x="75" y="635" font-size="13" font-weight="700" fill="#7c3aed" letter-spacing="0.5px">4. REASONING ENGINE &amp; COMPILER GATES</text>
@@ -48,25 +48,28 @@
   <polyline points="1260,295 1260,210" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
   <rect x="1200" y="240" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="1260" y="253" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">interrupt() alert</text>
-  <polyline points="180,390 180,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
-  <rect x="120" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
-  <text x="180" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 1</text>
-  <polyline points="350,390 350,430 510,430 510,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
-  <rect x="450" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
-  <text x="510" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 2</text>
-  <polyline points="820,390 820,430 920,430 920,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
-  <rect x="860" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
-  <text x="920" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 3 (bounded)</text>
-  <polyline points="1340,390 1340,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
-  <rect x="1280" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
-  <text x="1340" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 4 (approved)</text>
-  <polyline points="540,570 540,645" fill="none" stroke="#b45309" stroke-width="2" marker-end="url(#arrow-llm)" />
+  <polyline points="170,390 170,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
+  <rect x="110" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
+  <text x="170" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 1</text>
+  <polyline points="350,390 350,430 450,430 450,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
+  <rect x="390" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
+  <text x="450" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 2</text>
+  <polyline points="765,390 765,430 780,430 780,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
+  <rect x="720" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
+  <text x="780" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 3 (bounded)</text>
+  <polyline points="1150,390 1150,430 1100,430 1100,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
+  <rect x="1040" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
+  <text x="1100" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 4 (approved)</text>
+  <polyline points="1380,390 1380,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-req)" />
+  <rect x="1320" y="425" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
+  <text x="1380" y="438" font-size="11" font-weight="600" font-style="italic" fill="#475569" text-anchor="middle">Stage 5</text>
+  <polyline points="500,570 500,645" fill="none" stroke="#b45309" stroke-width="2" marker-end="url(#arrow-llm)" />
   <rect x="420" y="598" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="480" y="611" font-size="11" font-weight="600" font-style="italic" fill="#b45309" text-anchor="middle">consensus vote</text>
-  <polyline points="850,570 850,605 680,605 680,645" fill="none" stroke="#b45309" stroke-width="2" marker-end="url(#arrow-llm)" />
+  <polyline points="780,570 780,605 720,605 720,645" fill="none" stroke="#b45309" stroke-width="2" marker-end="url(#arrow-llm)" />
   <rect x="660" y="598" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="720" y="611" font-size="11" font-weight="600" font-style="italic" fill="#b45309" text-anchor="middle">evaluator-optimizer</text>
-  <polyline points="950,570 950,605 1150,605 1150,645" fill="none" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrow-write)" />
+  <polyline points="820,570 820,605 1150,605 1150,645" fill="none" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrow-write)" />
   <rect x="1040" y="598" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="1100" y="611" font-size="11" font-weight="600" font-style="italic" fill="#6d28d9" text-anchor="middle">compile AST</text>
   <polyline points="130,570 130,845" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-read)" />
@@ -75,10 +78,10 @@
   <polyline points="610,570 610,845" fill="none" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrow-write)" />
   <rect x="550" y="800" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="610" y="813" font-size="11" font-weight="600" font-style="italic" fill="#6d28d9" text-anchor="middle">persist score</text>
-  <polyline points="980,570 980,845" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-read)" />
+  <polyline points="800,570 800,600 980,600 980,845" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-read)" />
   <rect x="920" y="800" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="980" y="813" font-size="11" font-weight="600" font-style="italic" fill="#0369a1" text-anchor="middle">Multi-Hop GraphRAG</text>
-  <polyline points="1350,570 1350,845" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-read)" />
+  <polyline points="1100,570 1100,800 1350,800 1350,845" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-read)" />
   <rect x="1290" y="800" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"/>
   <text x="1350" y="813" font-size="11" font-weight="600" font-style="italic" fill="#0369a1" text-anchor="middle">session cookies</text>
 
@@ -90,7 +93,7 @@
   <!-- Box cli_main -->
   <rect x="550" y="115" width="430" height="95" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.8" filter="url(#shadow)" />
   <text x="765.0" y="153" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Unified CLI Controller</text>
-  <text x="765.0" y="177" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Daemon, Scanner, Evaluator &amp; Playwright Submitter</text>
+  <text x="765.0" y="177" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Daemon, Scanner, Evaluator, Tailor &amp; Offline Demo</text>
   <!-- Box telegram_hitl -->
   <rect x="1020" y="115" width="480" height="95" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.8" filter="url(#shadow)" />
   <text x="1260.0" y="153" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Telegram HITL Approval Bot</text>
@@ -108,29 +111,33 @@
   <text x="1260.0" y="333" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Dynamic interrupt() Gate</text>
   <text x="1260.0" y="357" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Pre-Submission Checkpoint &amp; Command(resume) Engine</text>
   <!-- Box discovery_squad -->
-  <rect x="70" y="475" width="335" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
-  <text x="237.5" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Discovery Squad (9 Crawlers)</text>
-  <text x="237.5" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Deferred Tool Search &amp; USCIS H-1B Verification</text>
+  <rect x="60" y="475" width="280" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="200.0" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Stage 1: Discovery Squad</text>
+  <text x="200.0" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">9 Crawlers &amp; USCIS H-1B Checker</text>
   <!-- Box eval_guard -->
-  <rect x="435" y="475" width="335" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
-  <text x="602.5" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">7-Block Evaluator &amp; Work Auth</text>
-  <text x="602.5" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Multi-Model Consensus Voting &amp; Ghost-Job Filter</text>
+  <rect x="360" y="475" width="280" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="500.0" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Stage 2: 7-Block Evaluator</text>
+  <text x="500.0" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Consensus Voting &amp; Ghost-Job Filter</text>
   <!-- Box tailor_optimizer -->
-  <rect x="800" y="475" width="335" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
-  <text x="967.5" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">GraphRAG Evaluator-Optimizer</text>
-  <text x="967.5" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">3-Persona Critic &amp; Surgical Delta Patching</text>
+  <rect x="660" y="475" width="280" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="800.0" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Stage 3: GraphRAG Tailoring</text>
+  <text x="800.0" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">3-Persona Critic &amp; FactGuard</text>
   <!-- Box websurfer_sub -->
-  <rect x="1165" y="475" width="355" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
-  <text x="1342.5" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">WebSurfer Agent &amp; FastPath</text>
-  <text x="1342.5" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">AXTree + Set-of-Marks, Quiescence &amp; Form Healing</text>
+  <rect x="960" y="475" width="280" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="1100.0" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Stage 4: Submitter Engine</text>
+  <text x="1100.0" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">FastPath DOM &amp; AXTree WebSurfer</text>
+  <!-- Box lifecycle_engine -->
+  <rect x="1260" y="475" width="280" height="95" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="1400.0" y="513" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Stage 5: Lifecycle Engine</text>
+  <text x="1400.0" y="537" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Status Tracker &amp; Follow-Up Automator</text>
   <!-- Box llm_gateway -->
-  <rect x="80" y="645" width="780" height="105" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" filter="url(#shadow)" />
-  <text x="470.0" y="677" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">LLM Gateway &amp; Model Tiering Router</text>
-  <text x="470.0" y="697" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Tiered Routing: Gemini Flash (S1/2/4) &amp; Gemini Pro (S3)</text>
+  <rect x="80" y="645" width="820" height="105" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" filter="url(#shadow)" />
+  <text x="490.0" y="677" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">LLM Gateway &amp; Local Career Brain</text>
+  <text x="490.0" y="697" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Tiered Routing: Distilled Local SLM + Cloud Fallbacks</text>
   <!-- Box pdf_compiler -->
-  <rect x="900" y="645" width="620" height="105" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="6,4" filter="url(#shadow)" />
-  <text x="1210.0" y="683" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Deterministic Compiler &amp; Page Gate</text>
-  <text x="1210.0" y="707" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">ReportLab / Typst Engine + Strict 1-Page / 2-Page Layout Bounds</text>
+  <rect x="930" y="645" width="590" height="105" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="6,4" filter="url(#shadow)" />
+  <text x="1225.0" y="683" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Deterministic Compiler &amp; Page Gate</text>
+  <text x="1225.0" y="707" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">ReportLab / Typst Engine + Strict 1-Page / 2-Page Bounds</text>
   <!-- Cylinder core_mem -->
   <g filter="url(#shadow)">
     <rect x="70" y="859" width="340" height="106" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" />
@@ -138,7 +145,7 @@
     <ellipse cx="240.0" cy="859" rx="170.0" ry="14" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8" />
   </g>
   <text x="240.0" y="893" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Core Memory (In-Context RAM)</text>
-  <text x="240.0" y="917" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Candidate Constraints, Floor Salary &amp; Dynamic Tool API</text>
+  <text x="240.0" y="917" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Candidate Profile, Active State &amp; Working Memory</text>
   <!-- Cylinder recall_mem -->
   <g filter="url(#shadow)">
     <rect x="440" y="859" width="340" height="106" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" />
@@ -165,18 +172,18 @@
   <text x="1350.0" y="917" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Persistent Session Cookies, Storage State &amp; Evasions</text>
 
   <!-- LLM GATEWAY CHIPS -->
-  <rect x="100" y="710" width="160" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
-  <text x="180.0" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Gemini 2.5 Flash</text>
-  <text x="180.0" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Low-Latency Tier</text>
-  <rect x="280" y="710" width="160" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
-  <text x="360.0" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Gemini 2.5 Pro</text>
-  <text x="360.0" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Deep Reasoning Tier</text>
-  <rect x="460" y="710" width="160" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
-  <text x="540.0" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Qwen 2.5 72B</text>
-  <text x="540.0" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Alibaba Open Gateway</text>
-  <rect x="640" y="710" width="180" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
-  <text x="730.0" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">OpenRouter / DeepSeek</text>
-  <text x="730.0" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Multi-Provider Fallback</text>
+  <rect x="95" y="710" width="185" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
+  <text x="187.5" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Career Brain 1.7B</text>
+  <text x="187.5" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Local Distilled SLM (Ollama)</text>
+  <rect x="295" y="710" width="185" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
+  <text x="387.5" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Alibaba Qwen</text>
+  <text x="387.5" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Primary Cloud Gateway</text>
+  <rect x="495" y="710" width="185" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
+  <text x="587.5" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Gemini 2.5 Pro / Flash</text>
+  <text x="587.5" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Reasoning Fallback Tier</text>
+  <rect x="695" y="710" width="190" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2" />
+  <text x="790.0" y="724" font-size="11" font-weight="700" fill="#6d28d9" text-anchor="middle">Mock LLM Provider</text>
+  <text x="790.0" y="734" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Deterministic Offline Demo</text>
 
   <!-- LEGEND (2x2 Grid) -->
   <rect x="1060" y="12" width="490" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2" filter="url(#shadow)" />

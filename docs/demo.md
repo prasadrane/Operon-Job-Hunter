@@ -1,4 +1,4 @@
-﻿# CareerGraph-AI Offline Portfolio Demo
+﻿# Operon-Job-Hunter Offline Portfolio Demo
 
 This repository includes a completely self-contained offline demonstration mode. You can test and inspect the full autonomous 5-stage job search, evaluation, tailoring, and submission pipeline **without requiring any external API keys, browser automation dependencies, or paid services**.
 
