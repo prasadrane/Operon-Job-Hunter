@@ -612,7 +612,7 @@ def cmd_demo(args: argparse.Namespace) -> int:
     get_settings.cache_clear()
     settings = get_settings()
 
-    print("CareerGraph-AI demo — fictional candidate 'Alex Rivera', offline mock LLM")
+    print("Operon-Job-Hunter demo - fictional candidate 'Alex Rivera', offline mock LLM")
 
     # 1. Seed fictional jobs + profile
     from src.demo.seeder import seed_demo
@@ -645,7 +645,7 @@ def cmd_demo(args: argparse.Namespace) -> int:
     results = []
 
     for job in strong:
-        print(f"\n--- Pipeline: [{job.id}] {job.company} — {job.title}")
+        print(f"\n--- Pipeline: [{job.id}] {job.company}: {job.title}")
         outcome = dispatcher.process_single_job(job)
         results.append((job, outcome))
         eval_score = float(outcome.get("fit_score", 0.0) or 0.0)

@@ -1,4 +1,4 @@
-﻿import importlib
+import importlib
 
 
 def test_sample_mode_footer(monkeypatch):
@@ -7,4 +7,4 @@ def test_sample_mode_footer(monkeypatch):
     get_settings.cache_clear()
     mod = importlib.import_module("src.pipeline.3_tailoring.pdf_renderer")
     sample_mode_footer_text = getattr(mod, "sample_mode_footer_text")
-    assert sample_mode_footer_text() == "SAMPLE CANDIDATE — CareerGraph-AI demo"
+    assert sample_mode_footer_text() == "SAMPLE CANDIDATE - Operon-Job-Hunter demo"

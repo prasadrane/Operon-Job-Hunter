@@ -78,7 +78,7 @@ def sample_mode_footer_text() -> str:
         profile_dir = Path(get_settings().profile_dir).resolve()
         sample_dir = Path("./data/sample").resolve()
         if profile_dir == sample_dir:
-            return "SAMPLE CANDIDATE — CareerGraph-AI demo"
+            return "SAMPLE CANDIDATE - Operon-Job-Hunter demo"
     except Exception:
         pass
     return ""
