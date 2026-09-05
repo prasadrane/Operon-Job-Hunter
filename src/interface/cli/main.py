@@ -504,7 +504,7 @@ def cmd_ui(args: argparse.Namespace) -> int:
     no_browser = getattr(args, "no_browser", False)
 
     url = f"http://localhost:{port}"
-    print(f"🌐 Launching CareerGraph AI Mission Control at {url}...")
+    print(f"🌐 Launching Operon Job Hunter Mission Control at {url}...")
 
     if not no_browser:
         try:

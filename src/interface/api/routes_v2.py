@@ -74,8 +74,8 @@ DEFAULT_FALLBACK_RESUME = """
 """
 
 app_v2 = FastAPI(
-    title="CareerGraph AI Mission Control 2.0",
-    description="Mission Control 2.0 API with D3 Career Graph & Live SSE Telemetry",
+    title="Operon Job Hunter Mission Control",
+    description="Mission Control API with D3 Career Graph & Live SSE Telemetry",
     version="2.0.0",
 )
 

@@ -94,7 +94,7 @@ def get_app_repo() -> ApplicationRepository:
 
 
 app = FastAPI(
-    title="CareerGraph AI",
+    title="Operon Job Hunter",
     description="Autonomous Agentic Job Search, Evaluation, GraphRAG Tailoring & Submitter API",
     version="1.0.0",
 )
