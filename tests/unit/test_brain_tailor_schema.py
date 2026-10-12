@@ -3,7 +3,7 @@ import json
 from src.brain.tailor_schema import TailorPlan, parse_tailor_plan, tailor_json_schema
 
 VALID = json.dumps({
-    "section": "experience@rocket_mortgage",
+    "section": "experience@meridian_lending",
     "skills_to_emphasize": ["Kafka", "AWS MSK"],
     "stories": [{"id": "story_kafka_ci", "why": "JD asks schema evolution",
                  "emphasize": ["Avro"]}],
@@ -22,7 +22,7 @@ def test_parse_valid_plan():
 
 def test_parse_strips_code_fences():
     plan = parse_tailor_plan("```json\n" + VALID + "\n```")
-    assert plan is not None and plan.section == "experience@rocket_mortgage"
+    assert plan is not None and plan.section == "experience@meridian_lending"
 
 
 def test_parse_invalid_returns_none_without_repair():

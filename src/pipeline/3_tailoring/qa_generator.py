@@ -66,16 +66,16 @@ class QAGenerator:
                 f"and engineering velocity."
             ),
             "technical_challenge": (
-                "At Rocket Mortgage, our high-volume transaction service suffered intermittent 10-15s stalls under peak load. "
+                "At Meridian Lending, our high-volume transaction service suffered intermittent 10-15s stalls under peak load. "
                 "I analyzed low-level thread dumps using WinDbg and dotnet-counters to isolate a third-party locking bottleneck, "
                 "then designed a SemaphoreSlim-based throttling mechanism that restored 99.99% availability under 50k+ daily transactions."
             ),
             "work_authorization": (
-                "Currently on an active H-1B visa with an approved I-140 petition. Does not require the H-1B lottery for transfer."
+                "Authorized to work in the United States. May require employer H-1B visa sponsorship."
             ),
             "notice_period": "2 weeks standard notice.",
             "salary_expectation": "$160,000 - $185,000 base salary (flexible based on total compensation and equity structure).",
-            "remote_preference": "Open to Remote (US-wide) or Hybrid (Chicago/Midwest).",
+            "remote_preference": "Open to Remote (US-wide) or Hybrid (Seattle area).",
         }
 
         # If custom questions are provided, attempt Career Brain or LLM completion
@@ -95,7 +95,7 @@ class QAGenerator:
 
         # 1. Profile Fact Pinning for direct identity/status questions
         if any(term in q_lower for term in ["work authorization", "visa status", "sponsorship", "require visa", "authorized to work"]):
-            return "Currently authorized to work in the United States on an active H-1B visa with an approved I-140 petition. Does not require the H-1B lottery for transfer."
+            return "Authorized to work in the United States. May require employer H-1B visa sponsorship."
         if any(term in q_lower for term in ["notice period", "how soon can you start", "start date", "availability"]):
             return "2 weeks standard notice from offer acceptance."
         if any(term in q_lower for term in ["salary expectation", "compensation", "desired salary"]):
@@ -119,20 +119,20 @@ class QAGenerator:
             paths = self.retriever.retrieve_causal_paths(tokens, max_paths=1)
             if paths:
                 p = paths[0]
-                grounded_proof_text = f"\nVERIFIED GRAPH EVIDENCE:\n- Story/Role: {p.get('company', 'Rocket Mortgage')}\n- Action: {p.get('action')}\n- Business Metric Impact: {', '.join(p.get('metric', []))}\n"
+                grounded_proof_text = f"\nVERIFIED GRAPH EVIDENCE:\n- Story/Role: {p.get('company', 'Meridian Lending')}\n- Action: {p.get('action')}\n- Business Metric Impact: {', '.join(p.get('metric', []))}\n"
                 metric_str = ", ".join(p.get('metric', [])) or "high reliability"
                 fallback_grounded_answer = (
-                    f"At {p.get('company', 'Rocket Mortgage')}, I {p.get('action')}, "
+                    f"At {p.get('company', 'Meridian Lending')}, I {p.get('action')}, "
                     f"achieving verified impact ({metric_str}). I look forward to applying this same rigorous approach at {company}."
                 )
 
         prompt = (
             f"You are Alex Rivera, a Senior Software Engineer with 10+ years of experience in C#/.NET Core, AWS, Kafka, and microservices.\n"
             f"Candidate profile facts:\n"
-            f"- Master of Science in Information Systems (Univ. of Cincinnati)\n"
-            f"- Approved I-140 petition, active H-1B\n"
-            f"- Experience at Rocket Mortgage (AWS ECS, Bedrock GenAI intent router, Kafka governance, Dynatrace observability)\n"
-            f"- Experience at London Computer Systems (.NET, SQL Server optimization, payment gateway integration)\n"
+            f"- Master of Science in Information Systems (Lakeside Univ.)\n"
+            f"- Authorized to work in the United States\n"
+            f"- Experience at Meridian Lending (AWS ECS, Bedrock GenAI intent router, Kafka governance, Dynatrace observability)\n"
+            f"- Experience at Harbor Systems (.NET, SQL Server optimization, payment gateway integration)\n"
             f"{grounded_proof_text}\n"
             f"Target Company: {company}\n"
             f"Target Role: {title}\n"

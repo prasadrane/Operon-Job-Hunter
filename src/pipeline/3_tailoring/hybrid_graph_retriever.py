@@ -262,7 +262,7 @@ class HybridGraphRetriever:
             scored_stories.append({
                 "title": story_node,
                 "score": float(total_story_score),
-                "company": story_data.get("company", "Rocket Mortgage"),
+                "company": story_data.get("company", "Meridian Lending"),
                 "role": story_data.get("role", "Software Engineer"),
                 "bullets": story_data.get("bullets", []),
                 "technologies": list(set(technologies)),
@@ -637,7 +637,7 @@ class HybridGraphRetriever:
                 "cumulative_stories": list(stories),
                 "key_technologies": matched_techs,
                 "verified_impact_metrics": list(metrics),
-                "organizations": list(companies) or ["Rocket Mortgage"],
+                "organizations": list(companies) or ["Meridian Lending"],
                 "active_span_years": year_span,
                 "executive_narrative": (
                     f"{year_span}+ years leading {domain_name} across {', '.join(companies) or 'enterprise organizations'}, "
@@ -669,7 +669,7 @@ class HybridGraphRetriever:
                 "question": f"Can you walk me through an end-to-end scenario where you leveraged {tech_focus} to optimize system resilience and performance?",
                 "question_type": "System Design / STAR Behavioral",
                 "grounded_story": story["title"],
-                "company": story.get("company", "Rocket Mortgage"),
+                "company": story.get("company", "Meridian Lending"),
                 "role": story.get("role", "Software Engineer"),
                 "model_answer": {
                     "situation": sit,
@@ -694,9 +694,9 @@ class HybridGraphRetriever:
             m_str = ", ".join(m_list) if m_list else "high reliability"
             act_text = p.get("action", "")
             atomic_proofs.append({
-                "proof_point": f"At {p.get('company', 'Rocket Mortgage')}, {act_text} ({m_str}).",
+                "proof_point": f"At {p.get('company', 'Meridian Lending')}, {act_text} ({m_str}).",
                 "action": act_text,
-                "company": p.get("company", "Rocket Mortgage"),
+                "company": p.get("company", "Meridian Lending"),
                 "role": p.get("role", "Software Engineer"),
                 "technologies": p.get("tech", []),
                 "metrics": m_list,
@@ -722,7 +722,7 @@ class HybridGraphRetriever:
 
             narratives.append({
                 "title": story.get("title", "Engineering Initiative"),
-                "company": story.get("company", "Rocket Mortgage"),
+                "company": story.get("company", "Meridian Lending"),
                 "role": story.get("role", "Software Engineer"),
                 "situation": sit,
                 "task": f"Engineer resilient, cloud-native {tech_label} platform architectures.",

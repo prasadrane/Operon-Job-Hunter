@@ -72,12 +72,12 @@ async def test_section_scope_rejects_foreign_employer_chunk(monkeypatch):
     import src.brain.inference as inf_mod
     import src.brain.validator as v
     monkeypatch.setattr(inf_mod, "enumerate_sections",
-                        lambda chunks=None: ["experience@rocket_mortgage"])
-    monkeypatch.setattr(v, "employer_of", lambda cid, chunks=None: "Fannie Mae")
+                        lambda chunks=None: ["experience@meridian_lending"])
+    monkeypatch.setattr(v, "employer_of", lambda cid, chunks=None: "Agency Partner")
     s = _synth(GOOD_PLAN)
     pairs, rejects = await s.synthesize_tailor_sections({"job_id": "j1", "jd": "Need Kafka expert"})
     # foreign-owned chunk -> scope filter drops it -> no_chunks
-    assert pairs == [] and rejects == [{"job_id": "j1", "section": "experience@rocket_mortgage",
+    assert pairs == [] and rejects == [{"job_id": "j1", "section": "experience@meridian_lending",
                                         "reason": "no_chunks"}]
 
 
@@ -279,7 +279,7 @@ async def test_fact_avatar_letter_teacher_calls_plain_completion():
     s = _synth("I ran Apache Kafka clusters on AWS MSK and cut incidents 70%.")
     await s.synthesize_fact_node(node, [])
     assert s._call_teacher.await_args.kwargs.get("json_mode") is False
-    s2 = _synth("Ten years building data-heavy backend platforms at Rocket Mortgage.")
+    s2 = _synth("Ten years building data-heavy backend platforms at Meridian Lending.")
     await s2.synthesize_avatar("Introduce yourself and your career arc.",
                                s2.retriever.retrieve("x"))
     assert s2._call_teacher.await_args.kwargs.get("json_mode") is False
@@ -310,7 +310,7 @@ async def test_synthesize_avatar_pair_shape():
     byte-exact with build_prompt(question, BrainMode.AVATAR, chunks)."""
     from src.brain.mode_router import BrainMode
     from src.brain.prompt_builder import build_prompt
-    s = _synth("Ten years building data-heavy backend platforms at Rocket Mortgage.")
+    s = _synth("Ten years building data-heavy backend platforms at Meridian Lending.")
     question = "Introduce yourself and your career arc."
     chunks = s.retriever.retrieve("x")
     pair, reason = await s.synthesize_avatar(question, chunks)

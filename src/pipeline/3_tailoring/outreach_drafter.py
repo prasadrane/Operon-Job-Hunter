@@ -34,7 +34,7 @@ class OutreachDrafter:
         title = job.title.strip() if job.title else "the open role"
 
         # Check for grounded causal proof hook from GraphRetriever
-        proof_hook = "10+ yrs in C#/.NET, AWS microservices, and Kafka streaming at Rocket Mortgage"
+        proof_hook = "10+ yrs in C#/.NET, AWS microservices, and Kafka streaming at Meridian Lending"
         if self.retriever and hasattr(self.retriever, "retrieve_causal_paths"):
             tokens = [w for w in f"{job.title} {job.description or ''}".split() if len(w) >= 3]
             paths = self.retriever.retrieve_causal_paths(tokens[:10], max_paths=1)
@@ -42,7 +42,7 @@ class OutreachDrafter:
                 p = paths[0]
                 tech_label = p.get("tech", ["AWS/.NET"])[0] if p.get("tech") else "AWS/.NET"
                 metric_label = p.get("metric", ["high reliability"])[0] if p.get("metric") else "high reliability"
-                proof_hook = f"scaled {tech_label} systems at Rocket Mortgage ({metric_label})"
+                proof_hook = f"scaled {tech_label} systems at Meridian Lending ({metric_label})"
 
         # Construct note
         note = (
@@ -68,7 +68,7 @@ class OutreachDrafter:
                 p = paths[0]
                 tech_label = p.get("tech", ["AWS/.NET"])[0] if p.get("tech") else "AWS/.NET"
                 metric_label = p.get("metric", ["high reliability"])[0] if p.get("metric") else "high reliability"
-                proof_hook = f"{tech_label} systems at Rocket Mortgage ({metric_label})"
+                proof_hook = f"{tech_label} systems at Meridian Lending ({metric_label})"
 
         note = (
             f"{greeting} impressed by {company}'s tech. "

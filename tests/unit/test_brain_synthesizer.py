@@ -14,7 +14,7 @@ def sample_jsonl(tmp_path):
             "type": "story",
             "id": "story_1",
             "content": "### Story 1 - Observability\n\n- Re-engineered Dynatrace monitoring, slashing alert noise by 80%.",
-            "metadata": {"company": "Rocket Mortgage", "role": "Software Engineer"},
+            "metadata": {"company": "Meridian Lending", "role": "Software Engineer"},
         },
         {
             "type": "skill_category",

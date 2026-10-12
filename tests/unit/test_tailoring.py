@@ -355,24 +355,24 @@ def test_graph_retriever_all_18_stories_company_mapping():
     assert len(stories) == 18
 
     expected_companies = {
-        1: "Rocket Mortgage",
-        2: "Rocket Mortgage",
-        3: "Rocket Mortgage",
-        4: "Rocket Mortgage",
-        5: "Rocket Mortgage",
-        6: "Rocket Mortgage",
-        7: "Rocket Mortgage",
-        8: "Rocket Mortgage",
-        9: "Rocket Mortgage",
-        10: "Rocket Mortgage",
-        11: "Rocket Mortgage",
-        12: "Rocket Mortgage",
-        13: "London Computer Systems",
-        14: "London Computer Systems",
-        15: "London Computer Systems",
-        16: "EXFO Electro-Optical Engineering",
-        17: "EXFO Electro-Optical Engineering",
-        18: "Tanish Infotech Solutions",
+        1: "Meridian Lending",
+        2: "Meridian Lending",
+        3: "Meridian Lending",
+        4: "Meridian Lending",
+        5: "Meridian Lending",
+        6: "Meridian Lending",
+        7: "Meridian Lending",
+        8: "Meridian Lending",
+        9: "Meridian Lending",
+        10: "Meridian Lending",
+        11: "Meridian Lending",
+        12: "Meridian Lending",
+        13: "Harbor Systems",
+        14: "Harbor Systems",
+        15: "Harbor Systems",
+        16: "Lumen Optical Engineering",
+        17: "Lumen Optical Engineering",
+        18: "Brightlane Infotech Solutions",
     }
 
     for story in stories:
@@ -421,11 +421,11 @@ def test_pdf_styles_preserve_standard_markdown_emphasis():
 
 def test_pdf_styles_education_preserves_emphasis_and_dates():
     left_html, right_html = format_education_split(
-        "- **M.S. in Information Systems** — *University of Cincinnati*, Cincinnati, OH (2018 - 2019)"
+        "- **M.S. in Information Systems** — *Lakeside University*, Lakeside, OH (2018 - 2019)"
     )
 
     assert "<b>M.S. in Information Systems</b>" in left_html
-    assert "<i>University of Cincinnati</i>" in left_html
+    assert "<i>Lakeside University</i>" in left_html
     assert "2018 - 2019" in right_html
     assert "*" not in left_html
     assert "*" not in right_html
@@ -435,10 +435,10 @@ def test_pdf_styles_education_formatting_edge_cases():
     cases = [
         # (Input string, expected degree, expected school, expected location, expected dates)
         (
-            "- **M.S. in Information Systems**. University of Cincinnati, Cincinnati, OH (2018 - 2019)",
+            "- **M.S. in Information Systems**. Lakeside University, Lakeside, OH (2018 - 2019)",
             "M.S. in Information Systems",
-            "University of Cincinnati",
-            "Cincinnati, OH",
+            "Lakeside University",
+            "Lakeside, OH",
             "2018 - 2019",
         ),
         (
@@ -486,7 +486,7 @@ def test_pdf_styles_education_formatting_edge_cases():
 
 
 def test_sanitize_ats_markdown():
-    raw = "<b>AWS ECS</b> with <i>Docker</i> & <strong>Kafka</strong> (2020—2023) — Rocket Mortgage"
+    raw = "<b>AWS ECS</b> with <i>Docker</i> & <strong>Kafka</strong> (2020—2023) — Meridian Lending"
     sanitized = sanitize_ats_markdown(raw)
     assert "**AWS ECS**" in sanitized
     assert "*Docker*" in sanitized
@@ -672,7 +672,7 @@ def test_qa_generator_standard_questions():
 def test_qa_generator_custom_questions_mock_llm():
     mock_llm = MagicMock()
     mock_llm.generate.return_value = json.dumps({
-        "Describe your experience with distributed event streaming": "Established enterprise Kafka governance at Rocket Mortgage with schema registries across 5 teams."
+        "Describe your experience with distributed event streaming": "Established enterprise Kafka governance at Meridian Lending with schema registries across 5 teams."
     })
 
     qa = QAGenerator(llm=mock_llm)
@@ -693,7 +693,7 @@ def test_qa_generator_with_graph_retriever_grounding():
     """Verify QAGenerator uses GraphRetriever causal paths to ground custom screening answers."""
     mock_retriever = MagicMock()
     mock_retriever.retrieve_causal_paths.return_value = [{
-        "company": "Rocket Mortgage",
+        "company": "Meridian Lending",
         "action": "architected an enterprise Kafka event-driven pipeline",
         "metric": ["99.99% uptime", "40M+ daily events"],
         "reasoning_chain": "Kafka Match -> Action -> 99.99% uptime"
@@ -707,7 +707,7 @@ def test_qa_generator_with_graph_retriever_grounding():
     job = JobPosting(id="j_qa_g", company="Stripe", title="Senior Backend Engineer", url="https://stripe.com/1")
     answers = qa.generate_answers(job, custom_questions=["Tell us about a time you worked with Kafka"])
     ans_text = answers["Tell us about a time you worked with Kafka"]
-    assert "Rocket Mortgage" in ans_text
+    assert "Meridian Lending" in ans_text
     assert "99.99% uptime" in ans_text
 
 

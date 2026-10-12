@@ -82,7 +82,7 @@ class GraphRetriever:
                     current_role = ""
                 continue
 
-            # Role & Company header: e.g. ### **Software Developer** - *London Computer Systems*
+            # Role & Company header: e.g. ### **Software Developer** - *Harbor Systems*
             clean_norm = line_str.replace("\u2014", " - ").replace("\u2013", " - ").replace("—", " - ").replace("–", " - ")
             clean_h = re.sub(r"^#+\s*", "", clean_norm).replace("*", "").strip()
 
@@ -94,7 +94,7 @@ class GraphRetriever:
                     current_company = parts[1].strip()
                     continue
 
-            # Story header: e.g. #### Story 1 - Observability & Fannie Mae Integration
+            # Story header: e.g. #### Story 1 - Observability & Agency Partner Integration
             if line_str.startswith("#### Story") or (line_str.startswith("### Story") and "story" in line_str.lower()):
                 flush_story()
                 current_story_title = line_str.lstrip("#").strip()

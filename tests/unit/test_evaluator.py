@@ -354,13 +354,13 @@ def test_rubric_evaluator_full_7_blocks():
             "market_competitiveness": "Strong competitive range for US remote backend IC."
         },
         "block_e": {
-            "pitch_angle": "Highlight Rocket Mortgage Bedrock intent router & ECS underwriting modernization.",
+            "pitch_angle": "Highlight Meridian Lending Bedrock intent router & ECS underwriting modernization.",
             "value_hook": "Proven track record cutting cloud costs by 40% with zero downtime."
         },
         "block_f": {
             "star_stories": [
                 {
-                    "situation": "Rocket Mortgage underwriting engine legacy monolith",
+                    "situation": "Meridian Lending underwriting engine legacy monolith",
                     "action": "Modernized to AWS ECS Fargate .NET 8 microservices",
                     "result": "40% cost reduction, 99.95% uptime"
                 }

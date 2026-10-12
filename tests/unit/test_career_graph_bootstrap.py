@@ -10,7 +10,7 @@ vector_mod = importlib.import_module("src.pipeline.3_tailoring.graph_vector_engi
 GraphVectorEngine = vector_mod.GraphVectorEngine
 
 SAMPLE_RESUME = """
-# Senior Software Engineer — Rocket Mortgage
+# Senior Software Engineer — Meridian Lending
 ## Projects
 ### Distributed Stream Pipeline
 - Architected high-throughput Kafka streaming pipeline processing 10M+ daily events with 99.99% uptime.
@@ -29,12 +29,12 @@ def test_career_graph_bootstrap_and_vector_matrix_search():
     
     assert isinstance(graph, nx.DiGraph)
     assert graph.number_of_nodes() >= 8
-    assert graph.has_node("Rocket Mortgage")
+    assert graph.has_node("Meridian Lending")
     assert graph.has_node("Distributed Stream Pipeline")
     assert graph.has_node("Kafka")
     
     # Check node attributes
-    company_data = graph.nodes["Rocket Mortgage"]
+    company_data = graph.nodes["Meridian Lending"]
     assert company_data.get("type") == "Company"
     
     project_data = graph.nodes["Distributed Stream Pipeline"]
@@ -45,8 +45,8 @@ def test_career_graph_bootstrap_and_vector_matrix_search():
     assert "kafka" in tech_data.get("aliases", [])
     
     # Check edges
-    assert graph.has_edge("Rocket Mortgage", "Distributed Stream Pipeline")
-    assert graph.edges["Rocket Mortgage", "Distributed Stream Pipeline"]["relation"] == "CONTRIBUTED_TO"
+    assert graph.has_edge("Meridian Lending", "Distributed Stream Pipeline")
+    assert graph.edges["Meridian Lending", "Distributed Stream Pipeline"]["relation"] == "CONTRIBUTED_TO"
     assert graph.has_edge("Distributed Stream Pipeline", "Kafka")
     assert graph.edges["Distributed Stream Pipeline", "Kafka"]["relation"] == "USED_TECH"
     
@@ -100,7 +100,7 @@ def test_career_graph_builder_serialization():
     builder2 = CareerGraphBuilder()
     restored = builder2.from_dict(graph_dict)
     assert restored.number_of_nodes() == graph.number_of_nodes()
-    assert restored.has_node("Rocket Mortgage")
+    assert restored.has_node("Meridian Lending")
 
 
 
@@ -127,7 +127,7 @@ def test_graph_vector_engine_sub5ms_retrieval_benchmark():
 
 def test_career_graph_granular_star_and_architectural_patterns():
     rich_resume = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     ## Projects
     ### Story 1 — Enterprise Kafka Event Streaming
     - Architected event-driven architecture with Kafka and Dead Letter Queues processing 10M+ daily events with 99.99% uptime.
@@ -158,7 +158,7 @@ def test_career_graph_granular_star_and_architectural_patterns():
 
 def test_context_enriched_node_vector_representations():
     rich_resume = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     ## Projects
     ### Story 1 — Observability & Alert Hygiene
     - Re-engineered Dynatrace synthetic monitoring to slash on-call alert noise by 80% and reclaim ~20 engineering hours monthly.
@@ -179,7 +179,7 @@ def test_context_enriched_node_vector_representations():
 def test_strict_metric_filtering_rejects_calendar_years_and_raw_integers():
     """Verify metric extractor never extracts calendar years (e.g. 2009, 2018) or standalone raw integers."""
     resume_with_dates = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     *Jan 2023 – Jul 2025*
     ## Education
     - B.E. in Electronics (2009 - 2013)
@@ -215,7 +215,7 @@ def test_strict_metric_filtering_rejects_calendar_years_and_raw_integers():
 def test_full_starr_subnode_decomposition():
     """Verify stories decompose into explicit Situation, Action, Result, and Reflection subnodes."""
     story_md = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     ## Projects
     ### Story 1 — Observability Overhaul
     - Situation: Severe alert fatigue with false positive alerts overwhelming on-call engineers.
@@ -241,7 +241,7 @@ def test_full_starr_subnode_decomposition():
 def test_temporal_metadata_extraction():
     """Verify CareerGraphBuilder extracts role date ranges and attaches temporal recency scores."""
     story_md = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     *Jan 2023 – Jul 2025*
     ## Projects
     ### Story 1 — Observability Overhaul
@@ -262,7 +262,7 @@ def test_temporal_metadata_extraction():
 def test_200_plus_taxonomy_expansion_and_alias_resolution():
     """Verify rich taxonomy aliases (K8s, Postgres, DLQ) and 3-level macro-domain hierarchy."""
     sample_text = """
-    # Staff Backend Architect — Rocket Mortgage
+    # Staff Backend Architect — Meridian Lending
     *2023 – 2025*
     ## Projects
     ### Story 1 — Cloud Modernization

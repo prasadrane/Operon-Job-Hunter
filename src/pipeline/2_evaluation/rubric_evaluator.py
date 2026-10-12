@@ -107,7 +107,7 @@ Output JSON structure:
   "block_f": {{
     "star_stories": [
       {{
-        "situation": "Rocket Mortgage underwriting engine legacy monolith",
+        "situation": "Meridian Lending underwriting engine legacy monolith",
         "action": "Modernized to AWS ECS Fargate .NET 8 microservices",
         "result": "40% cost reduction, 99.95% uptime"
       }}
@@ -154,18 +154,18 @@ Output ONLY the JSON object."""
                 "market_competitiveness": "Standard market rate for US backend roles.",
             },
             "block_e": {
-                "pitch_angle": "Highlight Rocket Mortgage AWS ECS modernization and microservices architecture.",
+                "pitch_angle": "Highlight Meridian Lending AWS ECS modernization and microservices architecture.",
                 "value_hook": "Proven track record cutting cloud costs by 40% with high concurrency.",
             },
             "block_f": {
                 "star_stories": [
                     {
-                        "situation": "Rocket Mortgage Underwriting Engine cloud modernization",
+                        "situation": "Meridian Lending Underwriting Engine cloud modernization",
                         "action": "Migrated to AWS ECS Fargate .NET Core with DynamoDB single-table design",
                         "result": "40% infrastructure cost reduction with 99.95% uptime",
                     },
                     {
-                        "situation": "London Computer Systems enterprise payment gateway",
+                        "situation": "Harbor Systems enterprise payment gateway",
                         "action": "Engineered idempotent payment processing with exponential backoff",
                         "result": "100% failover resilience with zero financial ledger corruption",
                     },
