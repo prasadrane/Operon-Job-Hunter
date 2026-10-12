@@ -400,8 +400,8 @@ class Synthesizer:
 
         for section in enumerate_sections():
             scope_employer = section.split("@", 1)[1] if "@" in section else None
-            # v2.5 (2026-08-28): the section SLUG ("experience@london_
-            # computer_systems", underscores) polluted the RRF query ->
+            # v2.5 (2026-08-28): the section SLUG ("experience@harbor_
+            # systems", underscores) polluted the RRF query ->
             # employer sections retrieved nothing (no_chunks = 53% of rejects
             # in the killed full run). Offline A/B/C over the 470-JD pool
             # (coverage_check.py, zero calls): jd-only 52% < jd-only k16 66%
