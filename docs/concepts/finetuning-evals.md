@@ -48,7 +48,7 @@ Operon Job Hunter demonstrates **SLM Distillation**: fine-tuning a compact 1.7B 
 
 ## 3. Evaluation-Gated Dataset Synthesis
 
-High-quality distillation requires eliminating teacher hallucinations before training. In [`src/brain/synthesizer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/brain/synthesizer.py) and [`src/brain/validator.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/brain/validator.py), every synthesized pair passes three automated gates:
+High-quality distillation requires eliminating teacher hallucinations before training. In [`src/brain/synthesizer.py`](../../src/brain/synthesizer.py) and [`src/brain/validator.py`](../../src/brain/validator.py), every synthesized pair passes three automated gates:
 
 1. **First-Person Persona Enforcement:** Rejects third-person narration ("Alex led the migration...") in favor of first-person interview voice ("I led the migration...").
 2. **Grounding Token Pool Validation:** Compares named entities and numerical metrics in the generated answer against an allowable token pool derived from the input career chunks. If ungrounded tokens exceed 20%, the sample is routed to `rejects.jsonl`.
@@ -67,7 +67,7 @@ Fine-tuning is designed to run entirely within free computational tiers:
 
 ## 5. 3-Way Benchmark Evaluation
 
-To verify fine-tuning efficacy, [`data/brain/3way_benchmark_results.json`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/data/brain/3way_benchmark_results.json) evaluates three tiers of models across technical Q&A, STAR stories, and bullet tailoring:
+To verify fine-tuning efficacy, [`data/brain/3way_benchmark_results.json`](../../data/brain/3way_benchmark_results.json) evaluates three tiers of models across technical Q&A, STAR stories, and bullet tailoring:
 
 | Benchmark Dimension | Base Pretrained (Qwen 1.7B) | Career Brain (Fine-Tuned SLM) | Frontier Teacher (Claude / GPT-4o) |
 |---|---|---|---|

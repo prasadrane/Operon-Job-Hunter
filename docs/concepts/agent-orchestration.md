@@ -54,7 +54,7 @@ Operon Job Hunter solves these challenges using a **StateGraph Directed Acyclic 
 ## 3. Implementation in Operon Job Hunter
 
 ### 3.1. Pipeline DAG Definition
-In [`src/pipeline/state_machine.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/state_machine.py), the workflow compiles three core nodes with conditional routing:
+In [`src/pipeline/state_machine.py`](../../src/pipeline/state_machine.py), the workflow compiles three core nodes with conditional routing:
 
 ```python
 workflow = StateGraph(PipelineGraphState)
@@ -94,7 +94,7 @@ def with_circuit_breaker(timeout_seconds: float = 45.0):
 ```
 
 ### 3.3. Thread-Scoped SQLite WAL Checkpointing
-Rather than requiring heavy external state brokers (like Redis or PostgreSQL) for local operation, [`src/core/db/checkpointer.py`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/core/db/checkpointer.py) provides a thread-safe SQLite checkpointer operating in Write-Ahead Logging (WAL) mode. Each job execution runs under its own isolated `thread_id=job.id`, allowing jobs to pause, recover, or re-run independently.
+Rather than requiring heavy external state brokers (like Redis or PostgreSQL) for local operation, [`src/core/db/checkpointer.py`](../../src/core/db/checkpointer.py) provides a thread-safe SQLite checkpointer operating in Write-Ahead Logging (WAL) mode. Each job execution runs under its own isolated `thread_id=job.id`, allowing jobs to pause, recover, or re-run independently.
 
 ---
 

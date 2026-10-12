@@ -65,8 +65,8 @@ To run fully offline on edge devices (laptops / CPUs) without dedicated GPUs:
 ### Step 4: Local Ollama Packaging (`Modelfile`)
 Packaged into Ollama with embedded system directives:
 ```dockerfile
-FROM C:/Users/mamat/Github/Operon-Job-Hunter/data/brain/career-brain-base-q4_k_m.gguf
-ADAPTER C:/Users/mamat/Github/Operon-Job-Hunter/data/brain/career-brain-lora-f16.gguf
+FROM ./career-brain-base-q4_k_m.gguf
+ADAPTER ./career-brain-lora-f16.gguf
 
 PARAMETER temperature 0.7
 PARAMETER top_p 0.9
@@ -84,7 +84,7 @@ ollama create career-brain-q4 -f data/brain/Modelfile.q4
 ## 3. Runtime Inference Architecture
 
 ### Reciprocal Rank Fusion (RRF) Hybrid Retrieval
-When a query arrives, [`GraphRetriever.retrieve_rrf()`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/brain/retriever.py) runs a 3-way multi-hop search:
+When a query arrives, [`GraphRetriever.retrieve_rrf()`](../src/brain/retriever.py) runs a 3-way multi-hop search:
 1. **Semantic Vector Search:** Computes cosine similarity over dense vector embeddings.
 2. **Keyword / BM25 Search:** Token-level exact match for specific libraries (`WinDbg`, `dotnet-counters`, `SemaphoreSlim`).
 3. **Causal Graph Search:** Traverses knowledge graph edges connecting actions $\rightarrow$ metrics $\rightarrow$ technologies.
@@ -95,7 +95,7 @@ RRF(d) = \sum_{m \in M} \frac{1}{60 + \text{rank}_m(d)}
 \]
 
 ### FactGuard Hallucination Verification
-Generated outputs pass through [`FactGuard`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/fact_guard.py):
+Generated outputs pass through [`FactGuard`](../src/pipeline/3_tailoring/fact_guard.py):
 - Verifies every technology, metric, and company mentioned against verified career graph nodes.
 - Flags unverified technologies (e.g. Haskell, Rust, COBOL) and assigns a confidence score ($1.00$ vs $0.50$).
 

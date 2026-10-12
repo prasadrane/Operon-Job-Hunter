@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary & Architectural Philosophy
 
-**Operon-Job-Hunter** is a stateful, autonomous Agentic Operating System designed for career acceleration, automated job discovery, 7-block candidate evaluation, multi-hop GraphRAG tailoring, and resilient Playwright browser submission.
+**Operon-Job-Hunter** is a stateful, checkpointed workflow for job search: job discovery, 7-block candidate evaluation, multi-hop GraphRAG tailoring, and Playwright browser submission that runs only after a human resumes the paused job.
 
 Rather than relying on unconstrained, monolithic agent loops - which suffer from attention degradation, unpredictable latency, and runaway API costs - Operon-Job-Hunter implements a **Nested Hybrid Architecture**:
 1. **Macro Orchestration (Prescriptive Workflow):** A deterministic, typed Directed Acyclic Graph (DAG) built on **LangGraph StateGraph** that enforces structured phase gates, state reducers, and checkpoint persistence.
@@ -35,7 +35,7 @@ Rather than relying on unconstrained, monolithic agent loops - which suffer from
 
 ## 2. System Architecture Diagram
 
-![Operon-Job-Hunter System Architecture](file:///c:/Users/mamat/Github/Operon-Job-Hunter/docs/architecture_diagram.png)
+![Operon-Job-Hunter System Architecture](architecture_diagram.png)
 
 The diagram above details the **5 Architectural Tiers** of the Operon-Job-Hunter platform:
 
