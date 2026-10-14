@@ -84,11 +84,11 @@ CHUNKS = [RetrievedChunk(id="story_kafka_ci", content="Kafka governance work",
 
 def test_tailoring_prompt_order_and_schema_block():
     p = build_prompt("tailor my resume", BrainMode.TAILORING, CHUNKS,
-                     job_desc="Need Kafka expert", section="experience@rocket_mortgage")
+                     job_desc="Need Kafka expert", section="experience@meridian_lending")
     i_instr, i_schema, i_jd, i_ctx, i_query = (
         p.find("resume tailoring assistant"), p.find('"skills_to_emphasize"'),
         p.find("Need Kafka expert"), p.find("[story: story_kafka_ci]"),
-        p.find("SECTION: experience@rocket_mortgage"))
+        p.find("SECTION: experience@meridian_lending"))
     assert -1 not in (i_instr, i_schema, i_jd, i_ctx, i_query)
     assert i_instr < i_schema < i_jd < i_ctx < i_query
 

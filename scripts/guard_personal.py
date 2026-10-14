@@ -5,14 +5,31 @@ import re
 import subprocess
 import sys
 
+# Generic secret shapes are checked in every run.
 PATTERNS = [
-    re.compile(r"\bPrasad\s+Rane\b", re.I),
-    re.compile(r"linkedin\.com/in/rane-prasad", re.I),
-    re.compile(r"\b513[-.\s]?967[-.\s]?9423\b"),
-    re.compile(r"emailprasadrane@gmail\.com", re.I),
     re.compile(r"TELEGRAM_CHAT_ID\s*=\s*\d+"),
     re.compile(r"(sk-[A-Za-z0-9]{16,}|AIza[A-Za-z0-9_-]{16,})"),
 ]
+
+# Personal markers (name, phone, email, profile URL) live in an untracked file
+# so this public script does not itself contain them. One regex per line;
+# blank lines and lines starting with '#' are ignored.
+LOCAL_PATTERNS_FILE = os.environ.get("GUARD_PERSONAL_PATTERNS_FILE", ".guard_personal_patterns")
+
+
+def _load_local_patterns() -> list:
+    if not os.path.exists(LOCAL_PATTERNS_FILE):
+        return []
+    out = []
+    with open(LOCAL_PATTERNS_FILE, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                out.append(re.compile(line, re.I))
+    return out
+
+
+PATTERNS += _load_local_patterns()
 
 ALLOWLIST_PATTERNS = {
     "scripts/guard_personal.py": [re.compile(r".*")],

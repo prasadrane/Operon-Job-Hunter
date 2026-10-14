@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "operon-job-hunter"
 version = "0.1.0"
-description = "Autonomous Agentic Job Search, Evaluation, GraphRAG Tailoring & Persistent Playwright Submitter"
+description = "Staged, checkpointed job-search workflow: discovery, evaluation, GraphRAG tailoring and human-approved Playwright submission"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

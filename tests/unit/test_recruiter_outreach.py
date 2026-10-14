@@ -28,7 +28,7 @@ def test_personalized_recruiter_outreach_drafting():
     email = drafter.draft_outreach(
         company="Netflix",
         role="Senior Distributed Systems Engineer",
-        star_hook="scaled Kafka streaming to 10M+ events/day with 99.99% uptime at Rocket Mortgage",
+        star_hook="scaled Kafka streaming to 10M+ events/day with 99.99% uptime at Meridian Lending",
     )
     assert "Netflix" in email
     assert "10M+ events/day" in email
@@ -61,7 +61,7 @@ def test_email_drafter_factguard_passes_verified_claim():
     fact_guard = FactGuard()
     drafter = EmailDrafter(fact_guard=fact_guard)
     
-    verified_hook = "scaled Kafka event streaming to 10M+ events/day at Rocket Mortgage"
+    verified_hook = "scaled Kafka event streaming to 10M+ events/day at Meridian Lending"
     draft = drafter.draft_dual_outreach(
         company="Uber",
         role="Senior Backend Engineer",
@@ -90,7 +90,7 @@ def test_email_drafter_factguard_graph_backed_validation():
     """Verify FactGuard with dynamic NetworkX candidate graph validates claims."""
     builder = CareerGraphBuilder()
     resume_text = """
-    # Senior Software Engineer — Rocket Mortgage
+    # Senior Software Engineer — Meridian Lending
     ### Distributed Streaming
     - Architected Kafka event streaming platform handling 10M+ daily events with 99.99% uptime.
     - Optimized C# and AWS services reducing compute latency by 35%.
@@ -171,7 +171,7 @@ def test_recruiter_finder_graph_intersection_matching():
     """Verify graph-intersection matching between target JD tech keywords and candidate career graph."""
     builder = CareerGraphBuilder()
     resume_text = """
-    # Staff Software Engineer — Rocket Mortgage
+    # Staff Software Engineer — Meridian Lending
     ### Real-Time Financial Data Pipeline
     - Designed Kafka and AWS ECS streaming microservices in C# handling 10M+ daily events.
     - Integrated Redis caching and PostgreSQL database for sub-10ms query performance.
@@ -209,7 +209,7 @@ def test_recruiter_finder_recommend_star_hook():
     """Verify RecruiterFinder recommends the best STAR hook based on graph intersection."""
     builder = CareerGraphBuilder()
     resume_text = """
-    # Senior Distributed Systems Engineer — Rocket Mortgage
+    # Senior Distributed Systems Engineer — Meridian Lending
     ### Core Event Streaming
     - Scaled Kafka event streaming to 10M+ daily events with 99.99% uptime.
     - Engineered AWS microservices reducing operational costs by 30%.

@@ -1,6 +1,6 @@
 ﻿# Operon-Job-Hunter Offline Portfolio Demo
 
-This repository includes a completely self-contained offline demonstration mode. You can test and inspect the full autonomous 5-stage job search, evaluation, tailoring, and submission pipeline **without requiring any external API keys, browser automation dependencies, or paid services**.
+This repository includes a completely self-contained offline demonstration mode. You can run the discovery-seed, evaluation, tailoring and (optionally) dry-run submission stages **without external API keys or paid services**. The workflow pauses for human approval before any real submission; the demo only ever dry-runs submission, against a local mock portal.
 
 ---
 
@@ -38,14 +38,14 @@ What this does:
 4. Persists the evaluation results and prints stage summaries to the console.
 
 ### 2. End-to-End Demo with Mock ATS Submission (Stages 1 through 4)
-To test automated application submission, launch with `--with-submit`:
+To exercise form filling against the mock application portal, launch with `--with-submit`:
 ```bash
 python -m src.interface.cli.main demo --jobs 3 --with-submit --fresh-db
 ```
 What this does:
 1. Boots an ephemeral, in-process mock ATS server (simulating Greenhouse and Lever application portals).
 2. Seeds jobs targeting the local mock ATS endpoints.
-3. Automatically executes persistent form automation in dry-run mode and captures receipt confirmation IDs.
+3. Runs the submitter in dry-run mode against one of the mock portal jobs and prints the resulting confirmation ID. No real application is sent.
 
 ---
 

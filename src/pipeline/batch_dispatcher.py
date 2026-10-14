@@ -73,7 +73,11 @@ class BatchPipelineDispatcher:
                 and not state.get("work_auth_blocker", False)
                 and eval_score >= 85.0
             )
-            tailoring_artifact = state.get("tailoring_artifact_id") or state.get("resume_artifact_id")
+            tailoring_artifact = (
+                state.get("tailoring_artifact_id")
+                or state.get("resume_artifact_id")
+                or state.get("resume_pdf_path")
+            )
             hitl_status = state.get("hitl_status") or ("STAGED" if tailoring_artifact else None)
 
             status = "SUCCESS" if is_eval_passed else "REJECTED"

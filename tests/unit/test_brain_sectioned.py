@@ -8,23 +8,23 @@ from src.brain.tailor_schema import TailorPlan
 inference_mod = importlib.import_module("src.brain.inference")
 
 FIXTURE = [
-    {"id": "node_rm", "type": "graph_node", "content": "Rocket Mortgage",
-     "metadata": {"node_type": "Company", "name": "Rocket Mortgage",
-                  "graph_node_id": "Rocket Mortgage"}},
-    {"id": "node_lcs", "type": "graph_node", "content": "London Computer Systems",
-     "metadata": {"node_type": "Company", "name": "London Computer Systems",
-                  "graph_node_id": "London Computer Systems"}},
+    {"id": "node_rm", "type": "graph_node", "content": "Meridian Lending",
+     "metadata": {"node_type": "Company", "name": "Meridian Lending",
+                  "graph_node_id": "Meridian Lending"}},
+    {"id": "node_lcs", "type": "graph_node", "content": "Harbor Systems",
+     "metadata": {"node_type": "Company", "name": "Harbor Systems",
+                  "graph_node_id": "Harbor Systems"}},
     {"id": "node_doc", "type": "graph_node", "content": "MASTER RESUME",
      "metadata": {"node_type": "Company", "name": "MASTER RESUME & EXHAUSTIVE SOURCE OF TRUTH",
                   "graph_node_id": "MASTER RESUME & EXHAUSTIVE SOURCE OF TRUTH"}},
     # real-data noise (B1, profiled 2026-08-27): story titles, role names and
     # the doc-title itself all appear as ownership-edge sources
     {"id": "e1", "type": "graph_edge", "content": "",
-     "metadata": {"source": "Rocket Mortgage", "target": "story_1", "relation": "LED_STORY"}},
+     "metadata": {"source": "Meridian Lending", "target": "story_1", "relation": "LED_STORY"}},
     {"id": "e2", "type": "graph_edge", "content": "",
-     "metadata": {"source": "London Computer Systems", "target": "story_2", "relation": "LED_STORY"}},
+     "metadata": {"source": "Harbor Systems", "target": "story_2", "relation": "LED_STORY"}},
     {"id": "e3", "type": "graph_edge", "content": "",
-     "metadata": {"source": "Story 1 - Observability & Fannie Mae Integration (Dynatrace)",
+     "metadata": {"source": "Story 1 - Observability & Agency Partner Integration (Dynatrace)",
                   "target": "node_action_9", "relation": "HAS_ACTION"}},
     {"id": "e4", "type": "graph_edge", "content": "",
      "metadata": {"source": "Software Engineer", "target": "node_action_10", "relation": "HAS_ACTION"}},
@@ -38,8 +38,8 @@ def test_enumerate_sections_real_data_shape():
     """B1: only LED_STORY-source Company nodes become sections; story titles,
     role names and the doc-title pseudo-company (which HAS edges) stay out."""
     secs = enumerate_sections(chunks=FIXTURE)
-    assert secs == ["skills", "experience@rocket_mortgage",
-                    "experience@london_computer_systems"]
+    assert secs == ["skills", "experience@meridian_lending",
+                    "experience@harbor_systems"]
 
 
 def _plan(section, story_ids, skills, bullets):

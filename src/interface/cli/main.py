@@ -683,7 +683,7 @@ def build_parser() -> argparse.ArgumentParser:
     """Build command line argument parser."""
     parser = argparse.ArgumentParser(
         prog="careergraph",
-        description="CareerGraph AI: Autonomous Agentic Job Search, Evaluation & Submitter CLI",
+        description="Operon Job Hunter: staged job-search workflow (discovery, evaluation, tailoring, human-approved submission) CLI",
     )
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
 

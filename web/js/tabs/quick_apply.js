@@ -101,7 +101,7 @@ export function renderQuickEvalVerdict(job, evalData) {
         <div class="font-bold ${
           evalData.work_auth_blocker ? "text-rose-400" : "text-emerald-400"
         } mt-0.5">
-          ${evalData.work_auth_blocker ? "❌ Blocker Detected" : "✅ Approved I-140"}
+          ${evalData.work_auth_blocker ? "❌ Blocker Detected" : "✅ No work-auth blocker"}
         </div>
       </div>
       <div class="p-2.5 bg-[#07090e] rounded-lg border border-white/[0.06]">

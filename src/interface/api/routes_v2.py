@@ -60,7 +60,7 @@ except Exception as e:
 
 # Default canonical resume text used if master resume file is not available
 DEFAULT_FALLBACK_RESUME = """
-# Senior Software Engineer — Rocket Mortgage
+# Senior Software Engineer — Meridian Lending
 ## Projects
 ### Distributed Stream Pipeline
 - Architected high-throughput Kafka streaming pipeline processing 10M+ daily events with 99.99% uptime.
@@ -111,9 +111,9 @@ def _get_career_graph() -> nx.DiGraph:
     """Build or load Career Knowledge Graph from MASTER_RESUME.md or canonical fallback."""
     if CareerGraphBuilder is None:
         G = nx.DiGraph()
-        G.add_node("Rocket Mortgage", type="Company")
+        G.add_node("Meridian Lending", type="Company")
         G.add_node("Kafka", type="Technology")
-        G.add_edge("Rocket Mortgage", "Kafka", relation="USED_TECH")
+        G.add_edge("Meridian Lending", "Kafka", relation="USED_TECH")
         return G
 
     builder = CareerGraphBuilder()

@@ -23,11 +23,11 @@ SAMPLE_RESUME_MD = """# ALEX RIVERA — MASTER RESUME
 
 ## Exhaustive Experience & Bullet Library
 
-### **Software Engineer** — *Rocket Mortgage*
+### **Software Engineer** — *Meridian Lending*
 *Lake Bluff, IL* | *Jan 2023 – Jul 2025*
 
-#### Story 1 — Observability & Fannie Mae Integration (Dynatrace)
-- **Re-engineered** Dynatrace synthetic health-check monitoring across Fannie Mae loan eligibility microservices, eliminating false-positive auth triggers to **slash on-call alert noise by 80%** and **reclaim ~20 engineering hours monthly**.
+#### Story 1 — Observability & Agency Partner Integration (Dynatrace)
+- **Re-engineered** Dynatrace synthetic health-check monitoring across Agency Partner loan eligibility microservices, eliminating false-positive auth triggers to **slash on-call alert noise by 80%** and **reclaim ~20 engineering hours monthly**.
 - **Diagnosed** root-cause monitoring gap, improving observability accuracy from 60% to 98%.
 
 #### Story 4 — VB.NET Modernization to AWS ECS Fargate

@@ -31,7 +31,7 @@ Operon Job Hunter replaces flat text chunking with a **NetworkX-powered Knowledg
 ```
 
 ### 2.1. Multi-Hop Relational Retrieval
-When tailoring for a target job, the [`HybridGraphRetriever`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/hybrid_graph_retriever.py) extracts key requirements from the job posting and traverses the knowledge graph:
+When tailoring for a target job, the [`HybridGraphRetriever`](../../src/pipeline/3_tailoring/hybrid_graph_retriever.py) extracts key requirements from the job posting and traverses the knowledge graph:
 1. **Anchor Node Matching:** Identifies candidate technologies matching the job's core stack.
 2. **Neighbor Expansion (1-2 Hops):** Retrieves the parent `STAR_Story`, the associated `Action`, the verified `ImpactMetric`, and the corresponding `Company`.
 3. **Provenance Binding:** Ensures that metrics are never detached from the specific role and timeframe where they occurred.
@@ -40,7 +40,7 @@ When tailoring for a target job, the [`HybridGraphRetriever`](file:///c:/Users/m
 
 ## 3. FactGuard: Anti-Hallucination Verification
 
-Before any tailored bullet is compiled into a PDF artifact, it must pass through [`FactGuard`](file:///c:/Users/mamat/Github/Operon-Job-Hunter/src/pipeline/3_tailoring/fact_guard.py), a deterministic integrity validator:
+Before any tailored bullet is compiled into a PDF artifact, it must pass through [`FactGuard`](../../src/pipeline/3_tailoring/fact_guard.py), a deterministic integrity validator:
 
 ```python
 class FactGuard:

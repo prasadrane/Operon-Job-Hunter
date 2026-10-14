@@ -60,6 +60,8 @@ data/credentials.json
 # ==========================================
 data/*.db
 data/*.sqlite3
+data/*.db-shm
+data/*.db-wal
 data/demo/
 data/browser_profile/
 data/artifacts/
@@ -85,6 +87,8 @@ Thumbs.db
 .graphify/
 .graphify*
 graphify-out/
+CLAUDE.md
+AGENTS.md
 .superpowers/
 .playwright-mcp/
 data/self_healing_log.json
@@ -94,6 +98,7 @@ data/self_healing_log.json
 # ==========================================
 scratch/
 NOTES.md
+.guard_personal_patterns
 *.log
 
 # ==========================================

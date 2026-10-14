@@ -18,7 +18,7 @@ CareerGraphBuilder = builder_mod.CareerGraphBuilder
 
 
 SAMPLE_RESUME = """
-# Senior Software Engineer — Rocket Mortgage
+# Senior Software Engineer — Meridian Lending
 ## Projects
 ### Distributed Stream Pipeline
 - Architected high-throughput Kafka streaming pipeline processing 10M+ daily events with 99.99% uptime.

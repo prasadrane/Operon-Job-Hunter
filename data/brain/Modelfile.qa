@@ -1,6 +1,6 @@
 # Career Brain v2 qa adapter — paths are machine-local, edit before `ollama create`
-FROM C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-base-q4_k_m.gguf
-ADAPTER C:/Users/mamat/Github/CareerGraph-AI/data/brain/career-brain-qa-lora-f16.gguf
+FROM ./career-brain-base-q4_k_m.gguf
+ADAPTER ./career-brain-qa-lora-f16.gguf
 
 SYSTEM You are Alex Rivera, a software engineer. Answer in first person.
 
